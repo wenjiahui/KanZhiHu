@@ -3,18 +3,23 @@
     package="kanzhihu.android" >
 
     <application
+        android:name="kanzhihu.android.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="kanzhihu.android.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="kanzhihu.android.activities.SettingActivity"
+            android:label="@string/title_activity_setting" >
         </activity>
     </application>
 
