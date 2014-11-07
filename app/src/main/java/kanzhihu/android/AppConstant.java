@@ -5,6 +5,8 @@ package kanzhihu.android;
  */
 public class AppConstant {
 
+    public static final String RSS_URL = "http://www.kanzhihu.com/feed";
+
     public static final String PREF_KEY_APP_VERSION = "pref_key_app_version";
 
     public static final String PREF_KEY_SAVE_DAYS = "pref_saveDays";
