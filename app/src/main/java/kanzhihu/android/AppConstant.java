@@ -13,6 +13,12 @@ public class AppConstant {
 
     public static final String PREF_KEY_SAVE_DAYS = "pref_saveDays";
 
+    public static final String PREF_KEY_AUTO_REFRESH = "pref_auto_refresh";
+
+    public static final String PREF_KEY_AUTO_UPDATE = "pref_auto_update";
+
+    public static final String PREF_KEY_BROWSER = "pref_browser_select";
+
     public static final String KEY_PREFERENCE = BuildConfig.APPLICATION_ID + "_preferences";
 
     public interface ITEM_TAG {

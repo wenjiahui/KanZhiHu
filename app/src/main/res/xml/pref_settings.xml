@@ -3,12 +3,28 @@
 
     <PreferenceCategory android:title="@string/base_settings">
 
+        <CheckBoxPreference
+            android:key="pref_auto_refresh"
+            android:title="@string/pref_refresh_title"
+            android:summary="@string/pref_refresh_summay"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="pref_browser_select"
+            android:title="@string/pref_browser_select_title"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="pref_auto_update"
+            android:title="@string/pref_auto_update_title"
+            android:defaultValue="true"/>
+
         <ListPreference
             android:key="pref_saveDays"
             android:dialogTitle="@string/pref_saveDays_dialog_title"
             android:entries="@array/pref_saveDays_entries"
             android:entryValues="@array/pref_saveDays_values"
-            android:defaultValue="@string/pref_save_days_default_value" />
+            android:defaultValue="@string/pref_save_days_default_value"/>
 
     </PreferenceCategory>
 
@@ -20,12 +36,12 @@
             android:key="pref_key_app_author"
             android:title="@string/me">
             <intent android:action="android.intent.action.VIEW"
-                android:data="http://wenjiahui.github.io/" />
-            </Preference>
+                android:data="http://wenjiahui.github.io/"/>
+        </Preference>
 
-        <Preference android:title="@string/Github" >
+        <Preference android:title="@string/Github">
             <intent android:action="android.intent.action.VIEW"
-                android:data="https://github.com/wenjiahui" />
+                android:data="https://github.com/wenjiahui"/>
         </Preference>
 
         <Preference
