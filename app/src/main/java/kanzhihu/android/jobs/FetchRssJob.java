@@ -15,9 +15,10 @@ import kanzhihu.android.AppConstant;
 import kanzhihu.android.events.FetchedRssEvent;
 import kanzhihu.android.events.FetchingRssEvent;
 import kanzhihu.android.managers.HttpClientManager;
-import kanzhihu.android.models.Item;
+import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.AppLogger;
 import kanzhihu.android.utils.HtmlUtils;
+import kanzhihu.android.utils.PersistUtils;
 import kanzhihu.android.utils.TimeUtils;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -60,11 +61,11 @@ public class FetchRssJob extends Job {
         return false;
     }
 
-    private void parseAndStore(InputStream rssStream) throws XmlPullParserException, IOException {
+    public void parseAndStore(InputStream rssStream) throws XmlPullParserException, IOException {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(rssStream, "UTF-8");
         int eventType = parser.getEventType();
-        List<Item> items = new ArrayList<Item>();
+        List<Category> categories = new ArrayList<Category>();
         while (eventType != XmlPullParser.END_DOCUMENT) {
             switch (eventType) {
                 case XmlPullParser.START_DOCUMENT:
@@ -72,8 +73,8 @@ public class FetchRssJob extends Job {
                 case XmlPullParser.START_TAG:
                     if (AppConstant.ITEM_TAG.ITEM.equalsIgnoreCase(parser.getName())) {
                         //开始解析Item数据
-                        Item item = parseItem(parser);
-                        items.add(item);
+                        Category category = parseItem(parser);
+                        categories.add(category);
                     }
                     break;
                 case XmlPullParser.END_TAG:
@@ -81,18 +82,19 @@ public class FetchRssJob extends Job {
             }
             eventType = parser.next();
         }
-        AppLogger.d("parse items size: >>>> " + items.size());
+        AppLogger.d("parse items size: >>>> " + categories.size());
+        PersistUtils.store(categories);
     }
 
-    private Item parseItem(XmlPullParser parser) throws XmlPullParserException, IOException {
-        Item item = new Item();
+    private Category parseItem(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Category category = new Category();
         int eventType;
         boolean flag = true;
         while (flag) {
             eventType = parser.next();
             switch (eventType) {
                 case XmlPullParser.START_TAG:
-                    setItemValue(item, parser);
+                    setItemValue(category, parser);
                     break;
                 case XmlPullParser.END_TAG:
                     if (AppConstant.ITEM_TAG.ITEM.equalsIgnoreCase(parser.getName())) {
@@ -101,42 +103,40 @@ public class FetchRssJob extends Job {
                     break;
             }
         }
-        return item;
+        return category;
     }
 
-    private void setItemValue(Item item, XmlPullParser parser) throws IOException, XmlPullParserException {
+    private void setItemValue(Category category, XmlPullParser parser) throws IOException, XmlPullParserException {
         String tag = parser.getName();
         //get the tag's value
         parser.next();
         String value = parser.getText();
         if (AppConstant.ITEM_TAG.TITLE.equalsIgnoreCase(tag)) {
-            item.title = value;
+            category.title = value;
         } else if (AppConstant.ITEM_TAG.LINK.equalsIgnoreCase(tag)) {
-            item.link = value;
+            category.link = value;
         } else if (AppConstant.ITEM_TAG.COMMENTS_LINK.equalsIgnoreCase(tag)) {
             //  <comments>http://www.kanzhihu.com/archive-2014-11-07.html#comments</comments>
             //  <slash:comments>0</slash:comments>
             //  两者的value是一样的，需要判断命名空间an
             if (TextUtils.isEmpty(parser.getNamespace())) {
-                item.commentsLink = value;
+                category.commentsLink = value;
             } else {
-                item.comments = value;
+                category.comments = value;
             }
         } else if (AppConstant.ITEM_TAG.PUBDATE.equalsIgnoreCase(tag)) {
-            item.pubDate = TimeUtils.getTimeMillis(value);
+            category.pubDate = TimeUtils.getTimeMillis(value);
         } else if (AppConstant.ITEM_TAG.CREATOR.equalsIgnoreCase(tag)) {
-            item.creator = value;
-        } else if (AppConstant.ITEM_TAG.CATEGORY.equalsIgnoreCase(tag)) {
-            item.category = value;
+            category.creator = value;
         } else if (AppConstant.ITEM_TAG.GUID.equalsIgnoreCase(tag)) {
-            item.guid = value;
+            category.guid = value;
         } else if (AppConstant.ITEM_TAG.DESCRIPTION.equalsIgnoreCase(tag)) {
-            item.description = value;
+            category.description = value;
         } else if (AppConstant.ITEM_TAG.ENCODED.equalsIgnoreCase(tag)) {
-            item.encoded = value;
-            item.articles = HtmlUtils.parseArticles(value);
+            category.encoded = value;
+            category.articles = HtmlUtils.parseArticles(value);
         } else if (AppConstant.ITEM_TAG.COMMENTS_RSS_LINK.equalsIgnoreCase(tag)) {
-            item.commentRssLink = value;
+            category.commentRssLink = value;
         }
     }
 }

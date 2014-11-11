@@ -1,5 +1,7 @@
 package kanzhihu.android;
 
+import kanzhihu.android.database.table.CategoryTable;
+
 /**
  * Created by Jiahui.wen on 2014/10/29.
  */
@@ -21,7 +23,6 @@ public class AppConstant {
         String COMMENTS_LINK = "comments";
         String PUBDATE = "pubDate";
         String CREATOR = "creator";
-        String CATEGORY = "category";
         String GUID = "guid";
         String DESCRIPTION = "description";
         String ENCODED = "encoded";
@@ -33,4 +34,7 @@ public class AppConstant {
      * e.g: Fri, 07 Nov 2014 09:00:00 +0000
      */
     public static String PUBLISH_DATE_PATTERN = "EE, dd MMM yyyy HH:mm:ss Z";
+
+    public static final String CATEGORY_EXIST_SQL =
+        "SELECT * FROM " + CategoryTable.TABLE_NAME + " WHERE " + CategoryTable.TITLE + " = '%s'";
 }
