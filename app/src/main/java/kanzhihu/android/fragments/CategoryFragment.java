@@ -1,9 +1,7 @@
 package kanzhihu.android.fragments;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import kanzhihu.android.R;
 import kanzhihu.android.events.FetchedRssEvent;
@@ -17,7 +15,7 @@ import kanzhihu.android.managers.BackThreadManager;
  */
 public class CategoryFragment extends BaseFragment {
 
-    @InjectView(R.id.recyclerView) RecyclerView mRecyclerView;
+    //@InjectView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     @Override public int getViewRec() {
         return R.layout.fragment_category;

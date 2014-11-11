@@ -1,8 +1,24 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14.1'
+        classpath 'org.robolectric:robolectric-gradle-plugin:0.13.2'
+    }
+}
+
+
 apply plugin: 'com.android.application'
+apply plugin: 'robolectric'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    buildToolsVersion "21.1.1"
+
+    lintOptions {
+        abortOnError false
+    }
 
     defaultConfig {
         applicationId "kanzhihu.android"
@@ -20,21 +36,41 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.0'
-
     //view Initialize
     compile 'com.jakewharton:butterknife:6.0.0'
-
     //background thread
     compile 'com.path:android-priority-jobqueue:1.1.2'
-
     //event handler
     compile 'de.greenrobot:eventbus:2.2.1'
-
     //network request
     compile 'com.squareup.okhttp:okhttp:2.0.0'
+    //html parse
+    compile 'org.jsoup:jsoup:1.8.1'
+
+    androidTestCompile 'org.robolectric:robolectric:2.3'
+}
+
+robolectric {
+    // configure the set of classes for JUnit tests
+    include '**/*Test.class'
+    exclude '**/espresso/**/*.class'
+
+    // configure max heap size of the test JVM
+    maxHeapSize = '2048m'
+
+    // configure the test JVM arguments
+    jvmArgs '-XX:MaxPermSize=512m', '-XX:-UseSplitVerifier'
+
+
+    // configure whether failing tests should fail the build
+    ignoreFailures true
+
+    // use afterTest to listen to the test execution results
+    afterTest { descriptor, result ->
+        println "Executing test for ${descriptor.name} with result: ${result.resultType}"
+    }
 }
