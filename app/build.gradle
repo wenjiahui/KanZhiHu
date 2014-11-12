@@ -38,6 +38,9 @@ android {
                 throw new InvalidUserDataException(
                     "You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
             }
+
+            applicationVariants.all { variant -> appendVersionNameVersionCode(variant, defaultConfig)
+            }
         }
     }
 
@@ -112,5 +115,21 @@ robolectric {
 
     // use afterTest to listen to the test execution results
     afterTest { descriptor, result -> println "Executing test for ${descriptor.name} with result: ${result.resultType}"
+    }
+}
+
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    //check if staging variant
+    if (variant.name == android.buildTypes.release.name) {
+        if (variant.zipAlign) {
+            def file = variant.outputFile
+            def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
+            variant.outputFile = new File(file.parent, fileName)
+        }
+
+        def file = variant.packageApplication.outputFile
+        //def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
+        def fileName = "KanZhihu" + "-" + defaultConfig.versionName + ".apk";
+        variant.packageApplication.outputFile = new File(file.parent, fileName)
     }
 }
