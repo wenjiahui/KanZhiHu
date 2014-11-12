@@ -7,6 +7,8 @@ import kanzhihu.android.database.table.CategoryTable;
  */
 public class AppConstant {
 
+    public static final String APK_NAME = "kanzhihu_lastest.apk";
+
     public static final String RSS_URL = "http://www.kanzhihu.com/feed";
 
     public static final String PREF_KEY_APP_VERSION = "pref_key_app_version";
@@ -43,4 +45,8 @@ public class AppConstant {
 
     public static final String CATEGORY_EXIST_SQL =
         "SELECT * FROM " + CategoryTable.TABLE_NAME + " WHERE " + CategoryTable.TITLE + " = '%s'";
+
+    //update app
+    public static final String APP_INFO_URL = "http://kanzhihu-android.qiniudn.com/app_info.txt?download=app_info.txt";
+    public static final String ACTION_NEW_VERSION_APP = "action.new.version.app";
 }

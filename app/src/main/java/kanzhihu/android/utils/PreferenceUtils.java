@@ -15,9 +15,21 @@ public class PreferenceUtils {
         return App.getAppContext().getSharedPreferences(AppConstant.KEY_PREFERENCE, Context.MODE_PRIVATE);
     }
 
+    /**
+     * 设置保存多少天的文章
+     */
     public static int getSaveDays() {
         return Integer.parseInt(PreferenceUtils.getString(AppConstant.PREF_KEY_SAVE_DAYS,
             App.getAppContext().getResources().getString(R.string.pref_save_days_default_value)));
+    }
+
+    /**
+     * 配置信息，是否自动更新
+     *
+     * @return true 自动更新
+     */
+    public static boolean isAutoUpdate() {
+        return getPreference().getBoolean(AppConstant.PREF_KEY_AUTO_UPDATE, true);
     }
 
     public static String getString(String key, String defaultValue) {
