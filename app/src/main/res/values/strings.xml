@@ -11,6 +11,9 @@
     <string name="pref_refresh_summay">土豪，自动刷新耗费流量</string>
     <string name="pref_browser_select_title">在外部浏览器查看文章</string>
     <string name="pref_auto_update_title">自动检查更新</string>
+    <string name="find_new_app_version">发现新版本，是否更新？</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
 
 
 </resources>

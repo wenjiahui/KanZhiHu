@@ -2,8 +2,6 @@ package kanzhihu.android.utils;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import java.io.Closeable;
-import java.io.IOException;
 import java.util.List;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
@@ -32,7 +30,7 @@ public class PersistUtils {
                 if (cursor == null || cursor.getCount() == 0) {
                     save(category, database);
                 }
-                close(cursor);
+                IOUtils.close(cursor);
             }
             database.setTransactionSuccessful();
         } catch (Exception e) {
@@ -41,7 +39,7 @@ public class PersistUtils {
             database.endTransaction();
         }
         //App.getAppContext().getContentResolver().notifyChange();
-        close(database);
+        IOUtils.close(database);
     }
 
     /**
@@ -60,17 +58,6 @@ public class PersistUtils {
         for (Article article : articles) {
             article.category_id = id;
             database.insert(ArticleTable.TABLE_NAME, null, article.getContentValues());
-        }
-    }
-
-    private static void close(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            closeable = null;
         }
     }
 }
