@@ -14,6 +14,9 @@
     <string name="find_new_app_version">发现新版本，是否更新？</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
+    <string name="downloading_kanzhi">正在下载看知乎更新包</string>
+    <string name="downloaded_kanzhi">看知乎apk下载完毕</string>
+    <string name="downloaded_kanzhi_details">点击安装新版本</string>
 
 
 </resources>

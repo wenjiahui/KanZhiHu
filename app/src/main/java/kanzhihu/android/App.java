@@ -9,6 +9,7 @@ import de.greenrobot.event.EventBus;
 import java.io.File;
 import kanzhihu.android.events.DownloadedApkEvent;
 import kanzhihu.android.managers.ActivityManager;
+import kanzhihu.android.managers.NotifyManager;
 import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.FileUtils;
 import kanzhihu.android.utils.PreferenceUtils;
@@ -74,5 +75,6 @@ public class App extends Application {
         }
         //最新版的apk已经下载完毕，目前不需要继续监听事件。
         EventBus.getDefault().unregister(this);
+        NotifyManager.getManager().unregisterEventbus();
     }
 }

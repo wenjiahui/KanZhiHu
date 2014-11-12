@@ -45,6 +45,7 @@ public class UpdateManager {
             @Override public void onConfirm() {
                 dialog.dismiss();
                 //确定下载新版本
+                NotifyManager.getManager().registerEventbus();
                 BackThreadManager.getJobManager().addJob(new DownloadAppJob());
             }
 

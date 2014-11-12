@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import kanzhihu.android.AppConstant;
+import kanzhihu.android.events.DownloadProgressEvent;
 import kanzhihu.android.events.DownloadedApkEvent;
+import kanzhihu.android.events.DownloadingApkEvent;
 import kanzhihu.android.managers.HttpClientManager;
 import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.FileUtils;
@@ -27,7 +29,7 @@ public class DownloadAppJob extends Job {
     }
 
     @Override public void onAdded() {
-
+        EventBus.getDefault().post(new DownloadingApkEvent());
     }
 
     @Override public void onRun() throws Throwable {
@@ -40,14 +42,24 @@ public class DownloadAppJob extends Job {
             apk.delete();
         }
 
-        byte[] bytes = new byte[1024];
-        int readCount;
         InputStream is = response.body().byteStream();
         FileOutputStream fos = new FileOutputStream(apk);
+        DownloadProgressEvent event = new DownloadProgressEvent();
+
+        byte[] bytes = new byte[1024 * 8];
+        long totalLength = response.body().contentLength();
+        int count = 0;
+        int readCount;
 
         try {
             while ((readCount = is.read(bytes)) != -1) {
                 fos.write(bytes, 0, readCount);
+                count += readCount;
+                int progress = (int) ((count * 1.0 / totalLength) * 100);
+                if (progress > event.progress) {
+                    event.progress = progress;
+                    EventBus.getDefault().post(event);
+                }
             }
             fos.flush();
         } catch (Exception e) {

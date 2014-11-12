@@ -47,6 +47,6 @@ public class AppConstant {
         "SELECT * FROM " + CategoryTable.TABLE_NAME + " WHERE " + CategoryTable.TITLE + " = '%s'";
 
     //update app
-    public static final String APP_INFO_URL = "http://kanzhihu-android.qiniudn.com/app.txt";
+    public static final String APP_INFO_URL = "http://kanzhihu-android.qiniudn.com/app_info.txt?download=app_info.txt";
     public static final String ACTION_NEW_VERSION_APP = "action.new.version.app";
 }
