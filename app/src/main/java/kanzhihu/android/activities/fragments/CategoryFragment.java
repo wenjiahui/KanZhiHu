@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import butterknife.InjectView;
 import kanzhihu.android.R;
@@ -31,6 +34,11 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     private CursorRecyclerViewAdapter mAdapter;
     private CategoryPresenter mPresenter;
 
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Override public int getViewRec() {
         return R.layout.fragment_category;
     }
@@ -51,6 +59,19 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mPresenter.init();
     }
 
+    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_category, menu);
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            mPresenter.fetchRss();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override public void onDestroyView() {
         super.onDestroyView();
 
@@ -68,7 +89,7 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mPresenter.loadDataFromDBComplete(data);
     }
 
-    @Override public void onLoaderReset(Loader<Cursor> loader) {
+    @Override public void onLoaderReset(Loader<Cursor> cursorLoader) {
         mAdapter.swapCursor(null);
     }
 
