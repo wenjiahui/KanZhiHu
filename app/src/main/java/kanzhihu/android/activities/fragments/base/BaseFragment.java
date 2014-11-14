@@ -1,4 +1,4 @@
-package kanzhihu.android.fragments.base;
+package kanzhihu.android.activities.fragments.base;
 
 import android.app.Fragment;
 import android.os.Bundle;

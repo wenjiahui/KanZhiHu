@@ -32,6 +32,13 @@ public class PreferenceUtils {
         return getPreference().getBoolean(AppConstant.PREF_KEY_AUTO_UPDATE, true);
     }
 
+    /**
+     * 是否自动拉取rss数据
+     */
+    public static boolean isAutoFetchRss() {
+        return getPreference().getBoolean(AppConstant.PREF_KEY_AUTO_REFRESH, false);
+    }
+
     public static String getString(String key, String defaultValue) {
         return getPreference().getString(key, defaultValue);
     }

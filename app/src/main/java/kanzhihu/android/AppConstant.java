@@ -49,4 +49,7 @@ public class AppConstant {
     //update app
     public static final String APP_INFO_URL = "http://kanzhihu-android.qiniudn.com/app_info.txt?download=app_info.txt";
     public static final String ACTION_NEW_VERSION_APP = "action.new.version.app";
+
+    public static int ID_CATEGORY_LOADER = 0X123;
+    public static int ID_ARTICLE_LOADER = 0X125;
 }

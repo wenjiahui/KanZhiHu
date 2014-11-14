@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import kanzhihu.android.R;
-import kanzhihu.android.fragments.CategoryFragment;
+import kanzhihu.android.activities.fragments.CategoryFragment;
 
 public class MainActivity extends ActionBarActivity {
 

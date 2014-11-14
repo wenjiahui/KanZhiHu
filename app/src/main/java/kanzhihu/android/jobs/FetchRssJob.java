@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.events.FetchedRssEvent;
-import kanzhihu.android.events.FetchingRssEvent;
 import kanzhihu.android.managers.HttpClientManager;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.AppLogger;
@@ -28,15 +28,22 @@ import org.xmlpull.v1.XmlPullParserException;
  */
 public class FetchRssJob extends Job {
 
+    private static final AtomicInteger jobCounter = new AtomicInteger(0);
+    private final int id;
+
     public FetchRssJob() {
-        super(new Params(Priority.MID).requireNetwork());
+        super(new Params(Priority.HIGH).requireNetwork().groupBy("fetch_rss"));
+        id = jobCounter.incrementAndGet();
     }
 
     @Override public void onAdded() {
-        EventBus.getDefault().post(new FetchingRssEvent());
+
     }
 
     @Override public void onRun() throws Throwable {
+        if (id != jobCounter.get()) {
+            return;
+        }
 
         Request request = new Request.Builder().url(AppConstant.RSS_URL).build();
 
@@ -53,11 +60,10 @@ public class FetchRssJob extends Job {
     }
 
     @Override protected void onCancel() {
-
+        EventBus.getDefault().post(new FetchedRssEvent());
     }
 
     @Override protected boolean shouldReRunOnThrowable(Throwable throwable) {
-        AppLogger.d("FetchRssJob", throwable);
         return false;
     }
 

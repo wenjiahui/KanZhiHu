@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import kanzhihu.android.R;
-import kanzhihu.android.fragments.SettingFragment;
+import kanzhihu.android.activities.fragments.SettingFragment;
 
 public class SettingActivity extends Activity {
 

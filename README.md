@@ -14,6 +14,7 @@
 - [EventBus][4]
 - [Jsoup][5]
 - [robolectric][6](Unit Test)
+- [CursorRecyclerViewAdapter.java](7)
 
 
 [1]:http://www.kanzhihu.com/
@@ -22,3 +23,4 @@
 [4]:https://github.com/greenrobot/EventBus
 [5]:http://jsoup.org/
 [6]:http://robolectric.org/
+[7]:https://gist.github.com/skyfishjy/443b7448f59be978bc59
