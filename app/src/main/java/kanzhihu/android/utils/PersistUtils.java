@@ -6,6 +6,7 @@ import java.util.List;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.database.ZhihuDatabase;
+import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 import kanzhihu.android.models.Article;
@@ -33,6 +34,7 @@ public class PersistUtils {
                 IOUtils.close(cursor);
             }
             database.setTransactionSuccessful();
+            App.getAppContext().getContentResolver().notifyChange(ZhihuProvider.CATEGORY_CONTENT_URI, null);
         } catch (Exception e) {
             AppLogger.e(PersistUtils.class.getSimpleName(), e);
         } finally {
