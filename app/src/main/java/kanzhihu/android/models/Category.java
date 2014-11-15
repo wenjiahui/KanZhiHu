@@ -2,6 +2,8 @@ package kanzhihu.android.models;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.List;
 import kanzhihu.android.database.table.CategoryTable;
 import kanzhihu.android.utils.Cache;
@@ -17,7 +19,7 @@ import kanzhihu.android.utils.Cache;
  * 2. 2014年11月7日 近日热门 <br/>
  * 3. 2014年11月7日 昨日最新 <br/>
  */
-public class Category {
+public class Category implements Parcelable {
     public int _id;
     public String title;
     public String link;
@@ -70,4 +72,51 @@ public class Category {
         }
         return category;
     }
+
+    // =============== Parceable ===================
+
+    @Override public int describeContents() {
+        return 0;
+    }
+
+    @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this._id);
+        dest.writeString(this.title);
+        dest.writeString(this.link);
+        dest.writeString(this.commentsLink);
+        dest.writeLong(this.pubDate);
+        dest.writeString(this.creator);
+        dest.writeString(this.guid);
+        dest.writeString(this.description);
+        dest.writeString(this.encoded);
+        dest.writeString(this.commentRssLink);
+        dest.writeString(this.comments);
+    }
+
+    public Category() {
+    }
+
+    private Category(Parcel in) {
+        this._id = in.readInt();
+        this.title = in.readString();
+        this.link = in.readString();
+        this.commentsLink = in.readString();
+        this.pubDate = in.readLong();
+        this.creator = in.readString();
+        this.guid = in.readString();
+        this.description = in.readString();
+        this.encoded = in.readString();
+        this.commentRssLink = in.readString();
+        this.comments = in.readString();
+    }
+
+    public static final Creator<Category> CREATOR = new Creator<Category>() {
+        public Category createFromParcel(Parcel source) {
+            return new Category(source);
+        }
+
+        public Category[] newArray(int size) {
+            return new Category[size];
+        }
+    };
 }

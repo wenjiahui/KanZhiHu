@@ -7,5 +7,6 @@
 
     <dimen name="font_large">18sp</dimen>
     <dimen name="font_normal">15sp</dimen>
+    <dimen name="article_screenshot_size">50dp</dimen>
 
 </resources>

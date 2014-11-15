@@ -75,6 +75,9 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.2.1'
     //network request
     compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    //load image
+    compile 'com.squareup.picasso:picasso:2.4.0'
     //html parse
     compile 'org.jsoup:jsoup:1.8.1'
 

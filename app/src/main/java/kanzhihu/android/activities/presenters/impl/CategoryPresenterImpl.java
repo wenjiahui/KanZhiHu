@@ -7,6 +7,7 @@ import kanzhihu.android.AppConstant;
 import kanzhihu.android.activities.presenters.CategoryPresenter;
 import kanzhihu.android.activities.views.CategoryView;
 import kanzhihu.android.events.FetchedRssEvent;
+import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.jobs.FetchRssJob;
 import kanzhihu.android.managers.BackThreadManager;
 import kanzhihu.android.utils.AssertUtils;
@@ -42,6 +43,10 @@ public class CategoryPresenterImpl implements CategoryPresenter {
 
     public void onEventMainThread(FetchedRssEvent event) {
         mView.hideFetchRssUI();
+    }
+
+    public void onEventMainThread(ListitemClickEvent event) {
+        mView.showArticles(event.position);
     }
 
     @Override public void fetchRss() {

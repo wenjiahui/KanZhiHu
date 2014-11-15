@@ -7,7 +7,7 @@ import android.app.LoaderManager;
  */
 public interface CategoryView {
 
-    void showArticles(String categoryId);
+    void showArticles(int position);
 
     void showFetchRssUI();
 

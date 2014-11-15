@@ -15,6 +15,7 @@
 - [Jsoup][5]
 - [robolectric][6](Unit Test)
 - [CursorRecyclerViewAdapter.java](7)
+- [ParallaxRecyclerAdapter.java](8)
 
 
 [1]:http://www.kanzhihu.com/
@@ -24,3 +25,4 @@
 [5]:http://jsoup.org/
 [6]:http://robolectric.org/
 [7]:https://gist.github.com/skyfishjy/443b7448f59be978bc59
+[8]:https://github.com/kanytu/android-parallax-recyclerview

@@ -11,6 +11,8 @@ public class AppConstant {
 
     public static final String RSS_URL = "http://www.kanzhihu.com/feed";
 
+    public static final String IMAGE_LINK = "http://www.kanzhihu.com/%s";
+
     public static final String PREF_KEY_APP_VERSION = "pref_key_app_version";
 
     public static final String PREF_KEY_SAVE_DAYS = "pref_saveDays";
@@ -52,4 +54,8 @@ public class AppConstant {
 
     public static int ID_CATEGORY_LOADER = 0X123;
     public static int ID_ARTICLE_LOADER = 0X125;
+
+    public static int LOAD_ARTICLES_OK = 1;
+
+    public static String KEY_ARTICLES = "articles";
 }

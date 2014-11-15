@@ -33,9 +33,7 @@ public class CategoryAdapter extends CursorRecyclerViewAdapter {
 
     @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listitem_category, viewGroup, false);
-
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

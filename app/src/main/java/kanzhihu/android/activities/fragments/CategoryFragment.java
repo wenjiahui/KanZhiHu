@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import butterknife.InjectView;
+import de.greenrobot.event.EventBus;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.CategoryAdapter;
 import kanzhihu.android.activities.adapter.base.CursorRecyclerViewAdapter;
@@ -22,6 +23,9 @@ import kanzhihu.android.activities.presenters.impl.CategoryPresenterImpl;
 import kanzhihu.android.activities.views.CategoryView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.CategoryTable;
+import kanzhihu.android.events.ReadArticlesEvent;
+import kanzhihu.android.models.Category;
+import kanzhihu.android.utils.AssertUtils;
 
 /**
  * Created by Jiahui.wen on 2014/11/6.
@@ -93,8 +97,13 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mAdapter.swapCursor(null);
     }
 
-    @Override public void showArticles(String categoryId) {
-
+    @Override public void showArticles(int position) {
+        Cursor cursor = mAdapter.getCursor();
+        AssertUtils.requireNonNull(cursor, "category cursor must not null");
+        if (cursor.move(position)) {
+            Category category = Category.fromCursor(cursor);
+            EventBus.getDefault().post(new ReadArticlesEvent(category));
+        }
     }
 
     @Override public void showFetchRssUI() {
