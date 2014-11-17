@@ -32,7 +32,7 @@ public class LoadArticlesTask extends AsyncTask<Integer, Void, ArrayList<Article
         SQLiteDatabase database = new ZhihuDatabase(App.getAppContext()).getReadableDatabase();
         Cursor cursor =
             database.query(ArticleTable.TABLE_NAME, ArticleTable.ALL_COLUMNS, ArticleTable.CATEGORY_ID + " = ?",
-                new String[] { String.valueOf(params[0]) }, null, null, null);
+                new String[] { String.valueOf(params[0]) }, null, null, ArticleTable.AGREE_COUNT + " DESC");
         try {
             if (cursor != null && cursor.moveToFirst()) {
                 do {

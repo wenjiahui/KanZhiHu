@@ -7,14 +7,18 @@
 
     <color name="white">#eeeeee</color>
 
-    <color name="text_white">#e3e3e3</color>
-    <color name="text_black">#232323</color>
+    <color name="text_gray">#9A9A9A</color>
+    <color name="text_black">#424242</color>
 
     <color name="primary">@color/base_color</color>
     <color name="primaryDark">@color/base_color_dark</color>
     <color name="accent">@color/base_color_light</color>
 
     <color name="window_background">@color/white</color>
+
+    <color name="toolbar_textColor">#595959</color>
+
+    <color name="cardview_background">#fafafa</color>
 
     <color name="listitem_normal_color">@android:color/darker_gray</color>
     <color name="listitem_pressed_color">@color/window_background</color>

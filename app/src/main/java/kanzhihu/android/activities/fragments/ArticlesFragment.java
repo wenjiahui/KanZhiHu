@@ -1,6 +1,7 @@
 package kanzhihu.android.activities.fragments;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import kanzhihu.android.activities.presenters.impl.ArticlesPresenterImpl;
 import kanzhihu.android.activities.views.ArticlesView;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
+import kanzhihu.android.utils.HardwareUtils;
 import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.UrlBuilder;
 
@@ -81,6 +84,12 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mHeadView = (ImageView) head.findViewById(R.id.iv_articles_screenshot);
         mAdapter.setParallaxHeader(head, recyclerView);
         mAdapter.setOnClickEvent(this);
+
+        //设置图片的大小充满顶部
+        Point point = HardwareUtils.getScrenSize(getActivity());
+        int width = point.x;
+        int height = width * 245 / 520;
+        mHeadView.setLayoutParams(new LinearLayout.LayoutParams(width, height));
 
         mPresenter = new ArticlesPresenterImpl(this, mCategory);
         mPresenter.loadArticles();
