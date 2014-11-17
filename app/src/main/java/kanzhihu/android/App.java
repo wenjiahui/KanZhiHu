@@ -8,9 +8,12 @@ import android.net.Uri;
 import de.greenrobot.event.EventBus;
 import java.io.File;
 import kanzhihu.android.events.DownloadedApkEvent;
+import kanzhihu.android.jobs.DeleteOldArticlesJob;
 import kanzhihu.android.managers.ActivityManager;
+import kanzhihu.android.managers.BackThreadManager;
 import kanzhihu.android.managers.NotifyManager;
 import kanzhihu.android.managers.UpdateManager;
+import kanzhihu.android.utils.Cache;
 import kanzhihu.android.utils.FileUtils;
 import kanzhihu.android.utils.PreferenceUtils;
 
@@ -44,6 +47,8 @@ public class App extends Application {
             UpdateManager.CheckVersion();
         }
 
+        BackThreadManager.getJobManager().addJobInBackground(new DeleteOldArticlesJob());
+
         EventBus.getDefault().register(this);
     }
 
@@ -59,6 +64,8 @@ public class App extends Application {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
         }
+
+        Cache.clear();
     }
 
     /**
