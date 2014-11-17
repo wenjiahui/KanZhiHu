@@ -35,14 +35,16 @@
                 <TextView
                     android:id="@+id/tv_author"
                     android:layout_below="@id/tv_title"
+                    android:layout_marginTop="4dp"
                     style="@style/base_textfield_style"/>
 
                 <TextView
                     android:id="@+id/tv_agree"
                     android:layout_below="@id/tv_title"
                     android:layout_alignParentRight="true"
-                    android:drawablePadding="5dp"
+                    android:layout_marginTop="4dp"
                     android:drawableLeft="@drawable/ic_agree"
+                    android:drawablePadding="5dp"
                     style="@style/base_textfield_style"/>
 
             </RelativeLayout>

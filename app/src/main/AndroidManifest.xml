@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="kanzhihu.android.activities.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -29,7 +30,8 @@
         </activity>
         <activity
             android:name="kanzhihu.android.activities.BrowseActivity"
-            android:label="@string/title_activity_browse"/>
+            android:label="@string/title_activity_browse"
+            android:uiOptions="splitActionBarWhenNarrow"/>
 
         <provider
             android:name="kanzhihu.android.database.ZhihuProvider"
