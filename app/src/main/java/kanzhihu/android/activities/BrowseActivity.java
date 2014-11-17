@@ -15,6 +15,8 @@ public class BrowseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         Article article = getIntent().getParcelableExtra(AppConstant.KEY_ARTICLE);
 
@@ -34,6 +36,8 @@ public class BrowseActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             SettingActivity.goSetting(this);
+        } else if (id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);

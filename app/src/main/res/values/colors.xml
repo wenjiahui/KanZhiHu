@@ -2,8 +2,8 @@
 <resources>
 
     <color name="base_color_light">#5ccccc</color>
-    <color name="base_color">#009999</color>
-    <color name="base_color_dark">#1d7373</color>
+    <color name="base_color">#009688</color>
+    <color name="base_color_dark">#00796b</color>
 
     <color name="white">#eeeeee</color>
 
@@ -16,7 +16,7 @@
 
     <color name="window_background">@color/white</color>
 
-    <color name="toolbar_textColor">#595959</color>
+    <color name="toolbar_textColor">#e3e3e3</color>
 
     <color name="cardview_background">#fafafa</color>
 

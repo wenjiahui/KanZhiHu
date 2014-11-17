@@ -27,6 +27,8 @@ public class AppConstant {
 
     public static final String KEY_PREFERENCE = BuildConfig.APPLICATION_ID + "_preferences";
 
+    public static final long APP_EXIT_TIME_INTERVAL = 2000;
+
     public interface ITEM_TAG {
         String ITEM = "item";
 
