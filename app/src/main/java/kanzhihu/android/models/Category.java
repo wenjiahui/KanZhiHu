@@ -31,6 +31,7 @@ public class Category implements Parcelable {
     public String encoded;
     public String commentRssLink;
     public String comments;
+    public String categoryName;
 
     public List<Article> articles;
 
@@ -47,6 +48,7 @@ public class Category implements Parcelable {
         values.put(CategoryTable.ENCODED, encoded);
         values.put(CategoryTable.COMMENT_RSS_LINK, commentRssLink);
         values.put(CategoryTable.COMMENTS, comments);
+        values.put(CategoryTable.CATEGORY_NAME, categoryName);
 
         return values;
     }
@@ -68,6 +70,7 @@ public class Category implements Parcelable {
             //category.encoded = cursor.getString(cursor.getColumnIndex(CategoryTable.ENCODED));
             category.commentRssLink = cursor.getString(cursor.getColumnIndex(CategoryTable.COMMENT_RSS_LINK));
             category.comments = cursor.getString(cursor.getColumnIndex(CategoryTable.COMMENTS));
+            category.categoryName = cursor.getString(cursor.getColumnIndex(CategoryTable.CATEGORY_NAME));
             Cache.cache(category);
         }
         return category;
@@ -91,6 +94,7 @@ public class Category implements Parcelable {
         dest.writeString(this.encoded);
         dest.writeString(this.commentRssLink);
         dest.writeString(this.comments);
+        dest.writeString(this.categoryName);
     }
 
     public Category() {
@@ -108,6 +112,7 @@ public class Category implements Parcelable {
         this.encoded = in.readString();
         this.commentRssLink = in.readString();
         this.comments = in.readString();
+        this.categoryName = in.readString();
     }
 
     public static final Creator<Category> CREATOR = new Creator<Category>() {

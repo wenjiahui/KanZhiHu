@@ -15,15 +15,17 @@ public interface CategoryTable {
     String ENCODED = "encoded";
     String COMMENT_RSS_LINK = "comment_rss_link";
     String COMMENTS = "comments";
+    String CATEGORY_NAME = "category_name";
     String[] ALL_COLUMNS = new String[] {
-        _ID, TITLE, LINK, COMMENTS_LINK, PUBLISH_DATE, CREATOR, GUID, DESCRIPTION, ENCODED, COMMENT_RSS_LINK, COMMENTS
+        _ID, TITLE, LINK, COMMENTS_LINK, PUBLISH_DATE, CREATOR, GUID, DESCRIPTION, ENCODED, COMMENT_RSS_LINK, COMMENTS,
+        CATEGORY_NAME
     };
 
     String SQL_CREATE =
-        "CREATE TABLE category ( _id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, link TEXT, comments_link TEXT, publish_date NUMERIC, creator TEXT, guid TEXT, description TEXT, encoded TEXT, comment_rss_link TEXT, comments TEXT )";
+        "CREATE TABLE category ( _id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, link TEXT, comments_link TEXT, publish_date NUMERIC, creator TEXT, guid TEXT, description TEXT, encoded TEXT, comment_rss_link TEXT, comments TEXT, category_name TEXT )";
 
     String SQL_INSERT =
-        "INSERT INTO category ( title, link, comments_link, publish_date, creator, guid, description, encoded, comment_rss_link, comments ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+        "INSERT INTO category ( title, link, comments_link, publish_date, creator, guid, description, encoded, comment_rss_link, comments, category_name ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
     String SQL_DROP = "DROP TABLE IF EXISTS category";
 

@@ -1,29 +1,37 @@
 package kanzhihu.android.activities.fragments;
 
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import butterknife.InjectView;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
+import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.adapter.ArticlesAdapter;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
-import kanzhihu.android.jobs.LoadArticlesTask;
+import kanzhihu.android.activities.presenters.ArticlesPresenter;
+import kanzhihu.android.activities.presenters.impl.ArticlesPresenterImpl;
+import kanzhihu.android.activities.views.ArticlesView;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
+import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.UrlBuilder;
 
 /**
  * Created by Jiahui.wen on 2014/11/14.
  */
-public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAdapter.OnClickEvent, Handler.Callback {
+public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAdapter.OnClickEvent, ArticlesView {
     private static final String CATEGORY_ID = "categoryId";
 
     private Category mCategory;
@@ -36,9 +44,7 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
 
     private ArrayList<Article> articles = new ArrayList<Article>();
 
-    private Handler mHandler;
-
-    private LoadArticlesTask mLoadTask;
+    private ArticlesPresenter mPresenter;
 
     public static ArticlesFragment newInstance(Category category) {
         ArticlesFragment fragment = new ArticlesFragment();
@@ -51,8 +57,7 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
-        mHandler = new Handler(this);
+        setHasOptionsMenu(true);
 
         if (getArguments() != null) {
             mCategory = getArguments().getParcelable(CATEGORY_ID);
@@ -73,32 +78,43 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mAdapter = new ArticlesAdapter(articles);
         recyclerView.setAdapter(mAdapter);
         View head = LayoutInflater.from(getActivity()).inflate(R.layout.listitem_article_header, recyclerView, false);
-        mHeadView = (ImageView) view.findViewById(R.id.iv_articles_screenshot);
+        mHeadView = (ImageView) head.findViewById(R.id.iv_articles_screenshot);
         mAdapter.setParallaxHeader(head, recyclerView);
+        mAdapter.setOnClickEvent(this);
 
-        mLoadTask = new LoadArticlesTask(mHandler);
-        mLoadTask.execute(mCategory._id);
+        mPresenter = new ArticlesPresenterImpl(this, mCategory);
+        mPresenter.loadArticles();
+
+        Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+    }
+
+    @Override public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem refreshItem = menu.findItem(R.id.action_refresh);
+        if (refreshItem != null) {
+            refreshItem.setVisible(false);
+        }
     }
 
     @Override public void onClick(View v, int position) {
-
-    }
-
-    @Override public boolean handleMessage(Message msg) {
-        if (msg.what == AppConstant.LOAD_ARTICLES_OK) {
-            articles = msg.getData().getParcelableArrayList(AppConstant.KEY_ARTICLES);
-            mAdapter.setData(articles);
-            return true;
+        Article article = mAdapter.getItem(position);
+        if (PreferenceUtils.external_open()) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
+            getActivity().startActivity(intent);
+        } else {
+            Intent intent = new Intent(getActivity(), BrowseActivity.class);
+            intent.putExtra(AppConstant.KEY_ARTICLE, article);
+            startActivity(intent);
         }
-        return false;
     }
 
     @Override public void onDestroyView() {
         super.onDestroyView();
 
-        if (mLoadTask != null && mLoadTask.getStatus() != AsyncTask.Status.FINISHED) {
-            mLoadTask.cancel(true);
-            mLoadTask = null;
-        }
+        mPresenter.onDestory();
+    }
+
+    @Override public void onLoadArticlesFinished(ArrayList<Article> articles) {
+        mAdapter.setData(articles);
     }
 }

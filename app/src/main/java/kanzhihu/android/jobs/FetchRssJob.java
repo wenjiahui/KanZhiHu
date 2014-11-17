@@ -143,6 +143,8 @@ public class FetchRssJob extends Job {
             category.articles = HtmlUtils.parseArticles(value);
         } else if (AppConstant.ITEM_TAG.COMMENTS_RSS_LINK.equalsIgnoreCase(tag)) {
             category.commentRssLink = value;
+        } else if (AppConstant.ITEM_TAG.CATEGORY.equalsIgnoreCase(tag)) {
+            category.categoryName = value;
         }
     }
 }

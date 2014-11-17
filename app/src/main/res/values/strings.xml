@@ -18,6 +18,6 @@
     <string name="downloaded_kanzhi">看知乎apk下载完毕</string>
     <string name="downloaded_kanzhi_details">点击安装新版本</string>
     <string name="action_refresh">刷新</string>
-
+    <string name="title_activity_browse">浏览</string>
 
 </resources>
