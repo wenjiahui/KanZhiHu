@@ -1,4 +1,4 @@
-package kanzhihu.android.fragments;
+package kanzhihu.android.activities.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

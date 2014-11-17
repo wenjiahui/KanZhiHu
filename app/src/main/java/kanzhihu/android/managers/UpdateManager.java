@@ -9,7 +9,7 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
-import kanzhihu.android.fragments.UpdateDialogFragment;
+import kanzhihu.android.activities.fragments.UpdateDialogFragment;
 import kanzhihu.android.jobs.CheckVersionJob;
 import kanzhihu.android.jobs.DownloadAppJob;
 import kanzhihu.android.listeners.DialogSelectListener;

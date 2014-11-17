@@ -32,6 +32,20 @@ public class PreferenceUtils {
         return getPreference().getBoolean(AppConstant.PREF_KEY_AUTO_UPDATE, true);
     }
 
+    /**
+     * 是否自动拉取rss数据
+     */
+    public static boolean isAutoFetchRss() {
+        return getPreference().getBoolean(AppConstant.PREF_KEY_AUTO_REFRESH, false);
+    }
+
+    /**
+     * 是否使用外部浏览器查看文章
+     */
+    public static boolean external_open() {
+        return getPreference().getBoolean(AppConstant.PREF_KEY_BROWSER, false);
+    }
+
     public static String getString(String key, String defaultValue) {
         return getPreference().getString(key, defaultValue);
     }

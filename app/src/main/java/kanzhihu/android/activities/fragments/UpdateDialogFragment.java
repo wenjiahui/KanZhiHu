@@ -1,4 +1,4 @@
-package kanzhihu.android.fragments;
+package kanzhihu.android.activities.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
