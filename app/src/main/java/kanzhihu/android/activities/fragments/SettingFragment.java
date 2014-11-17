@@ -55,9 +55,16 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         Preference saveDaysPref = findPreference(AppConstant.PREF_KEY_SAVE_DAYS);
         if (saveDaysPref != null) {
             int select = PreferenceUtils.getSaveDays();
+            String[] days = getResources().getStringArray(R.array.pref_saveDays_values);
+            int index = 0;
+            for (int i = 0; i < days.length; i++) {
+                if (String.valueOf(select).equals(days[i])) {
+                    index = i;
+                }
+            }
 
-            saveDaysPref.setTitle(getString(R.string.pref_saveDays,
-                getResources().getStringArray(R.array.pref_saveDays_entries)[select]));
+            saveDaysPref.setTitle(
+                getString(R.string.pref_saveDays, getResources().getStringArray(R.array.pref_saveDays_entries)[index]));
         }
     }
 }
