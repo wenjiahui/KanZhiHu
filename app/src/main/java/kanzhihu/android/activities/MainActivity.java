@@ -6,12 +6,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import de.greenrobot.event.EventBus;
+import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.ArticlesFragment;
 import kanzhihu.android.activities.fragments.CategoryFragment;
 import kanzhihu.android.events.ReadArticlesEvent;
+import kanzhihu.android.utils.ToastUtils;
 
 public class MainActivity extends ActionBarActivity {
+
+    private long exitTime = 0l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void onEventMainThread(ReadArticlesEvent event) {
         Fragment articlesFragment = ArticlesFragment.newInstance(event.category);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
         getFragmentManager().beginTransaction().add(R.id.container, articlesFragment).addToBackStack("").commit();
     }
 
@@ -39,6 +45,8 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             SettingActivity.goSetting(this);
+        } else if (id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);
@@ -47,8 +55,16 @@ public class MainActivity extends ActionBarActivity {
     @Override public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setTitle(R.string.app_name);
         } else {
-            super.onBackPressed();
+            if ((System.currentTimeMillis() - exitTime) > AppConstant.APP_EXIT_TIME_INTERVAL) {
+                ToastUtils.showShort(R.string.one_more_exit);
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                super.onBackPressed();
+            }
         }
     }
 

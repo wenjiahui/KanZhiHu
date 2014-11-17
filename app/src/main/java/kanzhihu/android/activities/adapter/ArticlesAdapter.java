@@ -38,6 +38,9 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
 
         holder.mTitle.setText(article.title);
         holder.mContent.setText(article.summary);
+        holder.mAuthor.setText(article.writer);
+        holder.mAgree.setText(String.valueOf(article.agreeCount));
+
         Picasso.with(App.getAppContext())
             .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
             .into(holder.mAvatar);
@@ -54,6 +57,12 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
 
         @InjectView(R.id.tv_content)
         public TextView mContent;
+
+        @InjectView(R.id.tv_author)
+        public TextView mAuthor;
+
+        @InjectView(R.id.tv_agree)
+        public TextView mAgree;
 
         @InjectView(R.id.iv_article_img)
         public ImageView mAvatar;

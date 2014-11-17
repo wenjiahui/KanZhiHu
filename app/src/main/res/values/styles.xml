@@ -1,14 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- customize the color palette -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/toolbar_textColor</item>
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 
+    <style name="base_textfield_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
 
     <style name="listitem_title_style">
         <item name="android:layout_width">match_parent</item>
@@ -19,7 +25,17 @@
 
     <style name="listitem_content_style" parent="listitem_title_style">
         <item name="android:textSize">@dimen/font_normal</item>
-        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="listitem_cardview_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/listitem_padding_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/listitem_padding_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/listitem_padding_vertical</item>
+        <item name="android:layout_marginBottom">@dimen/listitem_padding_vertical</item>
+        <item name="android:clickable">true</item>
     </style>
 
 </resources>

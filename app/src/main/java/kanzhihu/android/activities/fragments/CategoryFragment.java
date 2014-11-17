@@ -100,7 +100,7 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void showArticles(int position) {
         Cursor cursor = mAdapter.getCursor();
         AssertUtils.requireNonNull(cursor, "category cursor must not null");
-        if (cursor.move(position)) {
+        if (cursor.moveToPosition(position)) {
             Category category = Category.fromCursor(cursor);
             EventBus.getDefault().post(new ReadArticlesEvent(category));
         }

@@ -80,6 +80,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.4.0'
     //html parse
     compile 'org.jsoup:jsoup:1.8.1'
+    //toolbar
+    compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
 
     androidTestCompile('junit:junit:4.11')
     androidTestCompile('org.robolectric:robolectric:2.3') {

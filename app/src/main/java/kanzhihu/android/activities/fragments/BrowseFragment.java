@@ -2,10 +2,14 @@ package kanzhihu.android.activities.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.webkit.WebView;
 import butterknife.InjectView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ObservableWebView;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
@@ -14,7 +18,7 @@ import kanzhihu.android.models.Article;
 /**
  * Created by Jiahui.wen on 2014/11/17.
  */
-public class BrowseFragment extends BaseFragment {
+public class BrowseFragment extends BaseFragment implements ObservableScrollViewCallbacks {
 
     private Article mArticle;
 
@@ -27,7 +31,7 @@ public class BrowseFragment extends BaseFragment {
         return fragment;
     }
 
-    @InjectView(R.id.webview) WebView mWebView;
+    @InjectView(R.id.webview) ObservableWebView mWebView;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,28 @@ public class BrowseFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         if (mArticle != null && !TextUtils.isEmpty(mArticle.link)) {
             mWebView.loadUrl(mArticle.link);
+        }
+        mWebView.setScrollViewCallbacks(this);
+    }
+
+    @Override public void onScrollChanged(int i, boolean b, boolean b2) {
+
+    }
+
+    @Override public void onDownMotionEvent() {
+
+    }
+
+    @Override public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+        ActionBar ab = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        if (scrollState == ScrollState.UP) {
+            if (ab.isShowing()) {
+                ab.hide();
+            }
+        } else if (scrollState == ScrollState.DOWN) {
+            if (!ab.isShowing()) {
+                ab.show();
+            }
         }
     }
 }
