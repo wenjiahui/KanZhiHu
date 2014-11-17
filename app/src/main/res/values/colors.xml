@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="base_color_light">#5ccccc</color>
+    <color name="base_color">#009999</color>
+    <color name="base_color_dark">#1d7373</color>
+
+    <color name="white">#eeeeee</color>
+
+    <color name="text_white">#e3e3e3</color>
+    <color name="text_black">#232323</color>
+
+    <color name="primary">@color/base_color</color>
+    <color name="primaryDark">@color/base_color_dark</color>
+    <color name="accent">@color/base_color_light</color>
+
+    <color name="window_background">@color/white</color>
+
+    <color name="listitem_normal_color">@android:color/darker_gray</color>
+    <color name="listitem_pressed_color">@color/window_background</color>
+</resources>

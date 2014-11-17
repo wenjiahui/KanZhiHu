@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">看知乎</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_setting">设置</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_saveDays_dialog_title">请设置保留时间</string>
+    <string name="pref_refresh_title">进入页面自动刷新RSS</string>
+    <string name="pref_refresh_summay">土豪，自动刷新耗费流量</string>
+    <string name="pref_browser_select_title">在外部浏览器查看文章</string>
+    <string name="pref_auto_update_title">自动检查更新</string>
+    <string name="find_new_app_version">发现新版本，是否更新？</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="downloading_kanzhi">正在下载看知乎更新包</string>
+    <string name="downloaded_kanzhi">看知乎apk下载完毕</string>
+    <string name="downloaded_kanzhi_details">点击安装新版本</string>
+    <string name="action_refresh">刷新</string>
+    <string name="title_activity_browse">浏览</string>
+
+</resources>

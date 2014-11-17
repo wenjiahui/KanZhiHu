@@ -1,0 +1,47 @@
+<rss
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    version="2.0" __fvdSurfCanyonInserted="1">
+    <channel>
+        <title>看知乎</title>
+        <atom:link href="http://www.kanzhihu.com/feed" rel="self" type="application/rss+xml"/>
+        <link>http://www.kanzhihu.com</link>
+        <description>给你另一双眼睛</description>
+        <lastBuildDate>Fri, 07 Nov 2014 09:00:00 +0000</lastBuildDate>
+        <language>zh-CN</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>http://wordpress.org/?v=4.0</generator>
+
+        <item>
+            <title>2014年11月7日 历史精华</title>
+            <link>http://www.kanzhihu.com/archive-2014-11-07.html</link>
+            <comments>
+                http://www.kanzhihu.com/archive-2014-11-07.html#comments
+            </comments>
+            <pubDate>Fri, 07 Nov 2014 09:00:00 +0000</pubDate>
+            <dc:creator>
+                <![CDATA[ nodepublisher ]]>
+            </dc:creator>
+            <category>
+                <![CDATA[ 历史精华 ]]>
+            </category>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1582</guid>
+            <description></description>
+            <content:encoded></content:encoded>
+            <wfw:commentRss>
+                http://www.kanzhihu.com/archive-2014-11-07.html/feed
+            </wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+
+        <item>
+            ....
+        </item>
+
+    </channel>
+</rss>
