@@ -1,5 +1,8 @@
 [看知乎][1] Android 客户端
 ==================
+
+[![Build Status](https://travis-ci.org/wenjiahui/KanZhiHu.svg?branch=master)](https://travis-ci.org/wenjiahui/KanZhiHu)
+
 从[看知乎][1]这个网站读取RSS，在Android设备上阅读。
 
 ###Screenshots
