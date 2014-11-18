@@ -12,12 +12,13 @@ import android.provider.BaseColumns;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
+import kanzhihu.android.BuildConfig;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 
 public class ZhihuProvider extends ContentProvider {
 
-    public static final String AUTHORITY = "kanzhihu.android.provider";
+    public static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".provider";
 
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 

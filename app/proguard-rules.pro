@@ -15,3 +15,15 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn butterknife.internal.**
+-keep class **$$ViewInjector { *; }
+-keepnames class * { @butterknife.InjectView *;}
+
+-dontwarn java.nio.**
+-dontwarn org.codehaus.mojo.**
+
+-dontwarn com.squareup.okhttp.**
+
+-keepclassmembers class ** {
+public void onEvent*(**); }
