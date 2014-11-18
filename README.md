@@ -17,6 +17,7 @@
 - [CursorRecyclerViewAdapter.java](7)
 - [ParallaxRecyclerAdapter.java](8)
 - [Android-ObservableScrollView](9)
+- [material-dialogs](10)
 
 
 [1]:http://www.kanzhihu.com/
@@ -28,3 +29,4 @@
 [7]:https://gist.github.com/skyfishjy/443b7448f59be978bc59
 [8]:https://github.com/kanytu/android-parallax-recyclerview
 [9]:https://github.com/ksoichiro/Android-ObservableScrollView
+[10]:https://github.com/afollestad/material-dialogs

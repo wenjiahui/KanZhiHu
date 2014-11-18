@@ -20,5 +20,6 @@
     <string name="action_refresh">刷新</string>
     <string name="title_activity_browse">浏览</string>
     <string name="one_more_exit">再按一次退出程序</string>
+    <string name="ignore">忽略此版本</string>
 
 </resources>

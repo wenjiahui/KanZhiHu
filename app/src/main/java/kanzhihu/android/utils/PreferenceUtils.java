@@ -53,4 +53,8 @@ public class PreferenceUtils {
     public static int getInt(String key, int defaultValue) {
         return getPreference().getInt(key, defaultValue);
     }
+
+    public static void setInt(String key, int value) {
+        getPreference().edit().putInt(key, value).apply();
+    }
 }

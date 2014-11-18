@@ -1,12 +1,13 @@
 package kanzhihu.android.activities.fragments;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import com.afollestad.materialdialogs.MaterialDialog;
+import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.listeners.DialogSelectListener;
+import kanzhihu.android.utils.PreferenceUtils;
 
 public class UpdateDialogFragment extends DialogFragment {
 
@@ -17,29 +18,39 @@ public class UpdateDialogFragment extends DialogFragment {
     }
 
     @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.find_new_app_version);
-        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (mListener != null) {
-                    mListener.onConfirm();
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity()).icon(R.drawable.ic_launcher)
+            .title(R.string.app_name)
+            .content(R.string.find_new_app_version)
+            .positiveText(R.string.confirm)
+            .negativeText(R.string.cancel)
+            .neutralText(R.string.ignore)
+            .callback(new MaterialDialog.FullCallback() {
+                @Override
+                public void onPositive(MaterialDialog dialog) {
+                    if (mListener != null) {
+                        mListener.onConfirm();
+                    }
                 }
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                if (mListener != null) {
-                    mListener.onCancel();
-                }
-            }
-        });
-        return builder.create();
-    }
 
-    //@Override
-    //public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    //    return inflater.inflate(R.layout.fragment_update_dialog, container, false);
-    //}
+                @Override
+                public void onNeutral(MaterialDialog dialog) {
+                    if (mListener != null) {
+                        int version = PreferenceUtils.getInt(AppConstant.KEY_NEW_VERSION, -1);
+                        PreferenceUtils.setInt(AppConstant.KEY_IGNORE_VERSION, version);
+                        mListener.onCancel();
+                    }
+                }
+
+                @Override
+                public void onNegative(MaterialDialog dialog) {
+                    if (mListener != null) {
+                        mListener.onCancel();
+                    }
+                }
+            });
+
+        return builder.build();
+    }
 
     @Override public void onDestroy() {
         super.onDestroy();

@@ -12,6 +12,7 @@ import kanzhihu.android.BuildConfig;
 import kanzhihu.android.managers.HttpClientManager;
 import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.AppLogger;
+import kanzhihu.android.utils.PreferenceUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +51,15 @@ public class CheckVersionJob extends Job {
         if (lastestVersion > BuildConfig.VERSION_CODE) {
             //服务器上有新版本
             try {
+                int ignoreVersion = PreferenceUtils.getInt(AppConstant.KEY_IGNORE_VERSION, -1);
+                if (lastestVersion == ignoreVersion) {
+                    //忽略此版本
+                    return;
+                }
+
+                //保留当前最新版本号
+                PreferenceUtils.setInt(AppConstant.KEY_NEW_VERSION, lastestVersion);
+
                 UpdateManager.setUpdateUrl(jsonObject.getString("url"));
                 UpdateManager.registerUpdateBroadcast();
                 LocalBroadcastManager.getInstance(App.getAppContext())
