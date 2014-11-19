@@ -58,7 +58,7 @@ android {
             minifyEnabled false
         }
         release {
-            File file = new File("./app", "kanzhihu.keystore")
+            File file = new File("kanzhihu.keystore")
             if (file.exists()) {
                 //如果有keystore存在，则进行执行的签名打包
                 signingConfig signingConfigs.release
