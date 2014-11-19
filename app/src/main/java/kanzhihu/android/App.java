@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import com.crashlytics.android.Crashlytics;
 import de.greenrobot.event.EventBus;
 import java.io.File;
 import kanzhihu.android.events.DownloadedApkEvent;
@@ -36,6 +37,7 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
+        Crashlytics.start(this);
 
         mCallBack = new ActivityManager();
         registerActivityLifecycleCallbacks(mCallBack);
