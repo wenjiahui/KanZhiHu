@@ -27,3 +27,6 @@
 
 -keepclassmembers class ** {
 public void onEvent*(**); }
+
+-dontwarn com.crashlytics.android.**
+-dontwarn com.crashlytics.android.internal.**
