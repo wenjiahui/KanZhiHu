@@ -4,8 +4,12 @@ buildscript {
         maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
+        //unit test
         classpath 'org.robolectric:robolectric-gradle-plugin:0.13.2'
+        //crash analyse
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.14.3'
+        //rename apk
+        classpath 'com.github.hamsterksu:android-appversion-gradle-plugin:1.1.0'
     }
 }
 
@@ -13,6 +17,7 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'crashlytics'
 apply plugin: 'robolectric'
+apply plugin: 'versionPlugin'
 
 repositories {
     maven { url 'http://download.crashlytics.com/maven' }
@@ -46,9 +51,6 @@ android {
                 ////throw new InvalidUserDataException(
                  //   "You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
             }
-
-            applicationVariants.all { variant -> appendVersionNameVersionCode(variant, defaultConfig)
-            }
         }
     }
 
@@ -58,10 +60,18 @@ android {
             minifyEnabled false
         }
         release {
-            File file = new File("kanzhihu.keystore")
+            File file = new File("app" + File.separator, "kanzhihu.keystore")
             if (file.exists()) {
                 //如果有keystore存在，则进行执行的签名打包
                 signingConfig signingConfigs.release
+                System.out.println("\n************************************************")
+                System.out.println("              user kanzhihu.keystore            ")
+                System.out.println("************************************************\n")
+            } else {
+                System.out.println("\n************************************************")
+                System.out.println("              package release error             ")
+                System.out.println(file.getAbsolutePath())
+                System.out.println("************************************************\n")
             }
             minifyEnabled true
             zipAlignEnabled true
@@ -79,7 +89,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.0@aar'
+    compile 'com.android.support:appcompat-v7:21.0.2@aar'
     compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.0'
     //view Initialize
@@ -141,18 +151,8 @@ robolectric {
     }
 }
 
-def appendVersionNameVersionCode(variant, defaultConfig) {
-    //check if staging variant
-    if (variant.name == android.buildTypes.release.name) {
-        if (variant.zipAlign) {
-            def file = variant.outputFile
-            def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
-            variant.outputFile = new File(file.parent, fileName)
-        }
 
-        def file = variant.packageApplication.outputFile
-        //def fileName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
-        def fileName = "KanZhihu" + "-" + defaultConfig.versionName + ".apk";
-        variant.packageApplication.outputFile = new File(file.parent, fileName)
-    }
+versionPlugin{
+    buildTypesMatcher = 'release'
+    fileNameFormat = '$appPkg-$versionName'
 }

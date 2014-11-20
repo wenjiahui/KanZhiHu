@@ -27,6 +27,7 @@
 - [Android-ObservableScrollView](9)
 - [material-dialogs](10)
 - [robolectric][6](Unit Test)
+- [android-appversion-gradle-plugin][13](apk rename)
 
 
 ###鸣谢
@@ -64,3 +65,4 @@
 [10]:https://github.com/afollestad/material-dialogs
 [11]:http://www.zhihu.com/
 [12]:http://www.kanzhihu.com/
+[13]:https://github.com/hamsterksu/android-appversion-gradle-plugin
