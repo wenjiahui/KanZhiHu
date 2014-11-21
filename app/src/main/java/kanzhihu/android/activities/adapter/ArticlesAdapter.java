@@ -9,11 +9,13 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
+import de.greenrobot.event.EventBus;
 import java.util.List;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
+import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.models.Article;
 
 /**
@@ -50,7 +52,7 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         return getData() == null ? 0 : getData().size();
     }
 
-    static class ArticleHolder extends RecyclerView.ViewHolder {
+    public static class ArticleHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @InjectView(R.id.tv_title)
         public TextView mTitle;
@@ -70,6 +72,12 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         public ArticleHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override public void onClick(View v) {
+            EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
         }
     }
 }

@@ -103,6 +103,10 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         if (refreshItem != null) {
             refreshItem.setVisible(false);
         }
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        if (searchItem != null) {
+            searchItem.setVisible(false);
+        }
     }
 
     @Override public void onClick(View v, int position) {

@@ -113,4 +113,8 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void hideFetchRssUI() {
         mSwipelayout.setRefreshing(false);
     }
+
+    @Override public boolean getVisiable() {
+        return isVisible();
+    }
 }

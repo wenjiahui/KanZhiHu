@@ -21,5 +21,8 @@
     <string name="title_activity_browse">浏览</string>
     <string name="one_more_exit">再按一次退出程序</string>
     <string name="ignore">忽略此版本</string>
+    <string name="search">搜索</string>
+    <string name="title_activity_search">搜索</string>
+    <string name="action_search">搜索</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package kanzhihu.android;
 
+import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 
 /**
@@ -80,4 +81,9 @@ public class AppConstant {
 
         String BASE_URL = KANZHIHU_RESOURCE + "%d/%d/wpid-%s-%d-%d-%d-%s.jpg";
     }
+
+    //Search
+    public static int SEARCH_LOADER_ID = 0X256;
+    public static final String SEARCH_SQL_SELECTION =
+        ArticleTable.TITLE + " like ? or " + ArticleTable.SUMMARY + " like ?";
 }

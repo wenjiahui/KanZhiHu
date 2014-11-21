@@ -46,7 +46,9 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     }
 
     public void onEventMainThread(ListitemClickEvent event) {
-        mView.showArticles(event.position);
+        if (mView.getVisiable()) {
+            mView.showArticles(event.position);
+        }
     }
 
     @Override public void fetchRss() {

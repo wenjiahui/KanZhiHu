@@ -47,6 +47,8 @@ public class MainActivity extends ActionBarActivity {
             SettingActivity.goSetting(this);
         } else if (id == android.R.id.home) {
             onBackPressed();
+        } else if (id == R.id.action_search) {
+            SearchActivity.goSearch(this);
         }
 
         return super.onOptionsItemSelected(item);
