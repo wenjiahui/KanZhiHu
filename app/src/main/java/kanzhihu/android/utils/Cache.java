@@ -28,6 +28,10 @@ public class Cache {
         articleCache.put(article.id, article);
     }
 
+    public static void remove(Article article) {
+        articleCache.remove(article.id);
+    }
+
     public static void clear() {
         categoryCache.clear();
         articleCache.clear();
