@@ -24,5 +24,6 @@
     <string name="search">搜索</string>
     <string name="title_activity_search">搜索</string>
     <string name="action_search">搜索</string>
+    <string name="mark_fail">收藏文章失败</string>
 
 </resources>

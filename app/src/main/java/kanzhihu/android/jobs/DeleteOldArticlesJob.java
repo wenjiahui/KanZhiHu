@@ -41,7 +41,8 @@ public class DeleteOldArticlesJob extends Job {
                     int index = cursor.getColumnIndex(CategoryTable._ID);
                     int _id = cursor.getInt(index);
                     //delete relative articles
-                    database.delete(ArticleTable.TABLE_NAME, ArticleTable.CATEGORY_ID + " = ?",
+                    database.delete(ArticleTable.TABLE_NAME,
+                        ArticleTable.CATEGORY_ID + " = ? and " + ArticleTable.MARKED + " = 0",
                         new String[] { String.valueOf(_id) });
                     //delete category
                     database.delete(CategoryTable.TABLE_NAME, CategoryTable._ID + " = ?",

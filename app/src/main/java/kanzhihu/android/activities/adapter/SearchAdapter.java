@@ -37,6 +37,10 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
         holder.mAuthor.setText(article.writer);
         holder.mAgree.setText(String.valueOf(article.agreeCount));
 
+        holder.unRegisterCheckedChangedListener();
+        holder.mMarked.setChecked(article.marked > 0);
+        holder.registerCheckedChangedListener();
+
         Picasso.with(App.getAppContext())
             .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
             .into(holder.mAvatar);

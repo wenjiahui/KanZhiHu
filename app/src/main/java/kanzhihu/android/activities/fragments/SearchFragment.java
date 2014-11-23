@@ -118,4 +118,18 @@ public class SearchFragment extends BaseFragment implements QueryView {
     @Override public void onQueryTextChange(String newText) {
         mAdapter.setCurFilter(newText);
     }
+
+    @Override public void articleChanged(int position) {
+        mAdapter.notifyItemChanged(position);
+    }
+
+    @Override public Article getArticle(int position) {
+        Article article = null;
+        Cursor cursor = mAdapter.getCursor();
+        if (cursor.moveToPosition(position)) {
+            article = Article.fromCursor(cursor);
+        }
+
+        return article;
+    }
 }

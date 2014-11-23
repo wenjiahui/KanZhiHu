@@ -109,6 +109,8 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
     //dialog
     compile 'com.afollestad:material-dialogs:0.0.9'
+    //crash analysic
+    compile 'com.crashlytics.android:crashlytics:1.1.13'
 
     androidTestCompile('junit:junit:4.11')
     androidTestCompile('org.robolectric:robolectric:2.3') {
@@ -128,7 +130,6 @@ dependencies {
         exclude module: 'wagon-http-lightweight'
         exclude module: 'wagon-provider-api'
     }
-    compile 'com.crashlytics.android:crashlytics:1.+'
 }
 
 robolectric {

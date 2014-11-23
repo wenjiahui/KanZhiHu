@@ -23,39 +23,64 @@
                 android:layout_height="@dimen/article_screenshot_size"
                 android:src="@drawable/ic_launcher"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginLeft="10dp">
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/listitem_title_style"/>
 
-                <TextView
-                    android:id="@+id/tv_author"
-                    android:layout_below="@id/tv_title"
+                <LinearLayout
                     android:layout_marginTop="4dp"
-                    style="@style/base_textfield_style"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_agree"
-                    android:layout_below="@id/tv_title"
-                    android:layout_alignParentRight="true"
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:text="title"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        style="@style/listitem_title_style"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_mark"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/btn_toggle"/>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:drawableLeft="@drawable/ic_agree"
-                    android:drawablePadding="5dp"
-                    style="@style/base_textfield_style"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_author"
+                        android:text="writer"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/base_textfield_style"/>
+
+                    <TextView
+                        android:id="@+id/tv_agree"
+                        android:text="1000"
+                        android:drawableLeft="@drawable/ic_agree"
+                        android:drawablePadding="5dp"
+                        style="@style/base_textfield_style"/>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_content"
             style="@style/listitem_content_style"
-            android:layout_below="@id/tv_title"
-            android:layout_toRightOf="@id/iv_article_img"
             android:layout_marginTop="5dp"/>
 
     </LinearLayout>

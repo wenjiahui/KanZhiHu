@@ -1,21 +1,31 @@
 package kanzhihu.android.activities.presenters.impl;
 
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import de.greenrobot.event.EventBus;
+import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
+import kanzhihu.android.R;
 import kanzhihu.android.activities.presenters.QueryPresenter;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.jobs.SimpleBackgroundTask;
+import kanzhihu.android.models.Article;
 import kanzhihu.android.utils.AssertUtils;
+import kanzhihu.android.utils.Cache;
+import kanzhihu.android.utils.ToastUtils;
 
 /**
  * Created by Jiahui.wen on 2014/11/20.
@@ -56,6 +66,39 @@ public class QueryPresenterImpl implements QueryPresenter {
         if (mView.getVisiable()) {
             mView.showArticle(event.position);
         }
+    }
+
+    public void onEventMainThread(MarkChangeEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        Article article = mView.getArticle(event.position);
+        if (article != null) {
+            markArticleChanged(event.position, article, event.isChecked);
+        }
+    }
+
+    @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
+        new SimpleBackgroundTask<Boolean>(mView.getContext()) {
+            @Override protected Boolean onRun() {
+                ContentValues values = new ContentValues(1);
+                values.put(ArticleTable.MARKED, isChecked ? 1 : 0);
+                int count = App.getAppContext()
+                    .getContentResolver()
+                    .update(Uri.parse(ZhihuProvider.ARTICLE_CONTENT_URI + "/" + article.id), values, null, null);
+                return count > 0;
+            }
+
+            @Override protected void onSuccess(Boolean result) {
+                if (result) {
+                    Cache.remove(article);
+                    article.marked = isChecked ? 1 : 0;
+                    mView.articleChanged(position);
+                } else {
+                    ToastUtils.showShort(R.string.mark_fail);
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override public void loadInitData() {

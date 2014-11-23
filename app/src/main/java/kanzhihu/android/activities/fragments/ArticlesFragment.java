@@ -1,5 +1,6 @@
 package kanzhihu.android.activities.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
@@ -127,7 +128,19 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mPresenter.onDestory();
     }
 
+    @Override public Activity getContext() {
+        return getActivity();
+    }
+
     @Override public void onLoadArticlesFinished(ArrayList<Article> articles) {
         mAdapter.setData(articles);
+    }
+
+    @Override public void articleChanged(int position) {
+        mAdapter.notifyItemChanged(position);
+    }
+
+    @Override public boolean getVisiable() {
+        return isVisible();
     }
 }
