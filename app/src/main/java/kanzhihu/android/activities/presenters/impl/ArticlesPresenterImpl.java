@@ -14,6 +14,7 @@ import kanzhihu.android.activities.presenters.ArticlesPresenter;
 import kanzhihu.android.activities.views.ArticlesView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
+import kanzhihu.android.events.BrowseMarkChangedEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.jobs.LoadArticlesTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
@@ -68,6 +69,14 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         //fixme 因为header的存在，所以选中的position需要减一，但是对于ArticleAdapter来说，position是正确的。
         Article article = articles.get(event.position - 1);
         markArticleChanged(event.position, article, event.isChecked);
+    }
+
+    public void onEventMainThread(BrowseMarkChangedEvent event) {
+        int position = articles.indexOf(event.article);
+        if (position != -1) {
+            articles.set(position, event.article);
+            mView.articleChanged(position);
+        }
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {

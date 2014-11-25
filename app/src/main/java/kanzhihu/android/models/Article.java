@@ -36,6 +36,23 @@ public class Article implements Parcelable {
         return values;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (id != article.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
     //================= parceable =====================
 
     @Override public int describeContents() {
