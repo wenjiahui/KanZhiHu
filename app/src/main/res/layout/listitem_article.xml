@@ -63,14 +63,13 @@
                     <TextView
                         android:id="@+id/tv_author"
                         android:text="writer"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
                         style="@style/base_textfield_style"/>
 
                     <TextView
                         android:id="@+id/tv_agree"
                         android:text="1000"
                         android:drawableLeft="@drawable/ic_agree"
+                        android:layout_marginLeft="20dp"
                         android:drawablePadding="5dp"
                         style="@style/base_textfield_style"/>
                 </LinearLayout>
