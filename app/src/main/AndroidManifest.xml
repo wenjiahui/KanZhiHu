@@ -38,6 +38,7 @@
             android:uiOptions="splitActionBarWhenNarrow"/>
         <activity
             android:name="kanzhihu.android.activities.SearchActivity"
+            android:theme="@style/SearchActivity_MaterialTheme"
             android:label="@string/title_activity_search">
         </activity>
 

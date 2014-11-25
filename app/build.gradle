@@ -107,6 +107,8 @@ dependencies {
     compile 'org.jsoup:jsoup:1.8.1'
     //toolbar
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
+    //undo bar
+    compile 'com.cocosw:undobar:1.6@aar'
     //dialog
     compile 'com.afollestad:material-dialogs:0.0.9'
     //crash analysic

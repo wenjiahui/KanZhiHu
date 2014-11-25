@@ -56,6 +56,7 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
         if (TextUtils.isEmpty(mCurFilter)) {
             mHightLight = "";
         } else {
+            //fixme hard code color
             mHightLight = "<font color='#009688'>" + mCurFilter + "</font>";
         }
     }

@@ -7,10 +7,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import com.cocosw.undobar.UndoBarController;
 import de.greenrobot.event.EventBus;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
@@ -96,6 +99,10 @@ public class QueryPresenterImpl implements QueryPresenter {
                 if (result) {
                     Cache.remove(article);
                     article.marked = isChecked ? 1 : 0;
+                    if (bMarkView) {
+                        //如果是收藏界面，需要显示撤销模式
+                        mView.showUndo(article);
+                    }
                     //mView.articleChanged(position);
                 } else {
                     ToastUtils.showShort(R.string.mark_fail);
@@ -156,6 +163,10 @@ public class QueryPresenterImpl implements QueryPresenter {
         return mActionExpandListener;
     }
 
+    @Override public UndoBarController.UndoListener getUndoListener() {
+        return this;
+    }
+
     @Override public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String selection = null;
         String[] selectionArgs = null;
@@ -184,5 +195,25 @@ public class QueryPresenterImpl implements QueryPresenter {
 
     @Override public void onLoaderReset(Loader<Cursor> loader) {
         mView.swapCursor(null);
+    }
+
+    @Override public void onUndo(@Nullable Parcelable parcelable) {
+        final Article article = (Article) parcelable;
+        new SimpleBackgroundTask<Boolean>(mView.getContext()) {
+            @Override protected Boolean onRun() {
+                ContentValues values = new ContentValues(1);
+                values.put(ArticleTable.MARKED, 1);
+                int count = App.getAppContext()
+                    .getContentResolver()
+                    .update(Uri.parse(ZhihuProvider.ARTICLE_CONTENT_URI + "/" + article.id), values, null, null);
+                return count > 0;
+            }
+
+            @Override protected void onSuccess(Boolean result) {
+                if (!result) {
+                    ToastUtils.showShort(R.string.mark_revert_fail);
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 }

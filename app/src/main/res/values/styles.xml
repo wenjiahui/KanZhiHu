@@ -38,4 +38,8 @@
         <item name="android:clickable">true</item>
     </style>
 
+    <style name="SearchActivity_MaterialTheme" parent="AppTheme">
+        <item name="undoBarStyle">@style/UndoBarMaterialStyle</item>
+    </style>
+
 </resources>

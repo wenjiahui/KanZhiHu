@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import butterknife.InjectView;
+import com.cocosw.undobar.UndoBarController;
+import com.cocosw.undobar.UndoBarStyle;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.BrowseActivity;
@@ -45,6 +47,8 @@ public class SearchFragment extends BaseFragment implements QueryView {
     private QueryPresenter mPresenter;
 
     private boolean bMarkView;
+
+    private UndoBarStyle mUndoStyle;
 
     @InjectView(R.id.recyclerView_mark) RecyclerView mRecyclerView;
 
@@ -143,5 +147,14 @@ public class SearchFragment extends BaseFragment implements QueryView {
         }
 
         return article;
+    }
+
+    @Override public void showUndo(Article article) {
+        new UndoBarController.UndoBar(getActivity()).message(getString(R.string.delete_article, article.title))
+            .listener(mPresenter.getUndoListener())
+            .noicon(true)
+            .token(article)
+            .duration(AppConstant.UNDO_BAR_DURATION)
+            .show();
     }
 }
