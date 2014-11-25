@@ -137,7 +137,11 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
     }
 
     @Override public void articleChanged(int position) {
-        mAdapter.notifyItemChanged(position);
+        if (mAdapter.isHeaderExist()) {
+            mAdapter.notifyItemChanged(position + 1);
+        } else {
+            mAdapter.notifyItemChanged(position);
+        }
     }
 
     @Override public boolean getVisiable() {
