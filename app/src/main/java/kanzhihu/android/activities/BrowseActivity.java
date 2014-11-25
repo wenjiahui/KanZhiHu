@@ -39,7 +39,7 @@ public class BrowseActivity extends ActionBarActivity {
             SettingActivity.goSetting(this);
         } else if (id == android.R.id.home) {
             onBackPressed();
-        } else if (id == R.id.action_mark) {
+        } else if (id == R.id.action_my_mark) {
             SearchActivity.goMarkView(this);
         }
 

@@ -2,9 +2,12 @@ package kanzhihu.android.activities.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +24,7 @@ import kanzhihu.android.activities.presenters.BrowsePresenter;
 import kanzhihu.android.activities.presenters.impl.BrowsePresenterImpl;
 import kanzhihu.android.activities.views.BrowseView;
 import kanzhihu.android.models.Article;
+import kanzhihu.android.utils.ShareUtils;
 
 /**
  * Created by Jiahui.wen on 2014/11/17.
@@ -30,6 +34,7 @@ public class BrowseFragment extends BaseFragment implements BrowseView, Observab
     private Article mArticle;
     private BrowsePresenter mPresenter;
     private MenuItem mMarkItem;
+    private ShareActionProvider mShareActionProvider;
 
     public static Fragment newInstance(Article article) {
         BrowseFragment fragment = new BrowseFragment();
@@ -68,6 +73,15 @@ public class BrowseFragment extends BaseFragment implements BrowseView, Observab
 
         mMarkItem = menu.findItem(R.id.action_mark);
         setMarkStatue(mArticle.marked > 0);
+
+        MenuItem item = menu.findItem(R.id.action_share);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        setShareIntent();
+    }
+
+    private void setShareIntent() {
+        Intent shareIntent = ShareUtils.getShareIntent(mArticle);
+        mShareActionProvider.setShareIntent(shareIntent);
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {

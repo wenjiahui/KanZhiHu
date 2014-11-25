@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_search"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/action_mark"
+    <item android:id="@+id/action_my_mark"
         android:title="@string/action_my_collections"
         android:orderInCategory="100"
         app:showAsAction="never"/>

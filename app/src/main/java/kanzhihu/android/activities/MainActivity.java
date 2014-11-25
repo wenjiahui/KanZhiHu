@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
             onBackPressed();
         } else if (id == R.id.action_search) {
             SearchActivity.goSearch(this);
-        } else if (id == R.id.action_mark) {
+        } else if (id == R.id.action_my_mark) {
             SearchActivity.goMarkView(this);
         }
 

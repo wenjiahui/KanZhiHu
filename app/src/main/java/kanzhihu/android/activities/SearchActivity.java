@@ -49,7 +49,7 @@ public class SearchActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         //hide refresh button
         menu.findItem(R.id.action_search).setVisible(false);
-        menu.findItem(R.id.action_mark).setVisible(false);
+        menu.findItem(R.id.action_my_mark).setVisible(false);
         return true;
     }
 
