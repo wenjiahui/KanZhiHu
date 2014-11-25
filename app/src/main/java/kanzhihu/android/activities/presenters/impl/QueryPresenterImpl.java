@@ -42,8 +42,11 @@ public class QueryPresenterImpl implements QueryPresenter {
 
     private MenuItemCompat.OnActionExpandListener mActionExpandListener;
 
-    public QueryPresenterImpl(QueryView mView) {
+    private boolean bMarkView;
+
+    public QueryPresenterImpl(QueryView mView, boolean bMarkView) {
         this.mView = AssertUtils.requireNonNull(mView, QueryView.class.getSimpleName() + " must not null");
+        this.bMarkView = bMarkView;
     }
 
     @Override public void init() {
@@ -93,7 +96,7 @@ public class QueryPresenterImpl implements QueryPresenter {
                 if (result) {
                     Cache.remove(article);
                     article.marked = isChecked ? 1 : 0;
-                    mView.articleChanged(position);
+                    //mView.articleChanged(position);
                 } else {
                     ToastUtils.showShort(R.string.mark_fail);
                 }
@@ -157,9 +160,17 @@ public class QueryPresenterImpl implements QueryPresenter {
         String selection = null;
         String[] selectionArgs = null;
         if (mCurFilter != null && !mCurFilter.trim().equals("")) {
-            selection = AppConstant.SEARCH_SQL_SELECTION;
+            if (bMarkView) {
+                selection = AppConstant.SEARCH_SQL_SELECTION_FOR_MARK;
+            } else {
+                selection = AppConstant.SEARCH_SQL_SELECTION;
+            }
             String selectionArg = "%" + mCurFilter + "%";
             selectionArgs = new String[] { selectionArg, selectionArg };
+        } else {
+            if (bMarkView) {
+                selection = AppConstant.SEARCH_SQL_MARK_ONLY;
+            }
         }
         String sortOrder = ArticleTable.CATEGORY_ID + " desc, " + ArticleTable.AGREE_COUNT + " desc";
 

@@ -86,4 +86,8 @@ public class AppConstant {
     public static int SEARCH_LOADER_ID = 0X256;
     public static final String SEARCH_SQL_SELECTION =
         ArticleTable.TITLE + " like ? or " + ArticleTable.SUMMARY + " like ?";
+    public static final String SEARCH_SQL_SELECTION_FOR_MARK =
+        ArticleTable.MARKED + " = 1 and (" + ArticleTable.TITLE + " like ? or " + ArticleTable.SUMMARY + " like ?)";
+    public static String SEARCH_SQL_MARK_ONLY = ArticleTable.MARKED + " = 1";
+    public static String ACTION_MODE_MARK_VIEW = "action_mode_mark_view";
 }

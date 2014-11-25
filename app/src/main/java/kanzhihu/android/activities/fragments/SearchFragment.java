@@ -30,8 +30,12 @@ import kanzhihu.android.utils.PreferenceUtils;
  */
 public class SearchFragment extends BaseFragment implements QueryView {
 
-    public static SearchFragment newInstance() {
-        return new SearchFragment();
+    public static SearchFragment newInstance(boolean bMarkView) {
+        SearchFragment fragment = new SearchFragment();
+        Bundle data = new Bundle();
+        data.putBoolean(AppConstant.ACTION_MODE_MARK_VIEW, bMarkView);
+        fragment.setArguments(data);
+        return fragment;
     }
 
     private SearchView mSearchView;
@@ -40,11 +44,15 @@ public class SearchFragment extends BaseFragment implements QueryView {
 
     private QueryPresenter mPresenter;
 
+    private boolean bMarkView;
+
     @InjectView(R.id.recyclerView_mark) RecyclerView mRecyclerView;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        bMarkView = getArguments().getBoolean(AppConstant.ACTION_MODE_MARK_VIEW, false);
     }
 
     @Override public int getViewRec() {
@@ -59,8 +67,10 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryTextListener(mPresenter.getQueryTextListener());
 
-        MenuItemCompat.setOnActionExpandListener(searchItem, mPresenter.getActionExpandListener());
-        MenuItemCompat.expandActionView(searchItem);
+        if (!bMarkView) {
+            MenuItemCompat.setOnActionExpandListener(searchItem, mPresenter.getActionExpandListener());
+            MenuItemCompat.expandActionView(searchItem);
+        }
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -75,7 +85,7 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mAdapter = new SearchAdapter(getActivity(), null);
         mRecyclerView.setAdapter(mAdapter);
 
-        mPresenter = new QueryPresenterImpl(this);
+        mPresenter = new QueryPresenterImpl(this, bMarkView);
         mPresenter.loadInitData();
         mPresenter.bindEvent();
     }
@@ -86,7 +96,9 @@ public class SearchFragment extends BaseFragment implements QueryView {
     }
 
     @Override public void onSearchViewClosed(MenuItem menuItem) {
-        getActivity().onBackPressed();
+        if (!bMarkView) {
+            getActivity().onBackPressed();
+        }
     }
 
     @Override public Activity getContext() {

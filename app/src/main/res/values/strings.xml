@@ -26,5 +26,6 @@
     <string name="action_search">搜索</string>
     <string name="mark_fail">收藏文章失败</string>
     <string name="action_mark">收藏</string>
+    <string name="action_my_collections">我的收藏</string>
 
 </resources>

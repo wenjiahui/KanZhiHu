@@ -9,6 +9,11 @@
         android:icon="@drawable/ic_search"
         app:showAsAction="always"/>
 
+    <item android:id="@+id/action_mark"
+        android:title="@string/action_my_collections"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"

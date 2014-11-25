@@ -49,6 +49,8 @@ public class MainActivity extends ActionBarActivity {
             onBackPressed();
         } else if (id == R.id.action_search) {
             SearchActivity.goSearch(this);
+        } else if (id == R.id.action_mark) {
+            SearchActivity.goMarkView(this);
         }
 
         return super.onOptionsItemSelected(item);

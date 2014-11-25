@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.SearchFragment;
 
@@ -16,12 +17,30 @@ public class SearchActivity extends ActionBarActivity {
         context.startActivity(intent);
     }
 
+    public static void goMarkView(Context context) {
+        Intent intent = new Intent(context, SearchActivity.class);
+        intent.putExtra(AppConstant.ACTION_MODE_MARK_VIEW, true);
+        context.startActivity(intent);
+    }
+
+    /**
+     * true: 收藏模式： 显示收藏文章 <br/>
+     * false: 查询模式：显示所有文章。
+     */
+    private boolean bMarkView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        bMarkView = getIntent().getBooleanExtra(AppConstant.ACTION_MODE_MARK_VIEW, false);
+        if (bMarkView) {
+            setTitle(R.string.action_my_collections);
+        }
+
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, SearchFragment.newInstance()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, SearchFragment.newInstance(bMarkView)).commit();
         }
     }
 
@@ -30,6 +49,7 @@ public class SearchActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         //hide refresh button
         menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_mark).setVisible(false);
         return true;
     }
 
