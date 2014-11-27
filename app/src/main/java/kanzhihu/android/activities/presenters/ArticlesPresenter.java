@@ -11,5 +11,7 @@ public interface ArticlesPresenter {
 
     void markArticleChanged(int position, Article article, boolean isChecked);
 
+    void onShareArticle(int position);
+
     void onDestory();
 }

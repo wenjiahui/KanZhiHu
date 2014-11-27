@@ -19,6 +19,7 @@ import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.models.Article;
 
 /**
@@ -60,7 +61,7 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
     }
 
     public static class ArticleHolder extends RecyclerView.ViewHolder
-        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnLongClickListener {
 
         @InjectView(R.id.tv_title)
         public TextView mTitle;
@@ -84,6 +85,7 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
             super(itemView);
             ButterKnife.inject(this, itemView);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         public void registerCheckedChangedListener() {
@@ -100,6 +102,11 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
 
         @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             EventBus.getDefault().post(new MarkChangeEvent(getPosition(), isChecked));
+        }
+
+        @Override public boolean onLongClick(View v) {
+            EventBus.getDefault().post(new ShareArticleEvent(getPosition()));
+            return true;
         }
     }
 }

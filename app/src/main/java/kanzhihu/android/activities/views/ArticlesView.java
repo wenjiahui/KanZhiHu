@@ -16,4 +16,8 @@ public interface ArticlesView {
     void articleChanged(int position);
 
     boolean getVisiable();
+
+    void createShareView(Article article);
+
+    void closeShareView();
 }

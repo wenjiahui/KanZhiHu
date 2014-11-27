@@ -16,6 +16,8 @@ import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.BrowseMarkChangedEvent;
 import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.events.ShareArticleEvent;
+import kanzhihu.android.events.ShareMenuDismissEvent;
 import kanzhihu.android.jobs.LoadArticlesTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
@@ -68,7 +70,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         }
         //fixme 因为header的存在，所以选中的position需要减一，但是对于ArticleAdapter来说，position是正确的。
         Article article = articles.get(event.position - 1);
-        markArticleChanged(event.position, article, event.isChecked);
+        this.markArticleChanged(event.position, article, event.isChecked);
     }
 
     public void onEventMainThread(BrowseMarkChangedEvent event) {
@@ -77,6 +79,17 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
             articles.set(position, event.article);
             mView.articleChanged(position);
         }
+    }
+
+    public void onEventMainThread(ShareMenuDismissEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        mView.closeShareView();
+    }
+
+    public void onEventMainThread(ShareArticleEvent event) {
+        this.onShareArticle(event.position);
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
@@ -100,6 +113,10 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
                 }
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override public void onShareArticle(int position) {
+        mView.createShareView(articles.get(position));
     }
 
     @Override public void onDestory() {
