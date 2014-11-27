@@ -7,8 +7,8 @@
         app:showAsAction="always"/>
 
     <item android:id="@+id/action_share"
-        android:icon="@drawable/ic_share"
+        android:icon="@drawable/ic_ab_share"
         android:title="@string/share"
         app:showAsAction="ifRoom"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
+        app:actionProviderClass="kanzhihu.android.database.ShareActionProvider"/>
 </menu>

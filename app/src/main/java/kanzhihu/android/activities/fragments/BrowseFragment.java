@@ -76,6 +76,7 @@ public class BrowseFragment extends BaseFragment implements BrowseView, Observab
 
         MenuItem item = menu.findItem(R.id.action_share);
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        mShareActionProvider.setShareHistoryFileName(null);
         setShareIntent();
     }
 
