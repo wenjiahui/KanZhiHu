@@ -37,7 +37,7 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        Crashlytics.start(this);
+        if (!BuildConfig.DEBUG) Crashlytics.start(this);
 
         mCallBack = new ActivityManager();
         registerActivityLifecycleCallbacks(mCallBack);
