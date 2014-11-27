@@ -65,7 +65,7 @@ android {
                 //如果有keystore存在，则进行执行的签名打包
                 signingConfig signingConfigs.release
                 System.out.println("\n************************************************")
-                System.out.println("              user kanzhihu.keystore            ")
+                System.out.println("              use kanzhihu.keystore            ")
                 System.out.println("************************************************\n")
             } else {
                 System.out.println("\n************************************************")
@@ -110,7 +110,7 @@ dependencies {
     //undo bar
     compile 'com.cocosw:undobar:1.6@aar'
     //dialog
-    compile 'com.afollestad:material-dialogs:0.0.9'
+    compile 'com.afollestad:material-dialogs:0.3.0'
     //crash analysic
     compile 'com.crashlytics.android:crashlytics:1.1.13'
 
