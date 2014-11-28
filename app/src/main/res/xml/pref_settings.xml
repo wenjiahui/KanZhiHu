@@ -28,18 +28,30 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/thanks">
+        <Preference
+            android:key="pref_key_app_website"
+            android:title="@string/kanzhihu"
+            android:summary="@string/click_link_browse">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="http://www.kanzhihu.com/"/>
+        </Preference>
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/preference_others">
 
         <Preference
             android:key="pref_key_app_author"
-            android:title="@string/me">
+            android:title="@string/me"
+            android:summary="@string/click_link_browse">
             <intent android:action="android.intent.action.VIEW"
                 android:data="http://wenjiahui.github.io/"/>
         </Preference>
 
-        <Preference android:title="@string/Github">
+        <Preference android:title="@string/Github"
+            android:summary="@string/click_link_browse">>
             <intent android:action="android.intent.action.VIEW"
                 android:data="https://github.com/wenjiahui"/>
         </Preference>
