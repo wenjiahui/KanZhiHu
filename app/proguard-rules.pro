@@ -16,6 +16,20 @@
 #   public *;
 #}
 
+-keep class android.support.v4.internal.** { *; }
+-keep interface android.support.v4.internal.** { *; }
+-keep class android.support.v4.** { *; }
+-keep interface android.support.v4.** { *; }
+
+
+-keep class android.support.v7.internal.** { *; }
+-keep interface android.support.v7.internal.** { *; }
+-keep class android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
+
+-keep class kanzhihu.android.database.** { *; }
+-keep interface kanzhihu.android.database.** { *; }
+
 -dontwarn butterknife.internal.**
 -keep class **$$ViewInjector { *; }
 -keepnames class * { @butterknife.InjectView *;}

@@ -25,10 +25,7 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     }
 
     @Override public void init() {
-        boolean isAutoFetchRss = PreferenceUtils.isAutoFetchRss();
-        if (isAutoFetchRss) {
-            fetchRss();
-        }
+
     }
 
     @Override public void bindEvent() {
@@ -63,6 +60,11 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     @Override public void loadDataFromDBComplete(Cursor cursor) {
         if (cursor == null || cursor.getCount() == 0) {
             fetchRss();
+        } else {
+            boolean isAutoFetchRss = PreferenceUtils.isAutoFetchRss();
+            if (isAutoFetchRss) {
+                fetchRss();
+            }
         }
     }
 
