@@ -11,6 +11,8 @@ public interface ArticlesView {
 
     Activity getContext();
 
+    Article getArticle(int position);
+
     void onLoadArticlesFinished(ArrayList<Article> articles);
 
     void articleChanged(int position);

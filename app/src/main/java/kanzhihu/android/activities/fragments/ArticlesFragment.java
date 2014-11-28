@@ -152,6 +152,16 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         return getActivity();
     }
 
+    @Override public Article getArticle(int position) {
+        Article article;
+        if (mAdapter.isHeaderExist()) {
+            article = mAdapter.getItem(position - 1);
+        } else {
+            article = mAdapter.getItem(position);
+        }
+        return article;
+    }
+
     @Override public void onLoadArticlesFinished(ArrayList<Article> articles) {
         mAdapter.setData(articles);
     }

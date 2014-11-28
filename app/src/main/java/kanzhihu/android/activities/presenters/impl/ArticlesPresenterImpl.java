@@ -89,6 +89,9 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
     }
 
     public void onEventMainThread(ShareArticleEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
         this.onShareArticle(event.position);
     }
 
@@ -116,7 +119,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
     }
 
     @Override public void onShareArticle(int position) {
-        mView.createShareView(articles.get(position));
+        mView.createShareView(mView.getArticle(position));
     }
 
     @Override public void onDestory() {
