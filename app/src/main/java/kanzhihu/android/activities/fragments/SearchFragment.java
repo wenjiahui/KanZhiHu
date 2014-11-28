@@ -24,8 +24,10 @@ import kanzhihu.android.activities.fragments.base.BaseFragment;
 import kanzhihu.android.activities.presenters.QueryPresenter;
 import kanzhihu.android.activities.presenters.impl.QueryPresenterImpl;
 import kanzhihu.android.activities.views.QueryView;
+import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.ShareUtils;
 
 /**
  * Created by Jiahui.wen on 2014/11/19.
@@ -50,6 +52,10 @@ public class SearchFragment extends BaseFragment implements QueryView {
 
     private UndoBarStyle mUndoStyle;
 
+    private ShareActionProvider mShareActionProvider;
+    private Article mShareArticle;
+    private MenuItem mShareMenu;
+
     @InjectView(R.id.recyclerView_mark) RecyclerView mRecyclerView;
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,14 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setIconifiedByDefault(false);
         mSearchView.setOnQueryTextListener(mPresenter.getQueryTextListener());
+
+        mShareMenu = menu.findItem(R.id.action_share);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(mShareMenu);
+        mShareActionProvider.setShareHistoryFileName(null);
+
+        if (mShareArticle == null) {
+            mShareMenu.setVisible(false);
+        }
 
         if (!bMarkView) {
             MenuItemCompat.setOnActionExpandListener(searchItem, mPresenter.getActionExpandListener());
@@ -156,5 +170,19 @@ public class SearchFragment extends BaseFragment implements QueryView {
             .token(article)
             .duration(AppConstant.UNDO_BAR_DURATION)
             .show();
+    }
+
+    @Override public void createShareView(Article article) {
+        mShareArticle = article;
+        mShareMenu.setVisible(true);
+
+        Intent shareIntent = ShareUtils.getShareIntent(mShareArticle);
+        mShareActionProvider.setShareIntent(shareIntent);
+        mShareActionProvider.showPopup();
+    }
+
+    @Override public void closeShareView() {
+        mShareArticle = null;
+        mShareMenu.setVisible(false);
     }
 }

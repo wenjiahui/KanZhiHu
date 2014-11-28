@@ -27,4 +27,6 @@ public interface QueryPresenter extends LoaderManager.LoaderCallbacks<Cursor>, U
     MenuItemCompat.OnActionExpandListener getActionExpandListener();
 
     UndoBarController.UndoListener getUndoListener();
+
+    void onShareArticle(int position);
 }

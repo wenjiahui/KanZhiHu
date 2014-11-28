@@ -24,6 +24,8 @@ import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.events.ShareArticleEvent;
+import kanzhihu.android.events.ShareMenuDismissEvent;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.utils.AssertUtils;
@@ -82,6 +84,20 @@ public class QueryPresenterImpl implements QueryPresenter {
         if (article != null) {
             markArticleChanged(event.position, article, event.isChecked);
         }
+    }
+
+    public void onEventMainThread(ShareMenuDismissEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        mView.closeShareView();
+    }
+
+    public void onEventMainThread(ShareArticleEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        this.onShareArticle(event.position);
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
@@ -165,6 +181,11 @@ public class QueryPresenterImpl implements QueryPresenter {
 
     @Override public UndoBarController.UndoListener getUndoListener() {
         return this;
+    }
+
+    @Override public void onShareArticle(int position) {
+        Article article = mView.getArticle(position);
+        mView.createShareView(article);
     }
 
     @Override public Loader<Cursor> onCreateLoader(int id, Bundle args) {

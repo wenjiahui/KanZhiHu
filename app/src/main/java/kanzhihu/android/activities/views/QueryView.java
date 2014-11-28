@@ -25,4 +25,8 @@ public interface QueryView extends BaseView {
     Article getArticle(int position);
 
     void showUndo(Article article);
+
+    void createShareView(Article article);
+
+    void closeShareView();
 }
