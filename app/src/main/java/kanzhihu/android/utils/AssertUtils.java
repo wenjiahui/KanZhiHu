@@ -11,4 +11,11 @@ public class AssertUtils {
         }
         return o;
     }
+
+    public static <T> T requireNonNull(T o) {
+        if (o == null) {
+            throw new NullPointerException(o.getClass().getSimpleName() + " must not null");
+        }
+        return o;
+    }
 }

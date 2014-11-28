@@ -3,7 +3,7 @@
 
     <string name="preference_others">其他</string>
     <string name="base_settings">基本设置</string>
-    <string name="Github">Github</string>
+    <string name="Github">我的Github</string>
     <string name="pref_saveDays" format="false">文章保留%s</string>
 
     <string name="me">Jiahui.wen</string>

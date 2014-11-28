@@ -52,6 +52,8 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mPresenter = new CategoryPresenterImpl(this);
         mPresenter.bindEvent();
 
+        mSwipelayout.setProgressBackgroundColor(R.color.base_color);
+
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -112,5 +114,9 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
 
     @Override public void hideFetchRssUI() {
         mSwipelayout.setRefreshing(false);
+    }
+
+    @Override public boolean getVisiable() {
+        return isVisible();
     }
 }

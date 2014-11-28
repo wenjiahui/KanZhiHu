@@ -152,12 +152,15 @@ public class ParallaxRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVie
     }
 
     @Override
-
     public int getItemCount() {
         if (mRecyclerAdapterMethods == null) {
             throw new NullPointerException("You must call implementRecyclerAdapterMethods");
         }
         return mRecyclerAdapterMethods.getItemCountImpl() + (mHeader == null ? 0 : 1);
+    }
+
+    public boolean isHeaderExist() {
+        return mHeader != null;
     }
 
     @Override
