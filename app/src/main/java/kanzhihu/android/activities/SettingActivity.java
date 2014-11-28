@@ -3,11 +3,10 @@ package kanzhihu.android.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.SettingFragment;
 
-public class SettingActivity extends ActionBarActivity {
+public class SettingActivity extends BaseActivity {
 
     public static void goSetting(Context context) {
         Intent intent = new Intent(context, SettingActivity.class);

@@ -2,7 +2,6 @@ package kanzhihu.android.activities;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import de.greenrobot.event.EventBus;
@@ -13,7 +12,7 @@ import kanzhihu.android.activities.fragments.CategoryFragment;
 import kanzhihu.android.events.ReadArticlesEvent;
 import kanzhihu.android.utils.ToastUtils;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     private long exitTime = 0l;
 
@@ -47,6 +46,10 @@ public class MainActivity extends ActionBarActivity {
             SettingActivity.goSetting(this);
         } else if (id == android.R.id.home) {
             onBackPressed();
+        } else if (id == R.id.action_search) {
+            SearchActivity.goSearch(this);
+        } else if (id == R.id.action_my_mark) {
+            SearchActivity.goMarkView(this);
         }
 
         return super.onOptionsItemSelected(item);

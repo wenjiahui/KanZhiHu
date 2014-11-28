@@ -5,12 +5,13 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 import kanzhihu.android.database.table.ArticleTable;
+import kanzhihu.android.utils.Cache;
 
 /**
  * Created by Jiahui.wen on 2014/11/7.
  */
 public class Article implements Parcelable {
-
+    public int id;
     public String link;
     public String title;
     public String imageLink;
@@ -19,6 +20,7 @@ public class Article implements Parcelable {
     public int agreeCount;
     public String summary;
     public long category_id;
+    public int marked;
 
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
@@ -30,7 +32,25 @@ public class Article implements Parcelable {
         values.put(ArticleTable.AGREE_COUNT, agreeCount);
         values.put(ArticleTable.SUMMARY, summary);
         values.put(ArticleTable.CATEGORY_ID, category_id);
+        values.put(ArticleTable.MARKED, marked);
         return values;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Article article = (Article) o;
+
+        if (id != article.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     //================= parceable =====================
@@ -40,6 +60,7 @@ public class Article implements Parcelable {
     }
 
     @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
         dest.writeString(this.link);
         dest.writeString(this.title);
         dest.writeString(this.imageLink);
@@ -48,12 +69,14 @@ public class Article implements Parcelable {
         dest.writeInt(this.agreeCount);
         dest.writeString(this.summary);
         dest.writeLong(this.category_id);
+        dest.writeInt(this.marked);
     }
 
     public Article() {
     }
 
     private Article(Parcel in) {
+        this.id = in.readInt();
         this.link = in.readString();
         this.title = in.readString();
         this.imageLink = in.readString();
@@ -62,6 +85,7 @@ public class Article implements Parcelable {
         this.agreeCount = in.readInt();
         this.summary = in.readString();
         this.category_id = in.readLong();
+        this.marked = in.readInt();
     }
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
@@ -75,17 +99,23 @@ public class Article implements Parcelable {
     };
 
     public static Article fromCursor(Cursor cursor) {
-        Article article = new Article();
+        int id = (int) cursor.getLong(cursor.getColumnIndex(ArticleTable._ID));
+        Article article = Cache.getArticle(id);
+        if (article == null) {
+            article = new Article();
+            article.id = id;
+            article.link = cursor.getString(cursor.getColumnIndex(ArticleTable.LINK));
+            article.title = cursor.getString(cursor.getColumnIndex(ArticleTable.TITLE));
+            article.imageLink = cursor.getString(cursor.getColumnIndex(ArticleTable.IMAGE_LINK));
+            article.writer = cursor.getString(cursor.getColumnIndex(ArticleTable.WRITER));
+            article.writerLink = cursor.getString(cursor.getColumnIndex(ArticleTable.WRITER_LINK));
+            article.agreeCount = cursor.getInt(cursor.getColumnIndex(ArticleTable.AGREE_COUNT));
+            article.summary = cursor.getString(cursor.getColumnIndex(ArticleTable.SUMMARY));
+            article.category_id = cursor.getInt(cursor.getColumnIndex(ArticleTable.CATEGORY_ID));
+            article.marked = cursor.getInt(cursor.getColumnIndex(ArticleTable.MARKED));
 
-        //article.id = cursor.getLong(cursor.getColumnIndex(ArticleTable._ID));
-        article.link = cursor.getString(cursor.getColumnIndex(ArticleTable.LINK));
-        article.title = cursor.getString(cursor.getColumnIndex(ArticleTable.TITLE));
-        article.imageLink = cursor.getString(cursor.getColumnIndex(ArticleTable.IMAGE_LINK));
-        article.writer = cursor.getString(cursor.getColumnIndex(ArticleTable.WRITER));
-        article.writerLink = cursor.getString(cursor.getColumnIndex(ArticleTable.WRITER_LINK));
-        article.agreeCount = cursor.getInt(cursor.getColumnIndex(ArticleTable.AGREE_COUNT));
-        article.summary = cursor.getString(cursor.getColumnIndex(ArticleTable.SUMMARY));
-        article.category_id = cursor.getInt(cursor.getColumnIndex(ArticleTable.CATEGORY_ID));
+            Cache.cache(article);
+        }
 
         return article;
     }

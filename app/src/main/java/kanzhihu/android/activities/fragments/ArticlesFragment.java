@@ -1,13 +1,16 @@
 package kanzhihu.android.activities.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,10 +28,12 @@ import kanzhihu.android.activities.fragments.base.BaseFragment;
 import kanzhihu.android.activities.presenters.ArticlesPresenter;
 import kanzhihu.android.activities.presenters.impl.ArticlesPresenterImpl;
 import kanzhihu.android.activities.views.ArticlesView;
+import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.HardwareUtils;
 import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.ShareUtils;
 import kanzhihu.android.utils.UrlBuilder;
 
 /**
@@ -48,6 +53,10 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
     private ArrayList<Article> articles = new ArrayList<Article>();
 
     private ArticlesPresenter mPresenter;
+
+    private ShareActionProvider mShareActionProvider;
+    private Article mShareArticle;
+    private MenuItem mShareMenu;
 
     public static ArticlesFragment newInstance(Category category) {
         ArticlesFragment fragment = new ArticlesFragment();
@@ -97,11 +106,27 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
     }
 
+    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_share, menu);
+
+        mShareMenu = menu.findItem(R.id.action_share);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(mShareMenu);
+        mShareActionProvider.setShareHistoryFileName(null);
+
+        if (mShareArticle == null) {
+            mShareMenu.setVisible(false);
+        }
+    }
+
     @Override public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem refreshItem = menu.findItem(R.id.action_refresh);
         if (refreshItem != null) {
             refreshItem.setVisible(false);
+        }
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        if (searchItem != null) {
+            searchItem.setVisible(false);
         }
     }
 
@@ -123,7 +148,47 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mPresenter.onDestory();
     }
 
+    @Override public Activity getContext() {
+        return getActivity();
+    }
+
+    @Override public Article getArticle(int position) {
+        Article article;
+        if (mAdapter.isHeaderExist()) {
+            article = mAdapter.getItem(position - 1);
+        } else {
+            article = mAdapter.getItem(position);
+        }
+        return article;
+    }
+
     @Override public void onLoadArticlesFinished(ArrayList<Article> articles) {
         mAdapter.setData(articles);
+    }
+
+    @Override public void articleChanged(int position) {
+        if (mAdapter.isHeaderExist()) {
+            mAdapter.notifyItemChanged(position + 1);
+        } else {
+            mAdapter.notifyItemChanged(position);
+        }
+    }
+
+    @Override public boolean getVisiable() {
+        return isVisible();
+    }
+
+    @Override public void createShareView(Article article) {
+        mShareArticle = article;
+        mShareMenu.setVisible(true);
+
+        Intent shareIntent = ShareUtils.getShareIntent(mShareArticle);
+        mShareActionProvider.setShareIntent(shareIntent);
+        mShareActionProvider.showPopup();
+    }
+
+    @Override public void closeShareView() {
+        mShareArticle = null;
+        mShareMenu.setVisible(false);
     }
 }

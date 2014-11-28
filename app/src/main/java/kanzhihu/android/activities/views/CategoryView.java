@@ -14,4 +14,6 @@ public interface CategoryView {
     void hideFetchRssUI();
 
     LoaderManager getLoaderManager();
+
+    boolean getVisiable();
 }

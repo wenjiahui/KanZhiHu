@@ -1,5 +1,6 @@
 package kanzhihu.android.activities.views;
 
+import android.app.Activity;
 import java.util.ArrayList;
 import kanzhihu.android.models.Article;
 
@@ -8,5 +9,17 @@ import kanzhihu.android.models.Article;
  */
 public interface ArticlesView {
 
+    Activity getContext();
+
+    Article getArticle(int position);
+
     void onLoadArticlesFinished(ArrayList<Article> articles);
+
+    void articleChanged(int position);
+
+    boolean getVisiable();
+
+    void createShareView(Article article);
+
+    void closeShareView();
 }

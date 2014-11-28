@@ -4,16 +4,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
+import de.greenrobot.event.EventBus;
 import java.util.List;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
+import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.models.Article;
 
 /**
@@ -41,6 +47,10 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         holder.mAuthor.setText(article.writer);
         holder.mAgree.setText(String.valueOf(article.agreeCount));
 
+        holder.unRegisterCheckedChangedListener();
+        holder.mMarked.setChecked(article.marked > 0);
+        holder.registerCheckedChangedListener();
+
         Picasso.with(App.getAppContext())
             .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
             .into(holder.mAvatar);
@@ -50,7 +60,8 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         return getData() == null ? 0 : getData().size();
     }
 
-    static class ArticleHolder extends RecyclerView.ViewHolder {
+    public static class ArticleHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnLongClickListener {
 
         @InjectView(R.id.tv_title)
         public TextView mTitle;
@@ -67,9 +78,35 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         @InjectView(R.id.iv_article_img)
         public ImageView mAvatar;
 
+        @InjectView(R.id.cb_mark)
+        public CheckBox mMarked;
+
         public ArticleHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void registerCheckedChangedListener() {
+            mMarked.setOnCheckedChangeListener(this);
+        }
+
+        public void unRegisterCheckedChangedListener() {
+            mMarked.setOnCheckedChangeListener(null);
+        }
+
+        @Override public void onClick(View v) {
+            EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
+        }
+
+        @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            EventBus.getDefault().post(new MarkChangeEvent(getPosition(), isChecked));
+        }
+
+        @Override public boolean onLongClick(View v) {
+            EventBus.getDefault().post(new ShareArticleEvent(getPosition()));
+            return true;
         }
     }
 }

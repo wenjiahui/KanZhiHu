@@ -40,3 +40,8 @@ app/kanzhihu.keystore
 #Crashlytics ignore
 app/crashlytics.properties
 app/src/main/assets/crashlytics-build.properties
+app/src/main/res/values/com_crashlytics_export_strings.xml
+
+#android-appversion-gradle-plugin generate file
+versions.properties
+app/versions.properties

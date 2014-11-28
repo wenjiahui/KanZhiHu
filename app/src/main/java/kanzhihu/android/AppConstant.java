@@ -1,5 +1,6 @@
 package kanzhihu.android;
 
+import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 
 /**
@@ -80,4 +81,16 @@ public class AppConstant {
 
         String BASE_URL = KANZHIHU_RESOURCE + "%d/%d/wpid-%s-%d-%d-%d-%s.jpg";
     }
+
+    //Search
+    public static int SEARCH_LOADER_ID = 0X256;
+    public static final String SEARCH_SQL_SELECTION =
+        ArticleTable.TITLE + " like ? or " + ArticleTable.SUMMARY + " like ?";
+    public static final String SEARCH_SQL_SELECTION_FOR_MARK =
+        ArticleTable.MARKED + " = 1 and (" + ArticleTable.TITLE + " like ? or " + ArticleTable.SUMMARY + " like ?)";
+    public static String SEARCH_SQL_MARK_ONLY = ArticleTable.MARKED + " = 1";
+    public static String ACTION_MODE_MARK_VIEW = "action_mode_mark_view";
+    public static long UNDO_BAR_DURATION = 2500;
+
+    public static final String KEY_SHARE_ARTICLE = "key_share_article";
 }

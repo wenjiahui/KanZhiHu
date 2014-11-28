@@ -14,8 +14,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="com.crashlytics.ApiKey" android:value="3a890bbe7348f76b28275815a69d0a47fd50f09f"/>
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="3a890bbe7348f76b28275815a69d0a47fd50f09f"/>
 
         <activity
             android:name="kanzhihu.android.activities.MainActivity"
@@ -35,6 +36,11 @@
             android:name="kanzhihu.android.activities.BrowseActivity"
             android:label="@string/title_activity_browse"
             android:uiOptions="splitActionBarWhenNarrow"/>
+        <activity
+            android:name="kanzhihu.android.activities.SearchActivity"
+            android:theme="@style/SearchActivity_MaterialTheme"
+            android:label="@string/title_activity_search">
+        </activity>
 
         <provider
             android:name="kanzhihu.android.database.ZhihuProvider"
