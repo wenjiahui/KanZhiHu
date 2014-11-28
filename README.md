@@ -1,4 +1,4 @@
-[看知乎][1] Android 客户端
+[看知乎][1] Android 客户端(非官方)
 ==================
 
 [![Build Status](https://travis-ci.org/wenjiahui/KanZhiHu.svg?branch=master)](https://travis-ci.org/wenjiahui/KanZhiHu)
@@ -6,12 +6,17 @@
 从[看知乎][1]这个网站读取RSS，在Android设备上阅读。
 
 ###Screenshots
-![screenshot_01](screenshot/screenshot_01.png "screenshot_01")
-![screenshot_02](screenshot/screenshot_02.png "screenshot_02")
+![screenshot_01](screenshot/screenshot_01.png "提示更新")
+![screenshot_02](screenshot/screenshot_02.png "每日分类")
 
-![screenshot_03](screenshot/screenshot_03.png "screenshot_03")
-![screenshot_04](screenshot/screenshot_04.png "screenshot_04")
+![screenshot_03](screenshot/screenshot_03.png "类别文章")
+![screenshot_04](screenshot/screenshot_04.png "点击收藏")
 
+![screenshot_05](screenshot/screenshot_05.png "长按分享")
+![screenshot_06](screenshot/screenshot_06.png "搜索关键字")
+
+![screenshot_07](screenshot/screenshot_07.png "浏览文章内容")
+![screenshot_08](screenshot/screenshot_08.png "设置界面")
 
 ###Run Unit Test
 `gradle clean test`

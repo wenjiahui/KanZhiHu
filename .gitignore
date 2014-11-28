@@ -6,7 +6,7 @@
 
 
 # built application files
-*.apk
+#*.apk
 *.ap_
 
 # files for the dex VM
@@ -45,3 +45,5 @@ app/src/main/res/values/com_crashlytics_export_strings.xml
 #android-appversion-gradle-plugin generate file
 versions.properties
 app/versions.properties
+
+images/
