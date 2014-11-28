@@ -1,7 +1,6 @@
 package kanzhihu.android.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import kanzhihu.android.AppConstant;
@@ -9,7 +8,7 @@ import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.BrowseFragment;
 import kanzhihu.android.models.Article;
 
-public class BrowseActivity extends ActionBarActivity {
+public class BrowseActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

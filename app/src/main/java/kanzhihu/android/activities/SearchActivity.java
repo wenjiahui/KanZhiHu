@@ -3,14 +3,13 @@ package kanzhihu.android.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.fragments.SearchFragment;
 
-public class SearchActivity extends ActionBarActivity {
+public class SearchActivity extends BaseActivity {
 
     public static void goSearch(Context context) {
         Intent intent = new Intent(context, SearchActivity.class);
