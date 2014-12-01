@@ -15,9 +15,9 @@ public class BrowseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
 
         Article article = getIntent().getParcelableExtra(AppConstant.KEY_ARTICLE);
+        getSupportActionBar().setTitle(article.title);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, BrowseFragment.newInstance(article)).commit();

@@ -35,7 +35,8 @@ public class SearchActivity extends BaseActivity {
 
         bMarkView = getIntent().getBooleanExtra(AppConstant.ACTION_MODE_MARK_VIEW, false);
         if (bMarkView) {
-            setTitle(R.string.action_my_collections);
+            getSupportActionBar().setTitle(R.string.action_my_collections);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         if (savedInstanceState == null) {
@@ -59,6 +60,8 @@ public class SearchActivity extends BaseActivity {
         if (id == R.id.action_settings) {
             SettingActivity.goSetting(this);
             return true;
+        } else if (id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);
