@@ -79,7 +79,7 @@ public class AppConstant {
         String LARGE_SIZE = "720x340";
         String SMALL_SIZE = "520x245";
 
-        String BASE_URL = KANZHIHU_RESOURCE + "%d/%d/wpid-%s-%d-%d-%d-%s.jpg";
+        String BASE_URL = KANZHIHU_RESOURCE + "%s/%s/wpid-%s-%s-%s-%s-%s.jpg";
     }
 
     //Search
