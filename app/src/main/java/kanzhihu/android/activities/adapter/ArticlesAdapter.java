@@ -44,6 +44,15 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
 
         holder.mTitle.setText(article.title);
         holder.mContent.setText(article.summary);
+
+        if (article.idRead()) {
+            holder.mTitle.setTextColor(AppConstant.TITLE_READ_COLOR);
+            holder.mContent.setTextColor(AppConstant.CONTENT_READ_COLOR);
+        } else {
+            holder.mTitle.setTextColor(AppConstant.TITLE_UNREAD_COLOR);
+            holder.mContent.setTextColor(AppConstant.CONTENT_UNREAD_COLOR);
+        }
+
         holder.mAuthor.setText(article.writer);
         holder.mAgree.setText(String.valueOf(article.agreeCount));
 

@@ -3,7 +3,6 @@ package kanzhihu.android.activities.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +17,6 @@ import com.cocosw.undobar.UndoBarController;
 import com.cocosw.undobar.UndoBarStyle;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
-import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.adapter.SearchAdapter;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
 import kanzhihu.android.activities.presenters.QueryPresenter;
@@ -26,7 +24,6 @@ import kanzhihu.android.activities.presenters.impl.QueryPresenterImpl;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
-import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ShareUtils;
 
 /**
@@ -129,20 +126,6 @@ public class SearchFragment extends BaseFragment implements QueryView {
 
     @Override public boolean getVisiable() {
         return isVisible();
-    }
-
-    @Override public void showArticle(int position) {
-        if (mAdapter.getCursor().moveToPosition(position)) {
-            Article article = Article.fromCursor(mAdapter.getCursor());
-            if (PreferenceUtils.external_open()) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
-                getActivity().startActivity(intent);
-            } else {
-                Intent intent = new Intent(getActivity(), BrowseActivity.class);
-                intent.putExtra(AppConstant.KEY_ARTICLE, article);
-                startActivity(intent);
-            }
-        }
     }
 
     @Override public void onQueryTextChange(String newText) {

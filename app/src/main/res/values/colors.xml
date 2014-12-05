@@ -10,6 +10,9 @@
     <color name="text_gray">#7a7a7a</color>
     <color name="text_black">#313131</color>
 
+    <color name="text_gray_read">#bababa</color>
+    <color name="text_black_read">#818181</color>
+
     <color name="primary">@color/base_color</color>
     <color name="primaryDark">@color/base_color_dark</color>
     <color name="accent">@color/base_color_light</color>

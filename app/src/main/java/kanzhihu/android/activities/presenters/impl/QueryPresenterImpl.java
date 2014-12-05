@@ -2,6 +2,7 @@ package kanzhihu.android.activities.presenters.impl;
 
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import de.greenrobot.event.EventBus;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
+import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.presenters.QueryPresenter;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ZhihuProvider;
@@ -26,10 +28,12 @@ import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
+import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.utils.AssertUtils;
 import kanzhihu.android.utils.Cache;
+import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ToastUtils;
 
 /**
@@ -72,7 +76,19 @@ public class QueryPresenterImpl implements QueryPresenter {
 
     public void onEventMainThread(ListitemClickEvent event) {
         if (mView.getVisiable()) {
-            mView.showArticle(event.position);
+            Article article = mView.getArticle(event.position);
+            if (article == null) {
+                return;
+            }
+            if (PreferenceUtils.external_open()) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
+                mView.getContext().startActivity(intent);
+            } else {
+                Intent intent = new Intent(mView.getContext(), BrowseActivity.class);
+                intent.putExtra(AppConstant.KEY_ARTICLE, article);
+                mView.getContext().startActivity(intent);
+            }
+            new SetArticleReadTask(mView.getContext(), article).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
     }
 

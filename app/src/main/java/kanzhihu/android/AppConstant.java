@@ -1,5 +1,6 @@
 package kanzhihu.android;
 
+import android.content.res.Resources;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 
@@ -93,4 +94,18 @@ public class AppConstant {
     public static long UNDO_BAR_DURATION = 2500;
 
     public static final String KEY_SHARE_ARTICLE = "key_share_article";
+
+    //============= text color =================
+    static {
+        Resources resources = App.getAppContext().getResources();
+        TITLE_UNREAD_COLOR = resources.getColor(R.color.text_black);
+        CONTENT_UNREAD_COLOR = resources.getColor(R.color.text_gray);
+        TITLE_READ_COLOR = resources.getColor(R.color.text_black_read);
+        CONTENT_READ_COLOR = resources.getColor(R.color.text_gray_read);
+    }
+
+    public static int TITLE_UNREAD_COLOR;
+    public static int CONTENT_UNREAD_COLOR;
+    public static int TITLE_READ_COLOR;
+    public static int CONTENT_READ_COLOR;
 }

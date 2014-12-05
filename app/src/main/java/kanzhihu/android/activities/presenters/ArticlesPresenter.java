@@ -14,4 +14,6 @@ public interface ArticlesPresenter {
     void onShareArticle(int position);
 
     void onDestory();
+
+    void readArticle(Article article);
 }

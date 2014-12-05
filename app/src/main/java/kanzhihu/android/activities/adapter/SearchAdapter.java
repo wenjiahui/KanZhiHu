@@ -32,8 +32,17 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
     @Override public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
         Article article = Article.fromCursor(cursor);
         ArticlesAdapter.ArticleHolder holder = (ArticlesAdapter.ArticleHolder) viewHolder;
+
+        if (article.idRead()) {
+            holder.mTitle.setTextColor(AppConstant.TITLE_READ_COLOR);
+            holder.mContent.setTextColor(AppConstant.CONTENT_READ_COLOR);
+        } else {
+            holder.mTitle.setTextColor(AppConstant.TITLE_UNREAD_COLOR);
+            holder.mContent.setTextColor(AppConstant.CONTENT_UNREAD_COLOR);
+        }
         setHightLight(holder.mTitle, article.title);
         setHightLight(holder.mContent, article.summary);
+
         holder.mAuthor.setText(article.writer);
         holder.mAgree.setText(String.valueOf(article.agreeCount));
 

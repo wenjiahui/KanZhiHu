@@ -3,7 +3,6 @@ package kanzhihu.android.activities.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,9 +18,7 @@ import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import kanzhihu.android.App;
-import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
-import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.adapter.ArticlesAdapter;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
@@ -32,7 +29,6 @@ import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.HardwareUtils;
-import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ShareUtils;
 import kanzhihu.android.utils.UrlBuilder;
 
@@ -132,14 +128,7 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
 
     @Override public void onClick(View v, int position) {
         Article article = mAdapter.getItem(position);
-        if (PreferenceUtils.external_open()) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
-            getActivity().startActivity(intent);
-        } else {
-            Intent intent = new Intent(getActivity(), BrowseActivity.class);
-            intent.putExtra(AppConstant.KEY_ARTICLE, article);
-            startActivity(intent);
-        }
+        mPresenter.readArticle(article);
     }
 
     @Override public void onDestroyView() {
