@@ -28,6 +28,7 @@ import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
+import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
@@ -116,6 +117,15 @@ public class QueryPresenterImpl implements QueryPresenter {
         this.onShareArticle(event.position);
     }
 
+    public void onEventMainThread(ViewAuthorEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        Article article = mView.getArticle(event.position);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.writerLink));
+        mView.getContext().startActivity(intent);
+    }
+
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
         new SimpleBackgroundTask<Boolean>(mView.getContext()) {
             @Override protected Boolean onRun() {
@@ -135,7 +145,6 @@ public class QueryPresenterImpl implements QueryPresenter {
                         //如果是收藏界面，需要显示撤销模式
                         mView.showUndo(article);
                     }
-                    //mView.articleChanged(position);
                 } else {
                     ToastUtils.showShort(R.string.mark_fail);
                 }

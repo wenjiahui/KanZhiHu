@@ -20,6 +20,7 @@ import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
+import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.models.Article;
 
 /**
@@ -93,8 +94,14 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         public ArticleHolder(View itemView) {
             super(itemView);
             ButterKnife.inject(this, itemView);
-            itemView.setOnClickListener(this);
+            //长按
             itemView.setOnLongClickListener(this);
+            //点击浏览文章
+            itemView.setOnClickListener(this);
+            //点击作者，查看作者个人主页
+            mAuthor.setOnClickListener(this);
+            //点击作者头像，查看作者个人主页
+            mAvatar.setOnClickListener(this);
         }
 
         public void registerCheckedChangedListener() {
@@ -106,7 +113,14 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         }
 
         @Override public void onClick(View v) {
-            EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
+            switch (v.getId()) {
+                case R.id.tv_author:
+                case R.id.iv_article_img:
+                    EventBus.getDefault().post(new ViewAuthorEvent(getPosition()));
+                    break;
+                default:
+                    EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
+            }
         }
 
         @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

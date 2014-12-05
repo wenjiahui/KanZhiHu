@@ -21,6 +21,7 @@ import kanzhihu.android.events.BrowseMarkChangedEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
+import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.jobs.LoadArticlesTask;
 import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
@@ -105,6 +106,15 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         if (position != -1) {
             mView.articleChanged(position);
         }
+    }
+
+    public void onEventMainThread(ViewAuthorEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        Article article = mView.getArticle(event.position);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.writerLink));
+        mView.getContext().startActivity(intent);
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
