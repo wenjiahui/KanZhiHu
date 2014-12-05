@@ -74,8 +74,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         if (!mView.getVisiable()) {
             return;
         }
-        //fixme 因为header的存在，所以选中的position需要减一，但是对于ArticleAdapter来说，position是正确的。
-        Article article = articles.get(event.position - 1);
+        Article article = mView.getArticle(event.position);
         this.markArticleChanged(event.position, article, event.isChecked);
     }
 
