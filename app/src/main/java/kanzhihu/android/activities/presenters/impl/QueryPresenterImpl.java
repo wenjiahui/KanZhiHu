@@ -69,7 +69,7 @@ public class QueryPresenterImpl implements QueryPresenter {
     }
 
     @Override public void onEventMainThread(ImageModeChangeEvent event) {
-
+        mView.switchImageMode(event.imageVisiable);
     }
 
     @Override public void onEventMainThread(ListitemClickEvent event) {

@@ -123,7 +123,7 @@ public class BrowseFragment extends BaseFragment implements BrowseView, Observab
         return isVisible();
     }
 
-    @Override public void onImageModeChange(boolean imageVisiable) {
+    @Override public void switchImageMode(boolean imageVisiable) {
 
     }
 

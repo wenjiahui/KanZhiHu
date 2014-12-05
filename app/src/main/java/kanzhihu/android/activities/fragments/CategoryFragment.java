@@ -31,7 +31,7 @@ import kanzhihu.android.utils.AssertUtils;
 /**
  * Created by Jiahui.wen on 2014/11/6.
  */
-public class CategoryFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>, CategoryView {
+public class CategoryFragment extends BaseFragment implements CategoryView, LoaderManager.LoaderCallbacks<Cursor> {
 
     @InjectView(R.id.recyclerView) RecyclerView mRecyclerView;
     @InjectView(R.id.swiperefreshlayout) SwipeRefreshLayout mSwipelayout;
@@ -124,7 +124,7 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         return isVisible();
     }
 
-    @Override public void onImageModeChange(boolean imageVisiable) {
+    @Override public void switchImageMode(boolean imageVisiable) {
 
     }
 }

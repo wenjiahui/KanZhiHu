@@ -25,8 +25,15 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
     private String mCurFilter;
     private String mHightLight;
 
+    private boolean mImageMode;
+
     public SearchAdapter(Context context, Cursor cursor) {
         super(context, cursor);
+    }
+
+    public void setImageMode(boolean imageMode) {
+        mImageMode = imageMode;
+        notifyDataSetChanged();
     }
 
     @Override public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, Cursor cursor) {
@@ -50,9 +57,12 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
         holder.mMarked.setChecked(article.marked > 0);
         holder.registerCheckedChangedListener();
 
-        Picasso.with(App.getAppContext())
-            .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
-            .into(holder.mAvatar);
+        if (mImageMode) {
+            Picasso.with(App.getAppContext())
+                .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
+                .into(holder.mAvatar);
+        }
+        holder.mAvatar.setVisibility(mImageMode ? View.VISIBLE : View.GONE);
     }
 
     @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {

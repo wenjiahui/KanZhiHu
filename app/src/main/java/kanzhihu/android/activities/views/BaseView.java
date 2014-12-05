@@ -11,5 +11,5 @@ public interface BaseView {
 
     boolean getVisiable();
 
-    void onImageModeChange(boolean imageVisiable);
+    void switchImageMode(boolean imageVisiable);
 }

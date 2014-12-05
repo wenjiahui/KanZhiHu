@@ -24,6 +24,7 @@ import kanzhihu.android.activities.presenters.impl.QueryPresenterImpl;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
+import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ShareUtils;
 
 /**
@@ -98,6 +99,7 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mRecyclerView.setHasFixedSize(true);
 
         mAdapter = new SearchAdapter(getActivity(), null);
+        mAdapter.setImageMode(PreferenceUtils.getInstance().imageMode());
         mRecyclerView.setAdapter(mAdapter);
 
         mPresenter = new QueryPresenterImpl(this, bMarkView);
@@ -122,8 +124,8 @@ public class SearchFragment extends BaseFragment implements QueryView {
         return isVisible();
     }
 
-    @Override public void onImageModeChange(boolean imageVisiable) {
-
+    @Override public void switchImageMode(boolean imageVisiable) {
+        mAdapter.setImageMode(imageVisiable);
     }
 
     @Override public void onQueryTextChange(String newText) {

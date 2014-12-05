@@ -124,7 +124,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
     }
 
     @Override public void onEventMainThread(ImageModeChangeEvent event) {
-
+        mView.switchImageMode(event.imageVisiable);
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {

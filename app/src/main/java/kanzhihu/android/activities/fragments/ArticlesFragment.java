@@ -29,6 +29,7 @@ import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.HardwareUtils;
+import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ShareUtils;
 import kanzhihu.android.utils.UrlBuilder;
 
@@ -99,7 +100,7 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
         mPresenter = new ArticlesPresenterImpl(this, mCategory);
         mPresenter.loadArticles();
 
-        Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+        switchImageMode(PreferenceUtils.getInstance().imageMode());
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -161,8 +162,12 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
         return isVisible();
     }
 
-    @Override public void onImageModeChange(boolean imageVisiable) {
-
+    @Override public void switchImageMode(boolean imageVisiable) {
+        mHeadView.setVisibility(imageVisiable ? View.VISIBLE : View.GONE);
+        mAdapter.setImageMode(imageVisiable);
+        if (imageVisiable) {
+            Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+        }
     }
 
     @Override public void createShareView(Article article) {

@@ -25,11 +25,15 @@ public class AppConstant {
 
     public static final String PREF_KEY_AUTO_UPDATE = "pref_auto_update";
 
+    public static final String PREF_KEY_NO_IMAGE = "pref_no_image";
+
     public static final String PREF_KEY_BROWSER = "pref_browser_select";
 
     public static final String KEY_PREFERENCE = BuildConfig.APPLICATION_ID + "_preferences";
 
     public static final long APP_EXIT_TIME_INTERVAL = 2000;
+
+    public static boolean IMAGE_MODE = true;
 
     public interface ITEM_TAG {
         String ITEM = "item";

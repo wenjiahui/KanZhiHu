@@ -29,9 +29,16 @@ import kanzhihu.android.models.Article;
 public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
     implements ParallaxRecyclerAdapter.RecyclerAdapterMethods {
 
+    private boolean mImageMode;
+
     public ArticlesAdapter(List<Article> data) {
         super(data);
         implementRecyclerAdapterMethods(this);
+    }
+
+    public void setImageMode(boolean imageVisiable) {
+        mImageMode = imageVisiable;
+        notifyDataSetChanged();
     }
 
     @Override public RecyclerView.ViewHolder onCreateViewHolderImpl(ViewGroup viewGroup, int i) {
@@ -61,9 +68,12 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         holder.mMarked.setChecked(article.marked > 0);
         holder.registerCheckedChangedListener();
 
-        Picasso.with(App.getAppContext())
-            .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
-            .into(holder.mAvatar);
+        if (mImageMode) {
+            Picasso.with(App.getAppContext())
+                .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
+                .into(holder.mAvatar);
+        }
+        holder.mAvatar.setVisibility(mImageMode ? View.VISIBLE : View.GONE);
     }
 
     @Override public int getItemCountImpl() {
