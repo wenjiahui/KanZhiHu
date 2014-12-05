@@ -102,12 +102,6 @@ public class SearchFragment extends BaseFragment implements QueryView {
 
         mPresenter = new QueryPresenterImpl(this, bMarkView);
         mPresenter.loadInitData();
-        mPresenter.bindEvent();
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        mPresenter.unBindEvent();
     }
 
     @Override public void onSearchViewClosed(MenuItem menuItem) {
@@ -128,12 +122,12 @@ public class SearchFragment extends BaseFragment implements QueryView {
         return isVisible();
     }
 
-    @Override public void onQueryTextChange(String newText) {
-        mAdapter.setCurFilter(newText);
+    @Override public void onImageModeChange(boolean imageVisiable) {
+
     }
 
-    @Override public void articleChanged(int position) {
-        mAdapter.notifyItemChanged(position);
+    @Override public void onQueryTextChange(String newText) {
+        mAdapter.setCurFilter(newText);
     }
 
     @Override public Article getArticle(int position) {
@@ -167,5 +161,10 @@ public class SearchFragment extends BaseFragment implements QueryView {
     @Override public void closeShareView() {
         mShareArticle = null;
         mShareMenu.setVisible(false);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.onDestory();
     }
 }

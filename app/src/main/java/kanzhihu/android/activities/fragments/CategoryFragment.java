@@ -1,5 +1,6 @@
 package kanzhihu.android.activities.fragments;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -50,7 +51,6 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new CategoryPresenterImpl(this);
-        mPresenter.bindEvent();
 
         mSwipelayout.setProgressBackgroundColor(R.color.base_color);
 
@@ -81,8 +81,7 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void onDestroyView() {
         super.onDestroyView();
 
-        mPresenter.unBindEvent();
-        mPresenter.unloadDataFromDb();
+        mPresenter.onDestory();
     }
 
     @Override public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -116,7 +115,15 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mSwipelayout.setRefreshing(false);
     }
 
+    @Override public Activity getContext() {
+        return getActivity();
+    }
+
     @Override public boolean getVisiable() {
         return isVisible();
+    }
+
+    @Override public void onImageModeChange(boolean imageVisiable) {
+
     }
 }

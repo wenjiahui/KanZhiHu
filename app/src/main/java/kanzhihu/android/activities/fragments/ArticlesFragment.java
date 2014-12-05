@@ -35,7 +35,7 @@ import kanzhihu.android.utils.UrlBuilder;
 /**
  * Created by Jiahui.wen on 2014/11/14.
  */
-public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAdapter.OnClickEvent, ArticlesView {
+public class ArticlesFragment extends BaseFragment implements ArticlesView, ParallaxRecyclerAdapter.OnClickEvent {
     private static final String CATEGORY_ID = "categoryId";
 
     private Category mCategory;
@@ -131,12 +131,6 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mPresenter.readArticle(article);
     }
 
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-
-        mPresenter.onDestory();
-    }
-
     @Override public Activity getContext() {
         return getActivity();
     }
@@ -167,6 +161,10 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         return isVisible();
     }
 
+    @Override public void onImageModeChange(boolean imageVisiable) {
+
+    }
+
     @Override public void createShareView(Article article) {
         mShareArticle = article;
         mShareMenu.setVisible(true);
@@ -179,5 +177,11 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
     @Override public void closeShareView() {
         mShareArticle = null;
         mShareMenu.setVisible(false);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+
+        mPresenter.onDestory();
     }
 }

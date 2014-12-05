@@ -123,6 +123,10 @@ public class BrowseFragment extends BaseFragment implements BrowseView, Observab
         return isVisible();
     }
 
+    @Override public void onImageModeChange(boolean imageVisiable) {
+
+    }
+
     @Override public void setMarkStatue(boolean marked) {
         if (mMarkItem != null) {
             mMarkItem.setIcon(marked ? R.drawable.ic_mark_marked_hl : R.drawable.ic_mark_normal);

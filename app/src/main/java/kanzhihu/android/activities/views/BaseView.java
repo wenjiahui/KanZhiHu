@@ -10,4 +10,6 @@ public interface BaseView {
     Activity getContext();
 
     boolean getVisiable();
+
+    void onImageModeChange(boolean imageVisiable);
 }

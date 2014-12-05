@@ -24,6 +24,7 @@ import kanzhihu.android.activities.presenters.QueryPresenter;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
@@ -57,25 +58,21 @@ public class QueryPresenterImpl implements QueryPresenter {
     public QueryPresenterImpl(QueryView mView, boolean bMarkView) {
         this.mView = AssertUtils.requireNonNull(mView, QueryView.class.getSimpleName() + " must not null");
         this.bMarkView = bMarkView;
+
+        init();
     }
 
     @Override public void init() {
-
-    }
-
-    @Override public void bindEvent() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
     }
 
-    @Override public void unBindEvent() {
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
+    @Override public void onEventMainThread(ImageModeChangeEvent event) {
+
     }
 
-    public void onEventMainThread(ListitemClickEvent event) {
+    @Override public void onEventMainThread(ListitemClickEvent event) {
         if (mView.getVisiable()) {
             Article article = mView.getArticle(event.position);
             if (article == null) {
@@ -93,7 +90,7 @@ public class QueryPresenterImpl implements QueryPresenter {
         }
     }
 
-    public void onEventMainThread(MarkChangeEvent event) {
+    @Override public void onEventMainThread(MarkChangeEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
@@ -103,21 +100,21 @@ public class QueryPresenterImpl implements QueryPresenter {
         }
     }
 
-    public void onEventMainThread(ShareMenuDismissEvent event) {
+    @Override public void onEventMainThread(ShareMenuDismissEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
         mView.closeShareView();
     }
 
-    public void onEventMainThread(ShareArticleEvent event) {
+    @Override public void onEventMainThread(ShareArticleEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
         this.onShareArticle(event.position);
     }
 
-    public void onEventMainThread(ViewAuthorEvent event) {
+    @Override public void onEventMainThread(ViewAuthorEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
@@ -261,5 +258,11 @@ public class QueryPresenterImpl implements QueryPresenter {
                 }
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override public void onDestory() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }

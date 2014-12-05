@@ -18,8 +18,6 @@ public interface QueryView extends BaseView {
 
     void onQueryTextChange(String newText);
 
-    void articleChanged(int position);
-
     Article getArticle(int position);
 
     void showUndo(Article article);

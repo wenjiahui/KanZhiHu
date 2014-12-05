@@ -7,6 +7,7 @@ import kanzhihu.android.AppConstant;
 import kanzhihu.android.activities.presenters.CategoryPresenter;
 import kanzhihu.android.activities.views.CategoryView;
 import kanzhihu.android.events.FetchedRssEvent;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.jobs.FetchRssJob;
 import kanzhihu.android.managers.BackThreadManager;
@@ -25,24 +26,20 @@ public class CategoryPresenterImpl implements CategoryPresenter {
     }
 
     @Override public void init() {
-
-    }
-
-    @Override public void bindEvent() {
-        EventBus.getDefault().register(this);
-    }
-
-    @Override public void unBindEvent() {
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
         }
     }
 
-    public void onEventMainThread(FetchedRssEvent event) {
+    @Override public void onEventMainThread(ImageModeChangeEvent event) {
+
+    }
+
+    @Override public void onEventMainThread(FetchedRssEvent event) {
         mView.hideFetchRssUI();
     }
 
-    public void onEventMainThread(ListitemClickEvent event) {
+    @Override public void onEventMainThread(ListitemClickEvent event) {
         if (mView.getVisiable()) {
             mView.showArticles(event.position);
         }
@@ -70,5 +67,12 @@ public class CategoryPresenterImpl implements CategoryPresenter {
 
     @Override public void unloadDataFromDb() {
         mView.getLoaderManager().destroyLoader(AppConstant.ID_CATEGORY_LOADER);
+    }
+
+    @Override public void onDestory() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+        unloadDataFromDb();
     }
 }

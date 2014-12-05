@@ -18,6 +18,7 @@ import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.ArticleReadEvent;
 import kanzhihu.android.events.BrowseMarkChangedEvent;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
@@ -53,6 +54,10 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mCategory = category;
 
         EventBus.getDefault().register(this);
+    }
+
+    @Override public void init() {
+
     }
 
     @Override public void loadArticles() {
@@ -93,27 +98,31 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mView.closeShareView();
     }
 
-    public void onEventMainThread(ShareArticleEvent event) {
+    @Override public void onEventMainThread(ShareArticleEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
         this.onShareArticle(event.position);
     }
 
-    public void onEventMainThread(ArticleReadEvent event) {
+    @Override public void onEventMainThread(ArticleReadEvent event) {
         int position = articles.indexOf(event.article);
         if (position != -1) {
             mView.articleChanged(position);
         }
     }
 
-    public void onEventMainThread(ViewAuthorEvent event) {
+    @Override public void onEventMainThread(ViewAuthorEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
         Article article = mView.getArticle(event.position);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.writerLink));
         mView.getContext().startActivity(intent);
+    }
+
+    @Override public void onEventMainThread(ImageModeChangeEvent event) {
+
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {

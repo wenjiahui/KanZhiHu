@@ -11,6 +11,7 @@ import kanzhihu.android.activities.views.BrowseView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.BrowseMarkChangedEvent;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.utils.AssertUtils;
@@ -31,6 +32,10 @@ public class BrowsePresenterImpl implements BrowsePresenter {
     }
 
     @Override public void init() {
+
+    }
+
+    @Override public void onEventMainThread(ImageModeChangeEvent event) {
 
     }
 
