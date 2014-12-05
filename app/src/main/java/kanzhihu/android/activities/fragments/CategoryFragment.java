@@ -64,7 +64,6 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mRecyclerView.setAdapter(mAdapter);
 
         mPresenter.loadDataFromDB(this);
-        mPresenter.init();
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

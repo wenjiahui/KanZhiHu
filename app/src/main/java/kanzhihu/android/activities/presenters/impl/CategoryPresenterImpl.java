@@ -23,6 +23,8 @@ public class CategoryPresenterImpl implements CategoryPresenter {
 
     public CategoryPresenterImpl(CategoryView mView) {
         this.mView = AssertUtils.requireNonNull(mView, CategoryView.class.getSimpleName() + " must not be null");
+
+        init();
     }
 
     @Override public void init() {

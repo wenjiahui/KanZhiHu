@@ -53,11 +53,13 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mHandler = new Handler(this);
         mCategory = category;
 
-        EventBus.getDefault().register(this);
+        init();
     }
 
     @Override public void init() {
-
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override public void loadArticles() {
@@ -152,17 +154,6 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mView.createShareView(mView.getArticle(position));
     }
 
-    @Override public void onDestory() {
-        if (mLoadTask != null && mLoadTask.getStatus() != AsyncTask.Status.FINISHED) {
-            mLoadTask.cancel(true);
-            mLoadTask = null;
-        }
-
-        if (EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
-    }
-
     @Override public void readArticle(final Article article) {
         if (PreferenceUtils.external_open()) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
@@ -173,5 +164,16 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
             mView.getContext().startActivity(intent);
         }
         new SetArticleReadTask(mView.getContext(), article).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override public void onDestory() {
+        if (mLoadTask != null && mLoadTask.getStatus() != AsyncTask.Status.FINISHED) {
+            mLoadTask.cancel(true);
+            mLoadTask = null;
+        }
+
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }
