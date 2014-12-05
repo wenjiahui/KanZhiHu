@@ -12,7 +12,7 @@
         <CheckBoxPreference
             android:key="pref_browser_select"
             android:title="@string/pref_browser_select_title"
-            android:defaultValue="false"/>
+            android:defaultValue="true"/>
 
         <CheckBoxPreference
             android:key="pref_auto_update"
