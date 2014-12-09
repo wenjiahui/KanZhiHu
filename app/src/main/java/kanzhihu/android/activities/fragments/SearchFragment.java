@@ -3,7 +3,6 @@ package kanzhihu.android.activities.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +17,6 @@ import com.cocosw.undobar.UndoBarController;
 import com.cocosw.undobar.UndoBarStyle;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
-import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.adapter.SearchAdapter;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
 import kanzhihu.android.activities.presenters.QueryPresenter;
@@ -101,16 +99,11 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mRecyclerView.setHasFixedSize(true);
 
         mAdapter = new SearchAdapter(getActivity(), null);
+        mAdapter.setImageMode(PreferenceUtils.getInstance().imageMode());
         mRecyclerView.setAdapter(mAdapter);
 
         mPresenter = new QueryPresenterImpl(this, bMarkView);
         mPresenter.loadInitData();
-        mPresenter.bindEvent();
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        mPresenter.unBindEvent();
     }
 
     @Override public void onSearchViewClosed(MenuItem menuItem) {
@@ -131,26 +124,12 @@ public class SearchFragment extends BaseFragment implements QueryView {
         return isVisible();
     }
 
-    @Override public void showArticle(int position) {
-        if (mAdapter.getCursor().moveToPosition(position)) {
-            Article article = Article.fromCursor(mAdapter.getCursor());
-            if (PreferenceUtils.external_open()) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
-                getActivity().startActivity(intent);
-            } else {
-                Intent intent = new Intent(getActivity(), BrowseActivity.class);
-                intent.putExtra(AppConstant.KEY_ARTICLE, article);
-                startActivity(intent);
-            }
-        }
+    @Override public void switchImageMode(boolean imageVisiable) {
+        mAdapter.setImageMode(imageVisiable);
     }
 
     @Override public void onQueryTextChange(String newText) {
         mAdapter.setCurFilter(newText);
-    }
-
-    @Override public void articleChanged(int position) {
-        mAdapter.notifyItemChanged(position);
     }
 
     @Override public Article getArticle(int position) {
@@ -184,5 +163,10 @@ public class SearchFragment extends BaseFragment implements QueryView {
     @Override public void closeShareView() {
         mShareArticle = null;
         mShareMenu.setVisible(false);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.onDestory();
     }
 }

@@ -9,12 +9,16 @@ import com.squareup.okhttp.Response;
 import de.greenrobot.event.EventBus;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import kanzhihu.android.AppConstant;
+import kanzhihu.android.R;
 import kanzhihu.android.events.FetchedRssEvent;
+import kanzhihu.android.events.NetworkErrorEvent;
 import kanzhihu.android.managers.HttpClientManager;
+import kanzhihu.android.managers.NetworkManager;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.AppLogger;
 import kanzhihu.android.utils.HtmlUtils;
@@ -32,7 +36,7 @@ public class FetchRssJob extends Job {
     private final int id;
 
     public FetchRssJob() {
-        super(new Params(Priority.HIGH).requireNetwork().groupBy("fetch_rss"));
+        super(new Params(Priority.HIGH).groupBy("fetch_rss"));
         id = jobCounter.incrementAndGet();
     }
 
@@ -41,6 +45,11 @@ public class FetchRssJob extends Job {
     }
 
     @Override public void onRun() throws Throwable {
+        if (!NetworkManager.isConnected()) {
+            EventBus.getDefault().post(new NetworkErrorEvent(R.string.network_error));
+            throw new IllegalAccessException("network not avaliable");
+        }
+
         if (id != jobCounter.get()) {
             return;
         }
@@ -64,6 +73,9 @@ public class FetchRssJob extends Job {
     }
 
     @Override protected boolean shouldReRunOnThrowable(Throwable throwable) {
+        if (throwable instanceof UnknownHostException) {
+            EventBus.getDefault().post(new NetworkErrorEvent(R.string.network_error));
+        }
         return false;
     }
 

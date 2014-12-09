@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity {
     public void onEventMainThread(ReadArticlesEvent event) {
         Fragment articlesFragment = ArticlesFragment.newInstance(event.category);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle(event.category.title);
         getFragmentManager().beginTransaction().add(R.id.container, articlesFragment).addToBackStack("").commit();
     }
 

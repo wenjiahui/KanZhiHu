@@ -1,5 +1,6 @@
 package kanzhihu.android.activities.fragments;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -30,7 +31,7 @@ import kanzhihu.android.utils.AssertUtils;
 /**
  * Created by Jiahui.wen on 2014/11/6.
  */
-public class CategoryFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>, CategoryView {
+public class CategoryFragment extends BaseFragment implements CategoryView, LoaderManager.LoaderCallbacks<Cursor> {
 
     @InjectView(R.id.recyclerView) RecyclerView mRecyclerView;
     @InjectView(R.id.swiperefreshlayout) SwipeRefreshLayout mSwipelayout;
@@ -50,9 +51,10 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new CategoryPresenterImpl(this);
-        mPresenter.bindEvent();
 
-        mSwipelayout.setProgressBackgroundColor(R.color.base_color);
+        mSwipelayout.setProgressBackgroundColor(R.color.window_background);
+        mSwipelayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+            android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -62,7 +64,6 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mRecyclerView.setAdapter(mAdapter);
 
         mPresenter.loadDataFromDB(this);
-        mPresenter.init();
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -81,8 +82,7 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
     @Override public void onDestroyView() {
         super.onDestroyView();
 
-        mPresenter.unBindEvent();
-        mPresenter.unloadDataFromDb();
+        mPresenter.onDestory();
     }
 
     @Override public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -116,7 +116,15 @@ public class CategoryFragment extends BaseFragment implements LoaderManager.Load
         mSwipelayout.setRefreshing(false);
     }
 
+    @Override public Activity getContext() {
+        return getActivity();
+    }
+
     @Override public boolean getVisiable() {
         return isVisible();
+    }
+
+    @Override public void switchImageMode(boolean imageVisiable) {
+
     }
 }

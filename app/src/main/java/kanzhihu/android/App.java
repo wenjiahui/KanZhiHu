@@ -5,10 +5,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 import com.crashlytics.android.Crashlytics;
 import de.greenrobot.event.EventBus;
 import java.io.File;
 import kanzhihu.android.events.DownloadedApkEvent;
+import kanzhihu.android.events.NetworkErrorEvent;
 import kanzhihu.android.jobs.DeleteOldArticlesJob;
 import kanzhihu.android.managers.ActivityManager;
 import kanzhihu.android.managers.BackThreadManager;
@@ -17,6 +19,7 @@ import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.Cache;
 import kanzhihu.android.utils.FileUtils;
 import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.ToastUtils;
 
 /**
  * Created by Jiahui.wen on 2014/11/6.
@@ -85,5 +88,16 @@ public class App extends Application {
         //最新版的apk已经下载完毕，目前不需要继续监听事件。
         EventBus.getDefault().unregister(this);
         NotifyManager.getManager().unregisterEventbus();
+    }
+
+    /**
+     * 检测全局App的网络无连接事件
+     */
+    public void onEventMainThread(NetworkErrorEvent event) {
+        if (event.messageRes > 0) {
+            ToastUtils.alert(event.messageRes);
+        } else if (!TextUtils.isEmpty(event.message)) {
+            ToastUtils.alert(event.message);
+        }
     }
 }

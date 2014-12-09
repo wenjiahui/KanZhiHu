@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.View;
+import de.greenrobot.event.EventBus;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.BuildConfig;
 import kanzhihu.android.R;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.utils.PreferenceUtils;
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -34,8 +36,12 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(AppConstant.PREF_KEY_SAVE_DAYS)) {
+        if (AppConstant.PREF_KEY_SAVE_DAYS.equals(key)) {
             showSaveDays();
+        } else if (AppConstant.PREF_KEY_NO_IMAGE.equals(key)) {
+            boolean imageMode = PreferenceUtils.getImageMode();
+            PreferenceUtils.getInstance().setImageMode(imageMode);
+            EventBus.getDefault().post(new ImageModeChangeEvent(imageMode));
         }
     }
 

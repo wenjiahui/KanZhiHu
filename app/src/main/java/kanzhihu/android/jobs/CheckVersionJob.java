@@ -10,6 +10,7 @@ import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.BuildConfig;
 import kanzhihu.android.managers.HttpClientManager;
+import kanzhihu.android.managers.NetworkManager;
 import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.AppLogger;
 import kanzhihu.android.utils.PreferenceUtils;
@@ -26,7 +27,7 @@ public class CheckVersionJob extends Job {
     private static final String TAG = CheckVersionJob.class.getSimpleName();
 
     public CheckVersionJob() {
-        super(new Params(Priority.LOW).requireNetwork());
+        super(new Params(Priority.LOW));
     }
 
     @Override public void onAdded() {
@@ -34,6 +35,10 @@ public class CheckVersionJob extends Job {
     }
 
     @Override public void onRun() throws Throwable {
+        if (!NetworkManager.isConnected()) {
+            return;
+        }
+
         Request request = new Request.Builder().url(AppConstant.APP_INFO_URL).build();
         Response response = HttpClientManager.request(request);
         try {
@@ -47,6 +52,7 @@ public class CheckVersionJob extends Job {
     }
 
     private void compareVersion(JSONObject jsonObject) {
+        //todo addd update messages
         int lastestVersion = Integer.parseInt(jsonObject.optString("lastest_version", "0"));
         if (lastestVersion > BuildConfig.VERSION_CODE) {
             //服务器上有新版本

@@ -3,7 +3,6 @@ package kanzhihu.android.activities.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,9 +18,7 @@ import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import kanzhihu.android.App;
-import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
-import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.adapter.ArticlesAdapter;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
 import kanzhihu.android.activities.fragments.base.BaseFragment;
@@ -39,7 +36,7 @@ import kanzhihu.android.utils.UrlBuilder;
 /**
  * Created by Jiahui.wen on 2014/11/14.
  */
-public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAdapter.OnClickEvent, ArticlesView {
+public class ArticlesFragment extends BaseFragment implements ArticlesView, ParallaxRecyclerAdapter.OnClickEvent {
     private static final String CATEGORY_ID = "categoryId";
 
     private Category mCategory;
@@ -103,7 +100,7 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         mPresenter = new ArticlesPresenterImpl(this, mCategory);
         mPresenter.loadArticles();
 
-        Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+        switchImageMode(PreferenceUtils.getInstance().imageMode());
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -132,20 +129,7 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
 
     @Override public void onClick(View v, int position) {
         Article article = mAdapter.getItem(position);
-        if (PreferenceUtils.external_open()) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
-            getActivity().startActivity(intent);
-        } else {
-            Intent intent = new Intent(getActivity(), BrowseActivity.class);
-            intent.putExtra(AppConstant.KEY_ARTICLE, article);
-            startActivity(intent);
-        }
-    }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-
-        mPresenter.onDestory();
+        mPresenter.readArticle(article);
     }
 
     @Override public Activity getContext() {
@@ -178,6 +162,14 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
         return isVisible();
     }
 
+    @Override public void switchImageMode(boolean imageVisiable) {
+        mHeadView.setVisibility(imageVisiable ? View.VISIBLE : View.GONE);
+        mAdapter.setImageMode(imageVisiable);
+        if (imageVisiable) {
+            Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+        }
+    }
+
     @Override public void createShareView(Article article) {
         mShareArticle = article;
         mShareMenu.setVisible(true);
@@ -190,5 +182,11 @@ public class ArticlesFragment extends BaseFragment implements ParallaxRecyclerAd
     @Override public void closeShareView() {
         mShareArticle = null;
         mShareMenu.setVisible(false);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+
+        mPresenter.onDestory();
     }
 }

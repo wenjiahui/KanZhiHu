@@ -36,8 +36,8 @@ android {
         applicationId "kanzhihu.android"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.10"
     }
 
     signingConfigs {
@@ -109,6 +109,11 @@ dependencies {
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
     //undo bar
     compile 'com.cocosw:undobar:1.6@aar'
+    //toast
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+        // exclusion is not neccessary, but generally a good idea.
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
     //dialog
     compile 'com.afollestad:material-dialogs:0.3.0'
     //crash analysic

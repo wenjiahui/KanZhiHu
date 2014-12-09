@@ -4,6 +4,11 @@
     <PreferenceCategory android:title="@string/base_settings">
 
         <CheckBoxPreference
+            android:key="pref_no_image"
+            android:title="@string/pref_no_image_title"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
             android:key="pref_auto_refresh"
             android:title="@string/pref_refresh_title"
             android:summary="@string/pref_refresh_summay"
@@ -12,7 +17,7 @@
         <CheckBoxPreference
             android:key="pref_browser_select"
             android:title="@string/pref_browser_select_title"
-            android:defaultValue="false"/>
+            android:defaultValue="true"/>
 
         <CheckBoxPreference
             android:key="pref_auto_update"

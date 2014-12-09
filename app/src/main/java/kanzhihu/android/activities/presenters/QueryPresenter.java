@@ -5,20 +5,30 @@ import android.database.Cursor;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import com.cocosw.undobar.UndoBarController;
+import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.MarkChangeEvent;
+import kanzhihu.android.events.ShareArticleEvent;
+import kanzhihu.android.events.ShareMenuDismissEvent;
+import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.models.Article;
 
 /**
  * Created by Jiahui.wen on 2014/11/20.
  */
-public interface QueryPresenter extends LoaderManager.LoaderCallbacks<Cursor>, UndoBarController.UndoListener {
-
-    void init();
-
-    void bindEvent();
-
-    void unBindEvent();
+public interface QueryPresenter
+    extends BasePresenter, LoaderManager.LoaderCallbacks<Cursor>, UndoBarController.UndoListener {
 
     void loadInitData();
+
+    void onEventMainThread(ListitemClickEvent event);
+
+    void onEventMainThread(MarkChangeEvent event);
+
+    void onEventMainThread(ShareMenuDismissEvent event);
+
+    void onEventMainThread(ShareArticleEvent event);
+
+    void onEventMainThread(ViewAuthorEvent event);
 
     void markArticleChanged(final int position, final Article article, final boolean isChecked);
 

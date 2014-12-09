@@ -21,6 +21,7 @@ public class Article implements Parcelable {
     public String summary;
     public long category_id;
     public int marked;
+    public int read;
 
     public ContentValues getContentValues() {
         ContentValues values = new ContentValues();
@@ -33,6 +34,7 @@ public class Article implements Parcelable {
         values.put(ArticleTable.SUMMARY, summary);
         values.put(ArticleTable.CATEGORY_ID, category_id);
         values.put(ArticleTable.MARKED, marked);
+        values.put(ArticleTable.READ, read);
         return values;
     }
 
@@ -70,6 +72,7 @@ public class Article implements Parcelable {
         dest.writeString(this.summary);
         dest.writeLong(this.category_id);
         dest.writeInt(this.marked);
+        dest.writeInt(this.read);
     }
 
     public Article() {
@@ -86,6 +89,11 @@ public class Article implements Parcelable {
         this.summary = in.readString();
         this.category_id = in.readLong();
         this.marked = in.readInt();
+        this.read = in.readInt();
+    }
+
+    public boolean idRead() {
+        return read != 0;
     }
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
@@ -113,6 +121,7 @@ public class Article implements Parcelable {
             article.summary = cursor.getString(cursor.getColumnIndex(ArticleTable.SUMMARY));
             article.category_id = cursor.getInt(cursor.getColumnIndex(ArticleTable.CATEGORY_ID));
             article.marked = cursor.getInt(cursor.getColumnIndex(ArticleTable.MARKED));
+            article.read = cursor.getInt(cursor.getColumnIndex(ArticleTable.READ));
 
             Cache.cache(article);
         }

@@ -11,6 +11,28 @@ import kanzhihu.android.R;
  */
 public class PreferenceUtils {
 
+    private static PreferenceUtils instance;
+    private boolean mImageMode = false;
+
+    private PreferenceUtils() {
+        setImageMode(getPreference().getBoolean(AppConstant.PREF_KEY_NO_IMAGE, AppConstant.IMAGE_MODE));
+    }
+
+    public static PreferenceUtils getInstance() {
+        if (instance == null) {
+            instance = new PreferenceUtils();
+        }
+        return instance;
+    }
+
+    public boolean imageMode() {
+        return mImageMode;
+    }
+
+    public void setImageMode(boolean mImageMode) {
+        this.mImageMode = mImageMode;
+    }
+
     public static SharedPreferences getPreference() {
         return App.getAppContext().getSharedPreferences(AppConstant.KEY_PREFERENCE, Context.MODE_PRIVATE);
     }
@@ -43,7 +65,14 @@ public class PreferenceUtils {
      * 是否使用外部浏览器查看文章
      */
     public static boolean external_open() {
-        return getPreference().getBoolean(AppConstant.PREF_KEY_BROWSER, false);
+        return getPreference().getBoolean(AppConstant.PREF_KEY_BROWSER, true);
+    }
+
+    /**
+     * 是否自动加载图片
+     */
+    public static boolean getImageMode() {
+        return getPreference().getBoolean(AppConstant.PREF_KEY_NO_IMAGE, AppConstant.IMAGE_MODE);
     }
 
     public static String getString(String key, String defaultValue) {
