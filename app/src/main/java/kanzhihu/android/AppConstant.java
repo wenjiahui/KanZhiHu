@@ -35,6 +35,10 @@ public class AppConstant {
 
     public static boolean IMAGE_MODE = true;
 
+    //NETWORK CONNECT
+    public static int DEFAULT_CONNECT_TIME_OUT = 3;
+    public static int DEFAULT_READ_TIME_OUT = 30;
+
     public interface ITEM_TAG {
         String ITEM = "item";
 

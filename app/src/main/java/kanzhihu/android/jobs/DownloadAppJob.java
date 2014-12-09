@@ -13,6 +13,7 @@ import kanzhihu.android.events.DownloadProgressEvent;
 import kanzhihu.android.events.DownloadedApkEvent;
 import kanzhihu.android.events.DownloadingApkEvent;
 import kanzhihu.android.managers.HttpClientManager;
+import kanzhihu.android.managers.NetworkManager;
 import kanzhihu.android.managers.UpdateManager;
 import kanzhihu.android.utils.FileUtils;
 import kanzhihu.android.utils.IOUtils;
@@ -25,7 +26,7 @@ import kanzhihu.android.utils.IOUtils;
 public class DownloadAppJob extends Job {
 
     public DownloadAppJob() {
-        super(new Params(Priority.LOW).requireNetwork().persist());
+        super(new Params(Priority.LOW).persist());
     }
 
     @Override public void onAdded() {
@@ -33,6 +34,10 @@ public class DownloadAppJob extends Job {
     }
 
     @Override public void onRun() throws Throwable {
+        if (!NetworkManager.isConnected()) {
+            return;
+        }
+
         Request request = new Request.Builder().url(UpdateManager.getUpdateUrl()).build();
         Response response = HttpClientManager.request(request);
 
