@@ -6,7 +6,7 @@
 从[看知乎][1]这个网站读取RSS，在Android设备上阅读。
 
 ###下载 [点击下载](http://github.com/wenjiahui/KanZhiHu/raw/master/apks/kanzhihu.android-lastest.apk)
-![dowload](http://kanzhihu-android.qiniudn.com/qrcode.png "下载")
+![dowload](screenshot/qrcode.png "下载")
 
 ###Screenshots
 ![screenshot_01](screenshot/screenshot_01.png "提示更新")
@@ -45,6 +45,7 @@
 - [看知乎](12)
 - 其他开源库的大牛们
 
+###[CHANGELOG](changelog.md)
 
 ## License
 
@@ -77,7 +78,5 @@
 [12]:http://www.kanzhihu.com/
 [13]:https://github.com/hamsterksu/android-appversion-gradle-plugin
 [14]:https://github.com/soarcn/UndoBar
-<<<<<<< HEAD
-=======
 [15]:https://github.com/keyboardsurfer/Crouton
->>>>>>> release/v1.10
+
