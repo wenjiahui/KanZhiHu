@@ -5,6 +5,9 @@
 
 从[看知乎][1]这个网站读取RSS，在Android设备上阅读。
 
+###下载 [点击下载](http://github.com/wenjiahui/KanZhiHu/raw/master/apks/kanzhihu.android-lastest.apk)
+![dowload](http://kanzhihu-android.qiniudn.com/qrcode.png "下载")
+
 ###Screenshots
 ![screenshot_01](screenshot/screenshot_01.png "提示更新")
 ![screenshot_02](screenshot/screenshot_02.png "每日分类")
