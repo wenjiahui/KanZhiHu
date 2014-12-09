@@ -2,17 +2,17 @@ package kanzhihu.android.activities.presenters;
 
 import android.app.LoaderManager;
 import android.database.Cursor;
+import kanzhihu.android.events.FetchedRssEvent;
+import kanzhihu.android.events.ListitemClickEvent;
 
 /**
  * Created by Jiahui.wen on 2014/11/13.
  */
-public interface CategoryPresenter {
+public interface CategoryPresenter extends BasePresenter {
 
-    void init();
+    void onEventMainThread(FetchedRssEvent event);
 
-    void bindEvent();
-
-    void unBindEvent();
+    void onEventMainThread(ListitemClickEvent event);
 
     void fetchRss();
 

@@ -1,5 +1,6 @@
 package kanzhihu.android;
 
+import android.content.res.Resources;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 
@@ -24,11 +25,19 @@ public class AppConstant {
 
     public static final String PREF_KEY_AUTO_UPDATE = "pref_auto_update";
 
+    public static final String PREF_KEY_NO_IMAGE = "pref_no_image";
+
     public static final String PREF_KEY_BROWSER = "pref_browser_select";
 
     public static final String KEY_PREFERENCE = BuildConfig.APPLICATION_ID + "_preferences";
 
     public static final long APP_EXIT_TIME_INTERVAL = 2000;
+
+    public static boolean IMAGE_MODE = true;
+
+    //NETWORK CONNECT
+    public static int DEFAULT_CONNECT_TIME_OUT = 3;
+    public static int DEFAULT_READ_TIME_OUT = 30;
 
     public interface ITEM_TAG {
         String ITEM = "item";
@@ -79,7 +88,7 @@ public class AppConstant {
         String LARGE_SIZE = "720x340";
         String SMALL_SIZE = "520x245";
 
-        String BASE_URL = KANZHIHU_RESOURCE + "%d/%d/wpid-%s-%d-%d-%d-%s.jpg";
+        String BASE_URL = KANZHIHU_RESOURCE + "%s/%s/wpid-%s-%s-%s-%s-%s.jpg";
     }
 
     //Search
@@ -93,4 +102,18 @@ public class AppConstant {
     public static long UNDO_BAR_DURATION = 2500;
 
     public static final String KEY_SHARE_ARTICLE = "key_share_article";
+
+    //============= text color =================
+    static {
+        Resources resources = App.getAppContext().getResources();
+        TITLE_UNREAD_COLOR = resources.getColor(R.color.text_black);
+        CONTENT_UNREAD_COLOR = resources.getColor(R.color.text_gray);
+        TITLE_READ_COLOR = resources.getColor(R.color.text_black_read);
+        CONTENT_READ_COLOR = resources.getColor(R.color.text_gray_read);
+    }
+
+    public static int TITLE_UNREAD_COLOR;
+    public static int CONTENT_UNREAD_COLOR;
+    public static int TITLE_READ_COLOR;
+    public static int CONTENT_READ_COLOR;
 }

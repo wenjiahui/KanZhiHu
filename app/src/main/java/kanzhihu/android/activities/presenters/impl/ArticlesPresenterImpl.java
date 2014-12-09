@@ -1,6 +1,7 @@
 package kanzhihu.android.activities.presenters.impl;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -10,20 +11,26 @@ import java.util.ArrayList;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
+import kanzhihu.android.activities.BrowseActivity;
 import kanzhihu.android.activities.presenters.ArticlesPresenter;
 import kanzhihu.android.activities.views.ArticlesView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
+import kanzhihu.android.events.ArticleReadEvent;
 import kanzhihu.android.events.BrowseMarkChangedEvent;
+import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
+import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.jobs.LoadArticlesTask;
+import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
 import kanzhihu.android.utils.AssertUtils;
 import kanzhihu.android.utils.Cache;
+import kanzhihu.android.utils.PreferenceUtils;
 import kanzhihu.android.utils.ToastUtils;
 
 /**
@@ -46,7 +53,13 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mHandler = new Handler(this);
         mCategory = category;
 
-        EventBus.getDefault().register(this);
+        init();
+    }
+
+    @Override public void init() {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override public void loadArticles() {
@@ -68,8 +81,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         if (!mView.getVisiable()) {
             return;
         }
-        //fixme 因为header的存在，所以选中的position需要减一，但是对于ArticleAdapter来说，position是正确的。
-        Article article = articles.get(event.position - 1);
+        Article article = mView.getArticle(event.position);
         this.markArticleChanged(event.position, article, event.isChecked);
     }
 
@@ -88,11 +100,31 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
         mView.closeShareView();
     }
 
-    public void onEventMainThread(ShareArticleEvent event) {
+    @Override public void onEventMainThread(ShareArticleEvent event) {
         if (!mView.getVisiable()) {
             return;
         }
         this.onShareArticle(event.position);
+    }
+
+    @Override public void onEventMainThread(ArticleReadEvent event) {
+        int position = articles.indexOf(event.article);
+        if (position != -1) {
+            mView.articleChanged(position);
+        }
+    }
+
+    @Override public void onEventMainThread(ViewAuthorEvent event) {
+        if (!mView.getVisiable()) {
+            return;
+        }
+        Article article = mView.getArticle(event.position);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.writerLink));
+        mView.getContext().startActivity(intent);
+    }
+
+    @Override public void onEventMainThread(ImageModeChangeEvent event) {
+        mView.switchImageMode(event.imageVisiable);
     }
 
     @Override public void markArticleChanged(final int position, final Article article, final boolean isChecked) {
@@ -120,6 +152,18 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
 
     @Override public void onShareArticle(int position) {
         mView.createShareView(mView.getArticle(position));
+    }
+
+    @Override public void readArticle(final Article article) {
+        if (PreferenceUtils.external_open()) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
+            mView.getContext().startActivity(intent);
+        } else {
+            Intent intent = new Intent(mView.getContext(), BrowseActivity.class);
+            intent.putExtra(AppConstant.KEY_ARTICLE, article);
+            mView.getContext().startActivity(intent);
+        }
+        new SetArticleReadTask(mView.getContext(), article).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override public void onDestory() {

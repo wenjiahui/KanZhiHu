@@ -16,11 +16,7 @@ public interface QueryView extends BaseView {
 
     void swapCursor(Cursor cursor);
 
-    void showArticle(int position);
-
     void onQueryTextChange(String newText);
-
-    void articleChanged(int position);
 
     Article getArticle(int position);
 

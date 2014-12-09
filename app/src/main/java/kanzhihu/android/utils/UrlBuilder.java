@@ -34,12 +34,16 @@ public class UrlBuilder {
         if (!TextUtils.isEmpty(type)) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(category.pubDate);
-            int year = calendar.get(Calendar.YEAR);
+            String year = String.valueOf(calendar.get(Calendar.YEAR));
+
             int month = calendar.get(Calendar.MONTH) + 1;
+            String monthStr = month < 10 ? "0" + month : String.valueOf(month);
+
             int day = calendar.get(Calendar.DAY_OF_MONTH);
+            String dayStr = day < 10 ? "0" + day : String.valueOf(day);
 
             String size = small ? AppConstant.CATEGOTY.SMALL_SIZE : AppConstant.CATEGOTY.LARGE_SIZE;
-            url = String.format(AppConstant.CATEGOTY.BASE_URL, year, month, type, year, month, day, size);
+            url = String.format(AppConstant.CATEGOTY.BASE_URL, year, monthStr, type, year, monthStr, dayStr, size);
         }
 
         return url;

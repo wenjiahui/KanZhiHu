@@ -5,7 +5,7 @@ import android.app.LoaderManager;
 /**
  * Created by Jiahui.wen on 2014/11/13.
  */
-public interface CategoryView {
+public interface CategoryView extends BaseView {
 
     void showArticles(int position);
 
@@ -14,6 +14,4 @@ public interface CategoryView {
     void hideFetchRssUI();
 
     LoaderManager getLoaderManager();
-
-    boolean getVisiable();
 }
