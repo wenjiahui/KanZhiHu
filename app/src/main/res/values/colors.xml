@@ -25,4 +25,5 @@
 
     <color name="listitem_normal_color">@android:color/darker_gray</color>
     <color name="listitem_pressed_color">@color/window_background</color>
+    <color name="toast_background">#99FF3030</color>
 </resources>

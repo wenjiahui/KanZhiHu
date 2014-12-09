@@ -35,5 +35,6 @@
     <string name="thanks">鸣谢</string>
     <string name="kanzhihu">看知乎</string>
     <string name="pref_no_image_title">自动加载图片</string>
+    <string name="network_error">网络异常，请检查你的网络连接</string>
 
 </resources>
