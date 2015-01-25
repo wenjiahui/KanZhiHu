@@ -1,33 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
-	>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    >
 
-<channel>
-	<title>看知乎</title>
-	<atom:link href="http://www.kanzhihu.com/feed" rel="self" type="application/rss+xml" />
-	<link>http://www.kanzhihu.com</link>
-	<description>给你另一双眼睛</description>
-	<lastBuildDate>Tue, 11 Nov 2014 03:00:00 +0000</lastBuildDate>
-	<language>zh-CN</language>
-		<sy:updatePeriod>hourly</sy:updatePeriod>
-		<sy:updateFrequency>1</sy:updateFrequency>
-	<generator>http://wordpress.org/?v=4.0</generator>
-	<item>
-		<title>2014年11月11日 近日热门</title>
-		<link>http://www.kanzhihu.com/recent-2014-11-11.html</link>
-		<comments>http://www.kanzhihu.com/recent-2014-11-11.html#comments</comments>
-		<pubDate>Tue, 11 Nov 2014 03:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[近日热门]]></category>
+    <channel>
+        <title>看知乎</title>
+        <atom:link href="http://www.kanzhihu.com/feed" rel="self" type="application/rss+xml"/>
+        <link>http://www.kanzhihu.com</link>
+        <description>给你另一双眼睛</description>
+        <lastBuildDate>Tue, 11 Nov 2014 03:00:00 +0000</lastBuildDate>
+        <language>zh-CN</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>http://wordpress.org/?v=4.0</generator>
+        <item>
+            <title>2014年11月11日 近日热门</title>
+            <link>http://www.kanzhihu.com/recent-2014-11-11.html</link>
+            <comments>http://www.kanzhihu.com/recent-2014-11-11.html#comments</comments>
+            <pubDate>Tue, 11 Nov 2014 03:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[近日热门]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1616</guid>
-		<description><![CDATA[摘录了『女朋友长得非常漂亮是怎样一种体验？』、『为什么莫斯科的地铁站会建得那样奢华？』、『有哪些细节之处的好习惯有利于人保持年轻、健康、漂亮的状态(包括身体健康与外表)？』、『你一天的工作是什么样的？』、『为什么挖到大块的鼻屎和耳屎有一种成就感?』、『扁平化设计将会被什么趋势替代？』、『有哪些冬天用起来很舒服的家居用品？』、『敏感的人如何提高「钝感力」？』、『如何给女朋友选购情趣内衣？』、『如果在被窝放无数个屁，请问被窝的温度会变暖吗？』等问题下的33个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1616</guid>
+            <description>
+                <![CDATA[摘录了『女朋友长得非常漂亮是怎样一种体验？』、『为什么莫斯科的地铁站会建得那样奢华？』、『有哪些细节之处的好习惯有利于人保持年轻、健康、漂亮的状态(包括身体健康与外表)？』、『你一天的工作是什么样的？』、『为什么挖到大块的鼻屎和耳屎有一种成就感?』、『扁平化设计将会被什么趋势替代？』、『有哪些冬天用起来很舒服的家居用品？』、『敏感的人如何提高「钝感力」？』、『如何给女朋友选购情趣内衣？』、『如果在被窝放无数个屁，请问被窝的温度会变暖吗？』等问题下的33个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/26347537/answer/32930448" target="_blank" style="font-weight: bold;">女朋友长得非常漂亮是怎样一种体验？</a></h3>
 <p><a href="http://www.zhihu.com/people/yu-chi-hong/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic4.zhimg.com/7a7b121c7a7537a01fc9ee5aa42f8ed0_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/yu-chi-hong/" target="_blank">尉迟宏</a>: <span class="agreetext">(864<img class="agreelogo" src="/zhihufile/agree.png" />)</span>我来讲讲吧。本人大四狗，马上毕业，一所名气还不错的211女朋友是我大学里下一届的，她来学校时候就有好几个我同级的学长说要拿下她。无奈女孩不是那种很开朗的性格，也不太喜欢去社交场合，平时言语不多，所以摆蜡烛的、喊楼的都被发了好人卡。至于我是怎…<span class="readmore"><a href="http://www.zhihu.com/question/26347537/answer/32930448" target="_blank">[阅读全文]</a></span></span></li>
@@ -192,20 +194,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-11.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月11日 昨日最新</title>
-		<link>http://www.kanzhihu.com/yesterday-2014-11-11.html</link>
-		<comments>http://www.kanzhihu.com/yesterday-2014-11-11.html#comments</comments>
-		<pubDate>Mon, 10 Nov 2014 21:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[昨日最新]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-11.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月11日 昨日最新</title>
+            <link>http://www.kanzhihu.com/yesterday-2014-11-11.html</link>
+            <comments>http://www.kanzhihu.com/yesterday-2014-11-11.html#comments</comments>
+            <pubDate>Mon, 10 Nov 2014 21:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[昨日最新]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1613</guid>
-		<description><![CDATA[摘录了『如何证明根号2的存在？』、『如何走出失恋阴影？』、『如何理解「一个人要像一支队伍」这句话？』、『如何看待安倍晋三将在 APEC 与中方进行正式会谈？今后的中日关系又将如何发展？』、『如何评价魅族 11.19 发布会黑胶邀请函创意？』、『有哪些让你笑了半辈子，每次给别人讲自己都会爆笑的笑话？』、『历史上林彪有哪些厉害之处？』、『非 985/211 计算机本科生要有「多强大的能力」才可以不受学历影响？』等问题下的38个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1613</guid>
+            <description>
+                <![CDATA[摘录了『如何证明根号2的存在？』、『如何走出失恋阴影？』、『如何理解「一个人要像一支队伍」这句话？』、『如何看待安倍晋三将在 APEC 与中方进行正式会谈？今后的中日关系又将如何发展？』、『如何评价魅族 11.19 发布会黑胶邀请函创意？』、『有哪些让你笑了半辈子，每次给别人讲自己都会爆笑的笑话？』、『历史上林彪有哪些厉害之处？』、『非 985/211 计算机本科生要有「多强大的能力」才可以不受学历影响？』等问题下的38个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/26538582/answer/33184079" target="_blank" style="font-weight: bold;">如何证明根号2的存在？</a></h3>
 <p><a href="http://www.zhihu.com/people/xiong-xiao-tao/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic1.zhimg.com/3167095ee_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/xiong-xiao-tao/" target="_blank">熊小陶</a>: <span class="agreetext">(423<img class="agreelogo" src="/zhihufile/agree.png" />)</span>[图片]<span class="readmore"><a href="http://www.zhihu.com/question/26538582/answer/33184079" target="_blank">[阅读全文]</a></span></span></li>
@@ -383,20 +386,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-11.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月10日 历史精华</title>
-		<link>http://www.kanzhihu.com/archive-2014-11-10.html</link>
-		<comments>http://www.kanzhihu.com/archive-2014-11-10.html#comments</comments>
-		<pubDate>Mon, 10 Nov 2014 09:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[历史精华]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-11.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月10日 历史精华</title>
+            <link>http://www.kanzhihu.com/archive-2014-11-10.html</link>
+            <comments>http://www.kanzhihu.com/archive-2014-11-10.html#comments</comments>
+            <pubDate>Mon, 10 Nov 2014 09:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[历史精华]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1610</guid>
-		<description><![CDATA[摘录了『中国人大招生处长蔡荣生落马，高校招生和其他方面水是不是很深？』、『快播可以搜索和在线观看色情视频，为什么监管部门没有对其采取措施？』、『为什么会出现淘宝刷单这个现象，他的利益链是怎样的？其刷单军团如何运营的？』、『相对于其他抗日剧，《亮剑》为何能带来这么大的收视率和影响力？』、『《那年那兔那些事儿》这部漫画描述的中国当代史客观吗？』、『突然关闭社交网站，远离虚拟世界，这样好吗？是什么心理？』等问题下的32个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1610</guid>
+            <description>
+                <![CDATA[摘录了『中国人大招生处长蔡荣生落马，高校招生和其他方面水是不是很深？』、『快播可以搜索和在线观看色情视频，为什么监管部门没有对其采取措施？』、『为什么会出现淘宝刷单这个现象，他的利益链是怎样的？其刷单军团如何运营的？』、『相对于其他抗日剧，《亮剑》为何能带来这么大的收视率和影响力？』、『《那年那兔那些事儿》这部漫画描述的中国当代史客观吗？』、『突然关闭社交网站，远离虚拟世界，这样好吗？是什么心理？』等问题下的32个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/22131357/answer/21570349" target="_blank" style="font-weight: bold;">中国人大招生处长蔡荣生落马，高校招生和其他方面水是不是很深？</a></h3>
 <p><a href="http://www.zhihu.com/people/kingg/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic4.zhimg.com/256461d61_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/kingg/" target="_blank">KINGG</a>: <span class="agreetext">(1882<img class="agreelogo" src="/zhihufile/agree.png" />)</span>我来答一答吧。当年在人民大学北区食堂的楼下常年会停一辆亚光的陆虎揽胜旗舰版，每次人民大学的隆重晚会或者活动介绍校领导的时候，会有一个人穿短裤，polo衫，以平头形象与大家示意，车的主人和这位校领导正是人民大学里风光无限的蔡处，蔡荣生。飞扬跋扈…<span class="readmore"><a href="http://www.zhihu.com/question/22131357/answer/21570349" target="_blank">[阅读全文]</a></span></span></li>
@@ -559,20 +563,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-10.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月10日 近日热门</title>
-		<link>http://www.kanzhihu.com/recent-2014-11-10.html</link>
-		<comments>http://www.kanzhihu.com/recent-2014-11-10.html#comments</comments>
-		<pubDate>Mon, 10 Nov 2014 03:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[近日热门]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-10.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月10日 近日热门</title>
+            <link>http://www.kanzhihu.com/recent-2014-11-10.html</link>
+            <comments>http://www.kanzhihu.com/recent-2014-11-10.html#comments</comments>
+            <pubDate>Mon, 10 Nov 2014 03:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[近日热门]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1607</guid>
-		<description><![CDATA[摘录了『《千与千寻》里无脸男为什么喜欢千寻？如果千寻回头了会发生什么？』、『有哪些有用的人际交往小常识?』、『如何看待「清华现超级学霸」 15 门课程 100 分 4 门 99 分，有人唱衰有人赞叹的现象？』、『有哪些原理简单，但是设计精妙，让人感到惊艳的设计或机械结构？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『为什么有那么多的人要去北京发展？』、『你见过女生最美的一刻是什么时候？』等问题下的33个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1607</guid>
+            <description>
+                <![CDATA[摘录了『《千与千寻》里无脸男为什么喜欢千寻？如果千寻回头了会发生什么？』、『有哪些有用的人际交往小常识?』、『如何看待「清华现超级学霸」 15 门课程 100 分 4 门 99 分，有人唱衰有人赞叹的现象？』、『有哪些原理简单，但是设计精妙，让人感到惊艳的设计或机械结构？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『为什么有那么多的人要去北京发展？』、『你见过女生最美的一刻是什么时候？』等问题下的33个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/23750781/answer/32941323" target="_blank" style="font-weight: bold;">《千与千寻》里无脸男为什么喜欢千寻？如果千寻回头了会发生什么？</a></h3>
 <p><a href="http://www.zhihu.com/people/liu-zhi-hong-57-38-41/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic3.zhimg.com/a6f42930fcaabbe098cb9513e39c339b_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/liu-zhi-hong-57-38-41/" target="_blank">刘志红</a>: <span class="agreetext">(2126<img class="agreelogo" src="/zhihufile/agree.png" />)</span>影片的最后，心地善良的无脸男因为千寻的帮助，获得了真正的一种从灵魂上的救赎，从一个吃人的妖怪，变成了钱婆婆的助手。尽管他曾经因为自己在乎的人的狠心拒绝，而做错事。应知友要求，把原文的链接补上。对你们造成的伤害，表示抱歉。http://m.douban.com/note/96011700/?session=dae03029…<span class="readmore"><a href="http://www.zhihu.com/question/23750781/answer/32941323" target="_blank">[阅读全文]</a></span></span></li>
@@ -738,20 +743,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-10.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月10日 昨日最新</title>
-		<link>http://www.kanzhihu.com/yesterday-2014-11-10.html</link>
-		<comments>http://www.kanzhihu.com/yesterday-2014-11-10.html#comments</comments>
-		<pubDate>Sun, 09 Nov 2014 21:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[昨日最新]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-10.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月10日 昨日最新</title>
+            <link>http://www.kanzhihu.com/yesterday-2014-11-10.html</link>
+            <comments>http://www.kanzhihu.com/yesterday-2014-11-10.html#comments</comments>
+            <pubDate>Sun, 09 Nov 2014 21:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[昨日最新]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1604</guid>
-		<description><![CDATA[摘录了『当女神是怎样一个体验？』、『你一天的工作是什么样的？』、『东野圭吾算一流小说家吗？他好在哪里？』、『如何看待俄罗斯禁止使用苹果产品？』、『有哪些“美国料理”？』、『你吃过哪些需要提前几个月预订的餐厅？用餐体验如何？值得等待几个月吗？』、『什么是孤独?』、『如何给女朋友选购情趣内衣？』、『有哪些不到最后5分钟都猜不到结局的电影？』、『哪里的海很蓝还有透明的感觉？』、『和日本人（或日本人之间）谈恋爱（结婚）是什么感觉，是怎样的情形？』等问题下的36个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1604</guid>
+            <description>
+                <![CDATA[摘录了『当女神是怎样一个体验？』、『你一天的工作是什么样的？』、『东野圭吾算一流小说家吗？他好在哪里？』、『如何看待俄罗斯禁止使用苹果产品？』、『有哪些“美国料理”？』、『你吃过哪些需要提前几个月预订的餐厅？用餐体验如何？值得等待几个月吗？』、『什么是孤独?』、『如何给女朋友选购情趣内衣？』、『有哪些不到最后5分钟都猜不到结局的电影？』、『哪里的海很蓝还有透明的感觉？』、『和日本人（或日本人之间）谈恋爱（结婚）是什么感觉，是怎样的情形？』等问题下的36个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/26515011/answer/33136443" target="_blank" style="font-weight: bold;">当女神是怎样一个体验？</a></h3>
 <p><a href="http://www.zhihu.com/people/su-mi-48-83/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic1.zhimg.com/202babfec61aa7f009f48010166c06ce_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/su-mi-48-83/" target="_blank">苏迷</a>: <span class="agreetext">(92<img class="agreelogo" src="/zhihufile/agree.png" />)</span>⊙_⊙手酸。<span class="readmore"><a href="http://www.zhihu.com/question/26515011/answer/33136443" target="_blank">[阅读全文]</a></span></span></li>
@@ -925,20 +931,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-10.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月9日 历史精华</title>
-		<link>http://www.kanzhihu.com/archive-2014-11-09.html</link>
-		<comments>http://www.kanzhihu.com/archive-2014-11-09.html#comments</comments>
-		<pubDate>Sun, 09 Nov 2014 09:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[历史精华]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-10.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月9日 历史精华</title>
+            <link>http://www.kanzhihu.com/archive-2014-11-09.html</link>
+            <comments>http://www.kanzhihu.com/archive-2014-11-09.html#comments</comments>
+            <pubDate>Sun, 09 Nov 2014 09:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[历史精华]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1601</guid>
-		<description><![CDATA[摘录了『你认为最好笑的一句话是什么？』、『你所见过最具正能量的图片有哪些？』、『历史上有哪些精准到可怕的预言？』、『有什么话不能和小朋友说？』、『在你的职业生涯中曾被人提过什么不靠谱的要求？』、『现在的女生很多拜金么？』、『应该像对待色情产业一样禁止网络游戏产业吗？』、『你认为自己最好的照片是哪张？』、『「四川话只差一票就成了普通话」是真的么？』、『健身有什么坏处？』、『那些看了几千部电影的人是怎么做到的？』等问题下的33个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1601</guid>
+            <description>
+                <![CDATA[摘录了『你认为最好笑的一句话是什么？』、『你所见过最具正能量的图片有哪些？』、『历史上有哪些精准到可怕的预言？』、『有什么话不能和小朋友说？』、『在你的职业生涯中曾被人提过什么不靠谱的要求？』、『现在的女生很多拜金么？』、『应该像对待色情产业一样禁止网络游戏产业吗？』、『你认为自己最好的照片是哪张？』、『「四川话只差一票就成了普通话」是真的么？』、『健身有什么坏处？』、『那些看了几千部电影的人是怎么做到的？』等问题下的33个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/19639400/answer/17392261" target="_blank" style="font-weight: bold;">你认为最好笑的一句话是什么？</a></h3>
 <p><a href="http://www.zhihu.com/people/liu-shi-wu/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic4.zhimg.com/068f37a73_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/liu-shi-wu/" target="_blank">刘十五</a>: <span class="agreetext">(1176<img class="agreelogo" src="/zhihufile/agree.png" />)</span>我以为我那么帅，她不会报警的。<span class="readmore"><a href="http://www.zhihu.com/question/19639400/answer/17392261" target="_blank">[阅读全文]</a></span></span></li>
@@ -1107,20 +1114,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-09.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月9日 近日热门</title>
-		<link>http://www.kanzhihu.com/recent-2014-11-09.html</link>
-		<comments>http://www.kanzhihu.com/recent-2014-11-09.html#comments</comments>
-		<pubDate>Sun, 09 Nov 2014 03:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[近日热门]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-09.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月9日 近日热门</title>
+            <link>http://www.kanzhihu.com/recent-2014-11-09.html</link>
+            <comments>http://www.kanzhihu.com/recent-2014-11-09.html#comments</comments>
+            <pubDate>Sun, 09 Nov 2014 03:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[近日热门]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1598</guid>
-		<description><![CDATA[摘录了『女生应该怎么穿衣服既低调又不俗气？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『无损压缩和有损压缩音乐有何区别？』、『最近为什么突然涌现很多赵本山的负面新闻？』、『淘宝上有哪些很显格调和品味的东西？』、『如何评价《明日边缘》？』、『如何评价《火影忍者》的大结局？』、『《北京APEC会议期间6天放假调休》会议期间为什么要放假？』、『怎么做才算得上是有格调的互联网产品？』等问题下的33个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1598</guid>
+            <description>
+                <![CDATA[摘录了『女生应该怎么穿衣服既低调又不俗气？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『无损压缩和有损压缩音乐有何区别？』、『最近为什么突然涌现很多赵本山的负面新闻？』、『淘宝上有哪些很显格调和品味的东西？』、『如何评价《明日边缘》？』、『如何评价《火影忍者》的大结局？』、『《北京APEC会议期间6天放假调休》会议期间为什么要放假？』、『怎么做才算得上是有格调的互联网产品？』等问题下的33个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/21652570/answer/32848413" target="_blank" style="font-weight: bold;">女生应该怎么穿衣服既低调又不俗气？</a></h3>
 <p><a href="http://www.zhihu.com/people/dong-gui-32/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic3.zhimg.com/a96dcbd5b42744893b2d59ef10cbfffd_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/dong-gui-32/" target="_blank">东姽</a>: <span class="agreetext">(249<img class="agreelogo" src="/zhihufile/agree.png" />)</span>不知道十一月份再来回答这样一个问题是不是有点晚呢？私心还是想让题主看到我的答案呢。就算是以我个人经历，给题主一个参考。以下内容不涉及街拍不涉及时尚，简简单单来说我认为的工科女的合体的日常。问题关键字：女生，穿衣，低调，不俗。按我的理解，穿…<span class="readmore"><a href="http://www.zhihu.com/question/21652570/answer/32848413" target="_blank">[阅读全文]</a></span></span></li>
@@ -1273,20 +1281,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-09.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月9日 昨日最新</title>
-		<link>http://www.kanzhihu.com/yesterday-2014-11-09.html</link>
-		<comments>http://www.kanzhihu.com/yesterday-2014-11-09.html#comments</comments>
-		<pubDate>Sat, 08 Nov 2014 21:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[昨日最新]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-09.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月9日 昨日最新</title>
+            <link>http://www.kanzhihu.com/yesterday-2014-11-09.html</link>
+            <comments>http://www.kanzhihu.com/yesterday-2014-11-09.html#comments</comments>
+            <pubDate>Sat, 08 Nov 2014 21:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[昨日最新]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1595</guid>
-		<description><![CDATA[摘录了『身为一名老师，你都有什么技巧管理学生和提高效率？』、『和日本人（或日本人之间）谈恋爱（结婚）是什么感觉，是怎样的情形？』、『战地记者的生活是怎么样的？』、『假设地球上的四大洋全部变为酒精,那么这时候往“海”里丢一根点燃的火柴会怎么样？』、『知乎作为一个问答网站，它是否已经给社会带来了一些变化？』、『如果在被窝放无数个屁，请问被窝的温度会变暖吗？』、『崔永元 11 月 5 号在清华的转基因讲座中说了什么？学生的反应如何？怎么看待清华学生邀请崔永元演讲转基因？』等问题下的36个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1595</guid>
+            <description>
+                <![CDATA[摘录了『身为一名老师，你都有什么技巧管理学生和提高效率？』、『和日本人（或日本人之间）谈恋爱（结婚）是什么感觉，是怎样的情形？』、『战地记者的生活是怎么样的？』、『假设地球上的四大洋全部变为酒精,那么这时候往“海”里丢一根点燃的火柴会怎么样？』、『知乎作为一个问答网站，它是否已经给社会带来了一些变化？』、『如果在被窝放无数个屁，请问被窝的温度会变暖吗？』、『崔永元 11 月 5 号在清华的转基因讲座中说了什么？学生的反应如何？怎么看待清华学生邀请崔永元演讲转基因？』等问题下的36个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/26519866/answer/33121724" target="_blank" style="font-weight: bold;">身为一名老师，你都有什么技巧管理学生和提高效率？</a></h3>
 <p><a href="http://www.zhihu.com/people/li-zheng-56-62/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic3.zhimg.com/3170cb461100f892bda0a6b9ce63c774_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/li-zheng-56-62/" target="_blank">李政</a>: <span class="agreetext">(138<img class="agreelogo" src="/zhihufile/agree.png" />)</span>好久之前就想总结一下了。 本人2007年入职新东方，成为了一名高中化学教师。当时的新东方还是英语项目为主，理科项目是刚刚起步，因此我们这样的理科教师经常被戏称为“特种兵”。经过一段鸡血式的自我修炼，2008年的寒假，我终于登上了讲台，终于可以拿着…<span class="readmore"><a href="http://www.zhihu.com/question/26519866/answer/33121724" target="_blank">[阅读全文]</a></span></span></li>
@@ -1451,20 +1460,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-09.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月8日 历史精华</title>
-		<link>http://www.kanzhihu.com/archive-2014-11-08.html</link>
-		<comments>http://www.kanzhihu.com/archive-2014-11-08.html#comments</comments>
-		<pubDate>Sat, 08 Nov 2014 09:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[历史精华]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/yesterday-2014-11-09.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月8日 历史精华</title>
+            <link>http://www.kanzhihu.com/archive-2014-11-08.html</link>
+            <comments>http://www.kanzhihu.com/archive-2014-11-08.html#comments</comments>
+            <pubDate>Sat, 08 Nov 2014 09:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[历史精华]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1592</guid>
-		<description><![CDATA[摘录了『Windows Phone 会超越 iOS 或者 Android 吗？』、『为什么很多人鄙视杀马特？』、『放弃一个喜欢很久的人是什么感觉？』、『什么可以提高大学寝室生活的质量？』、『只有高中学历，如何通过自学技能改变命运？』、『在一个感觉自己格格不入的环境里，怎样和庸碌的人相处？』、『武汉是一个怎样的城市？』、『大学应该学什么?』、『大个女生能卖萌么？』、『你遇到过哪些让你眼前一亮、醍醐灌顶或对你改变很大的理念？』等问题下的32个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1592</guid>
+            <description>
+                <![CDATA[摘录了『Windows Phone 会超越 iOS 或者 Android 吗？』、『为什么很多人鄙视杀马特？』、『放弃一个喜欢很久的人是什么感觉？』、『什么可以提高大学寝室生活的质量？』、『只有高中学历，如何通过自学技能改变命运？』、『在一个感觉自己格格不入的环境里，怎样和庸碌的人相处？』、『武汉是一个怎样的城市？』、『大学应该学什么?』、『大个女生能卖萌么？』、『你遇到过哪些让你眼前一亮、醍醐灌顶或对你改变很大的理念？』等问题下的32个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/23160602/answer/28815460" target="_blank" style="font-weight: bold;">Windows Phone 会超越 iOS 或者 Android 吗？</a></h3>
 <p><a href="http://www.zhihu.com/people/xu-lai-xi/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic4.zhimg.com/0066ded49_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/xu-lai-xi/" target="_blank">许来西</a>: <span class="agreetext">(1476<img class="agreelogo" src="/zhihufile/agree.png" />)</span>看到一些脑残粉和脑残黑的答案，感到很多人要么被对WP的感情蒙蔽，要么被铺天盖地的安卓广告洗脑，不能给出客观的分析。怒答！先说结论：WindowsPhone是一个严重被低估的移动操作系统，安卓是一个严重被高估的操作系统。并给大众消费者购买手机建议：有钱…<span class="readmore"><a href="http://www.zhihu.com/question/23160602/answer/28815460" target="_blank">[阅读全文]</a></span></span></li>
@@ -1627,20 +1637,21 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-08.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-		<item>
-		<title>2014年11月8日 近日热门</title>
-		<link>http://www.kanzhihu.com/recent-2014-11-08.html</link>
-		<comments>http://www.kanzhihu.com/recent-2014-11-08.html#comments</comments>
-		<pubDate>Sat, 08 Nov 2014 03:00:00 +0000</pubDate>
-		<dc:creator><![CDATA[nodepublisher]]></dc:creator>
-				<category><![CDATA[近日热门]]></category>
+            <wfw:commentRss>http://www.kanzhihu.com/archive-2014-11-08.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+        <item>
+            <title>2014年11月8日 近日热门</title>
+            <link>http://www.kanzhihu.com/recent-2014-11-08.html</link>
+            <comments>http://www.kanzhihu.com/recent-2014-11-08.html#comments</comments>
+            <pubDate>Sat, 08 Nov 2014 03:00:00 +0000</pubDate>
+            <dc:creator><![CDATA[nodepublisher]]></dc:creator>
+            <category><![CDATA[近日热门]]></category>
 
-		<guid isPermaLink="false">http://www.kanzhihu.com/?p=1589</guid>
-		<description><![CDATA[摘录了『做职业乞丐是一种怎样的体验？』、『有哪些有意思好玩的网站，APP值得推荐？』、『人的眼睛相当于什么参数的镜头？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『直女癌是怎么样的？』、『各式各样的牙膏，效果真的会有不同吗？』、『如果一块地很贵，开发商可以通过盖很高的楼层（相当于有几个房间可以出售）从而不把房价定很高也能赚钱吗？』、『为什么大众对《复仇者联盟》的评价比对《小时代》的高？』等问题下的33个答案]]></description>
-				<content:encoded><![CDATA[<ul>
+            <guid isPermaLink="false">http://www.kanzhihu.com/?p=1589</guid>
+            <description>
+                <![CDATA[摘录了『做职业乞丐是一种怎样的体验？』、『有哪些有意思好玩的网站，APP值得推荐？』、『人的眼睛相当于什么参数的镜头？』、『对方父母给你五百万让你离开他们的子女，这种情况下怎么应对？』、『直女癌是怎么样的？』、『各式各样的牙膏，效果真的会有不同吗？』、『如果一块地很贵，开发商可以通过盖很高的楼层（相当于有几个房间可以出售）从而不把房价定很高也能赚钱吗？』、『为什么大众对《复仇者联盟》的评价比对《小时代》的高？』等问题下的33个答案]]></description>
+            <content:encoded><![CDATA[<ul>
 <li>
 <h3><a href="http://www.zhihu.com/question/26504012/answer/33030832" target="_blank" style="font-weight: bold;">做职业乞丐是一种怎样的体验？</a></h3>
 <p><a href="http://www.zhihu.com/people/wang-ji-ji-76-10/" target="_blank"><img class="alignleft avatar" src="/zhihufile/avatar/pic1.zhimg.com/5ec385f7354cbb8aaca561c0c9b6c699_l.jpg" alt="" /></a><span class="summary"><a href="http://www.zhihu.com/people/wang-ji-ji-76-10/" target="_blank">王吉吉</a>: <span class="agreetext">(601<img class="agreelogo" src="/zhihufile/agree.png" />)</span>看到这个问题，忍不住不请自来的回答了。我有一个阿姨，在某东北小城火车站旁边开数家小旅馆。生意极好。她的客人基本分两种: 小姐和乞丐。这两种客流时常会互相光顾。 下面说一些我耳闻目睹过得真实的故事。第一个故事：小猛子，三十岁。二十三岁之前是一…<span class="readmore"><a href="http://www.zhihu.com/question/26504012/answer/33030832" target="_blank">[阅读全文]</a></span></span></li>
@@ -1799,11 +1810,11 @@
 </li>
 </ul>
 ]]></content:encoded>
-			<wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-08.html/feed</wfw:commentRss>
-		<slash:comments>0</slash:comments>
-		</item>
-	</channel>
+            <wfw:commentRss>http://www.kanzhihu.com/recent-2014-11-08.html/feed</wfw:commentRss>
+            <slash:comments>0</slash:comments>
+        </item>
+    </channel>
 </rss>
 
-<!-- Dynamic page generated in 1.986 seconds. -->
-<!-- Cached page generated by WP-Super-Cache on 2014-11-11 15:00:26 -->
+    <!-- Dynamic page generated in 1.986 seconds. -->
+    <!-- Cached page generated by WP-Super-Cache on 2014-11-11 15:00:26 -->

@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import com.crashlytics.android.Crashlytics;
+import com.tencent.bugly.crashreport.CrashReport;
 import de.greenrobot.event.EventBus;
 import java.io.File;
 import kanzhihu.android.events.DownloadedApkEvent;
@@ -40,7 +40,8 @@ public class App extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        if (!BuildConfig.DEBUG) Crashlytics.start(this);
+
+        initCrashAnalysic();
 
         mCallBack = new ActivityManager();
         registerActivityLifecycleCallbacks(mCallBack);
@@ -55,6 +56,14 @@ public class App extends Application {
         BackThreadManager.getJobManager().addJobInBackground(new DeleteOldArticlesJob());
 
         EventBus.getDefault().register(this);
+
+        throw new NullPointerException();
+    }
+
+    private void initCrashAnalysic() {
+        String appId = "900001876";   //上Bugly(bugly.qq.com)注册产品获取的AppId
+
+        CrashReport.initCrashReport(this, appId, BuildConfig.DEBUG);  //初始化SDK
     }
 
     public Activity topActivity() {

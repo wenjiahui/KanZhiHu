@@ -1,13 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
         //unit test
         classpath 'org.robolectric:robolectric-gradle-plugin:0.13.2'
-        //crash analyse
-        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.14.3'
         //rename apk
         classpath 'com.github.hamsterksu:android-appversion-gradle-plugin:1.1.0'
     }
@@ -15,18 +12,13 @@ buildscript {
 
 
 apply plugin: 'com.android.application'
-apply plugin: 'crashlytics'
 apply plugin: 'robolectric'
 apply plugin: 'versionPlugin'
-
-repositories {
-    maven { url 'http://download.crashlytics.com/maven' }
-}
 
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     lintOptions {
         abortOnError false
@@ -49,7 +41,7 @@ android {
                 keyPassword KEY_PASSWORD
             } catch (ex) {
                 ////throw new InvalidUserDataException(
-                 //   "You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+                //   "You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
             }
         }
     }
@@ -89,7 +81,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.2@aar'
+    compile 'com.android.support:appcompat-v7:21.0.3@aar'
     compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.android.support:recyclerview-v7:21.0.0'
     //view Initialize
@@ -116,8 +108,6 @@ dependencies {
     }
     //dialog
     compile 'com.afollestad:material-dialogs:0.3.0'
-    //crash analysic
-    compile 'com.crashlytics.android:crashlytics:1.1.13'
 
     androidTestCompile('junit:junit:4.11')
     androidTestCompile('org.robolectric:robolectric:2.3') {
@@ -160,7 +150,7 @@ robolectric {
 }
 
 
-versionPlugin{
+versionPlugin {
     buildTypesMatcher = 'release'
     fileNameFormat = '$appPkg-$versionName'
 }
