@@ -4,14 +4,17 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import com.afollestad.materialdialogs.MaterialDialog;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.listeners.DialogSelectListener;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 
 public class UpdateDialogFragment extends DialogFragment {
 
     private DialogSelectListener mListener;
+
+    @Inject Preferences mPreference;
 
     public void setListener(DialogSelectListener mListener) {
         this.mListener = mListener;
@@ -35,8 +38,8 @@ public class UpdateDialogFragment extends DialogFragment {
                 @Override
                 public void onNeutral(MaterialDialog dialog) {
                     if (mListener != null) {
-                        int version = PreferenceUtils.getInt(AppConstant.KEY_NEW_VERSION, -1);
-                        PreferenceUtils.setInt(AppConstant.KEY_IGNORE_VERSION, version);
+                        int version = mPreference.getInt(AppConstant.KEY_NEW_VERSION, -1);
+                        mPreference.setInt(AppConstant.KEY_IGNORE_VERSION, version);
                         mListener.onCancel();
                     }
                 }

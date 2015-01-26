@@ -6,13 +6,17 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.View;
 import de.greenrobot.event.EventBus;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.BuildConfig;
 import kanzhihu.android.R;
 import kanzhihu.android.events.ImageModeChangeEvent;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.modules.Injector;
+import kanzhihu.android.utils.Preferences;
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    @Inject Preferences mPreference;
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
@@ -22,6 +26,8 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.pref_settings);
+
+        Injector.inject(this);
     }
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -39,8 +45,8 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         if (AppConstant.PREF_KEY_SAVE_DAYS.equals(key)) {
             showSaveDays();
         } else if (AppConstant.PREF_KEY_NO_IMAGE.equals(key)) {
-            boolean imageMode = PreferenceUtils.getImageMode();
-            PreferenceUtils.getInstance().setImageMode(imageMode);
+            boolean imageMode = mPreference.getImageMode();
+            mPreference.setImageMode(imageMode);
             EventBus.getDefault().post(new ImageModeChangeEvent(imageMode));
         }
     }
@@ -60,7 +66,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     private void showSaveDays() {
         Preference saveDaysPref = findPreference(AppConstant.PREF_KEY_SAVE_DAYS);
         if (saveDaysPref != null) {
-            int select = PreferenceUtils.getSaveDays();
+            int select = mPreference.getSaveDays();
             String[] days = getResources().getStringArray(R.array.pref_saveDays_values);
             int index = 0;
             for (int i = 0; i < days.length; i++) {

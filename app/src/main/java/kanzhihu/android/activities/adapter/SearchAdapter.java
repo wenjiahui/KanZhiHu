@@ -11,11 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import kanzhihu.android.App;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.CursorRecyclerViewAdapter;
 import kanzhihu.android.models.Article;
+import kanzhihu.android.modules.Injector;
 
 /**
  * Created by Jiahui.wen on 2014/11/13.
@@ -27,8 +28,12 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
 
     private boolean mImageMode;
 
+    @Inject Picasso picasso;
+
     public SearchAdapter(Context context, Cursor cursor) {
         super(context, cursor);
+
+        Injector.inject(this);
     }
 
     public void setImageMode(boolean imageMode) {
@@ -58,9 +63,7 @@ public class SearchAdapter extends CursorRecyclerViewAdapter {
         holder.registerCheckedChangedListener();
 
         if (mImageMode) {
-            Picasso.with(App.getAppContext())
-                .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
-                .into(holder.mAvatar);
+            picasso.load(String.format(AppConstant.IMAGE_LINK, article.imageLink)).into(holder.mAvatar);
         }
         holder.mAvatar.setVisibility(mImageMode ? View.VISIBLE : View.GONE);
     }

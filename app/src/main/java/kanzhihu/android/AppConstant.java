@@ -35,6 +35,8 @@ public class AppConstant {
 
     public static boolean IMAGE_MODE = true;
 
+    public static final int DISK_CACHE_SIZE = 30 * 1024 * 1024;
+
     //NETWORK CONNECT
     public static int DEFAULT_CONNECT_TIME_OUT = 3;
     public static int DEFAULT_READ_TIME_OUT = 30;

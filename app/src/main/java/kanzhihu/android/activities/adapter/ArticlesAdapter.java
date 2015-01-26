@@ -13,7 +13,7 @@ import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
 import de.greenrobot.event.EventBus;
 import java.util.List;
-import kanzhihu.android.App;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
@@ -22,6 +22,7 @@ import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.models.Article;
+import kanzhihu.android.modules.Injector;
 
 /**
  * Created by Jiahui.wen on 2014/11/15.
@@ -31,9 +32,13 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
 
     private boolean mImageMode;
 
+    @Inject Picasso picasso;
+
     public ArticlesAdapter(List<Article> data) {
         super(data);
         implementRecyclerAdapterMethods(this);
+
+        Injector.inject(this);
     }
 
     public void setImageMode(boolean imageVisiable) {
@@ -69,9 +74,7 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
         holder.registerCheckedChangedListener();
 
         if (mImageMode) {
-            Picasso.with(App.getAppContext())
-                .load(String.format(AppConstant.IMAGE_LINK, article.imageLink))
-                .into(holder.mAvatar);
+            picasso.load(String.format(AppConstant.IMAGE_LINK, article.imageLink)).into(holder.mAvatar);
         }
         holder.mAvatar.setVisibility(mImageMode ? View.VISIBLE : View.GONE);
     }

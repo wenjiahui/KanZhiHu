@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import butterknife.InjectView;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-import kanzhihu.android.App;
+import javax.inject.Inject;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.ArticlesAdapter;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
@@ -28,8 +28,9 @@ import kanzhihu.android.activities.views.ArticlesView;
 import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.HardwareUtils;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 import kanzhihu.android.utils.ShareUtils;
 import kanzhihu.android.utils.UrlBuilder;
 
@@ -42,6 +43,10 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
     private Category mCategory;
 
     @InjectView(R.id.recyclerView_articles) RecyclerView recyclerView;
+
+    @Inject Picasso picasso;
+
+    @Inject Preferences mPreference;
 
     private ImageView mHeadView;
 
@@ -79,6 +84,7 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
 
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Injector.inject(this);
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
@@ -100,7 +106,7 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
         mPresenter = new ArticlesPresenterImpl(this, mCategory);
         mPresenter.loadArticles();
 
-        switchImageMode(PreferenceUtils.getInstance().imageMode());
+        switchImageMode(mPreference.imageMode());
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -166,7 +172,7 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
         mHeadView.setVisibility(imageVisiable ? View.VISIBLE : View.GONE);
         mAdapter.setImageMode(imageVisiable);
         if (imageVisiable) {
-            Picasso.with(App.getAppContext()).load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
+            picasso.load(UrlBuilder.getScreenShotUrl(mCategory, true)).into(mHeadView);
         }
     }
 

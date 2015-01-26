@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import de.greenrobot.event.EventBus;
 import java.util.ArrayList;
+import javax.inject.Inject;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
@@ -28,9 +29,10 @@ import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.AssertUtils;
 import kanzhihu.android.utils.Cache;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 import kanzhihu.android.utils.ToastUtils;
 
 /**
@@ -48,12 +50,16 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
 
     private Category mCategory;
 
+    @Inject Preferences mPreference;
+
     public ArticlesPresenterImpl(ArticlesView articlesView, Category category) {
         this.mView = AssertUtils.requireNonNull(articlesView, "ArticlesView must not null");
         mHandler = new Handler(this);
         mCategory = category;
 
         init();
+
+        Injector.inject(this);
     }
 
     @Override public void init() {
@@ -155,7 +161,7 @@ public class ArticlesPresenterImpl implements ArticlesPresenter, Handler.Callbac
     }
 
     @Override public void readArticle(final Article article) {
-        if (PreferenceUtils.external_open()) {
+        if (mPreference.external_open()) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
             mView.getContext().startActivity(intent);
         } else {

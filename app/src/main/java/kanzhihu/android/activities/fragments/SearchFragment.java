@@ -15,6 +15,7 @@ import android.view.View;
 import butterknife.InjectView;
 import com.cocosw.undobar.UndoBarController;
 import com.cocosw.undobar.UndoBarStyle;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.SearchAdapter;
@@ -24,7 +25,8 @@ import kanzhihu.android.activities.presenters.impl.QueryPresenterImpl;
 import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ShareActionProvider;
 import kanzhihu.android.models.Article;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.modules.Injector;
+import kanzhihu.android.utils.Preferences;
 import kanzhihu.android.utils.ShareUtils;
 
 /**
@@ -54,6 +56,8 @@ public class SearchFragment extends BaseFragment implements QueryView {
     private Article mShareArticle;
     private MenuItem mShareMenu;
 
+    @Inject Preferences mPreference;
+
     @InjectView(R.id.recyclerView_mark) RecyclerView mRecyclerView;
 
     @Override public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,8 @@ public class SearchFragment extends BaseFragment implements QueryView {
         setHasOptionsMenu(true);
 
         bMarkView = getArguments().getBoolean(AppConstant.ACTION_MODE_MARK_VIEW, false);
+
+        Injector.inject(this);
     }
 
     @Override public int getViewRec() {
@@ -99,7 +105,7 @@ public class SearchFragment extends BaseFragment implements QueryView {
         mRecyclerView.setHasFixedSize(true);
 
         mAdapter = new SearchAdapter(getActivity(), null);
-        mAdapter.setImageMode(PreferenceUtils.getInstance().imageMode());
+        mAdapter.setImageMode(mPreference.imageMode());
         mRecyclerView.setAdapter(mAdapter);
 
         mPresenter = new QueryPresenterImpl(this, bMarkView);

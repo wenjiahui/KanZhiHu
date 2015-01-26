@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import com.cocosw.undobar.UndoBarController;
 import de.greenrobot.event.EventBus;
+import javax.inject.Inject;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
@@ -33,9 +34,10 @@ import kanzhihu.android.events.ViewAuthorEvent;
 import kanzhihu.android.jobs.SetArticleReadTask;
 import kanzhihu.android.jobs.SimpleBackgroundTask;
 import kanzhihu.android.models.Article;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.AssertUtils;
 import kanzhihu.android.utils.Cache;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 import kanzhihu.android.utils.ToastUtils;
 
 /**
@@ -55,11 +57,15 @@ public class QueryPresenterImpl implements QueryPresenter {
 
     private boolean bMarkView;
 
+    @Inject Preferences mPreference;
+
     public QueryPresenterImpl(QueryView mView, boolean bMarkView) {
         this.mView = AssertUtils.requireNonNull(mView, QueryView.class.getSimpleName() + " must not null");
         this.bMarkView = bMarkView;
 
         init();
+
+        Injector.inject(this);
     }
 
     @Override public void init() {
@@ -78,7 +84,7 @@ public class QueryPresenterImpl implements QueryPresenter {
             if (article == null) {
                 return;
             }
-            if (PreferenceUtils.external_open()) {
+            if (mPreference.external_open()) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.link));
                 mView.getContext().startActivity(intent);
             } else {

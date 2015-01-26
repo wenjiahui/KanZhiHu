@@ -2,7 +2,9 @@ package kanzhihu.android.activities.presenters.impl;
 
 import android.app.LoaderManager;
 import android.database.Cursor;
+import com.path.android.jobqueue.JobManager;
 import de.greenrobot.event.EventBus;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.activities.presenters.CategoryPresenter;
 import kanzhihu.android.activities.views.CategoryView;
@@ -10,9 +12,9 @@ import kanzhihu.android.events.FetchedRssEvent;
 import kanzhihu.android.events.ImageModeChangeEvent;
 import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.jobs.FetchRssJob;
-import kanzhihu.android.managers.BackThreadManager;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.AssertUtils;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 
 /**
  * Created by Jiahui.wen on 2014/11/13.
@@ -21,10 +23,15 @@ public class CategoryPresenterImpl implements CategoryPresenter {
 
     private CategoryView mView;
 
+    @Inject JobManager mJobManager;
+
+    @Inject Preferences mPreference;
+
     public CategoryPresenterImpl(CategoryView mView) {
         this.mView = AssertUtils.requireNonNull(mView, CategoryView.class.getSimpleName() + " must not be null");
 
         init();
+        Injector.inject(this);
     }
 
     @Override public void init() {
@@ -49,7 +56,7 @@ public class CategoryPresenterImpl implements CategoryPresenter {
 
     @Override public void fetchRss() {
         mView.showFetchRssUI();
-        BackThreadManager.getJobManager().addJobInBackground(new FetchRssJob());
+        mJobManager.addJobInBackground(new FetchRssJob());
     }
 
     @Override public void loadDataFromDB(LoaderManager.LoaderCallbacks callbacks) {
@@ -60,7 +67,7 @@ public class CategoryPresenterImpl implements CategoryPresenter {
         if (cursor == null || cursor.getCount() == 0) {
             fetchRss();
         } else {
-            boolean isAutoFetchRss = PreferenceUtils.isAutoFetchRss();
+            boolean isAutoFetchRss = mPreference.isAutoFetchRss();
             if (isAutoFetchRss) {
                 fetchRss();
             }

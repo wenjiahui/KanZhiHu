@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
+import com.path.android.jobqueue.JobManager;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.activities.fragments.UpdateDialogFragment;
@@ -21,11 +22,19 @@ public class UpdateManager {
 
     private static String app_url = "";
 
-    public static void CheckVersion() {
-        BackThreadManager.getJobManager().addJob(new CheckVersionJob());
+    JobManager mJobManager;
+
+    NotifyManager mNotifyManager;
+
+    public UpdateManager(JobManager manager, NotifyManager notifyManager) {
+        mJobManager = manager;
     }
 
-    public static void registerUpdateBroadcast() {
+    public void CheckVersion() {
+        mJobManager.addJob(new CheckVersionJob());
+    }
+
+    public void registerUpdateBroadcast() {
         final BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override public void onReceive(Context context, Intent intent) {
                 LocalBroadcastManager.getInstance(App.getAppContext()).unregisterReceiver(this);
@@ -38,15 +47,15 @@ public class UpdateManager {
         LocalBroadcastManager.getInstance(App.getAppContext()).registerReceiver(receiver, filter);
     }
 
-    private static void showDialog() {
+    private void showDialog() {
         Activity activity = App.getInstance().topActivity();
         final UpdateDialogFragment dialog = new UpdateDialogFragment();
         dialog.setListener(new DialogSelectListener() {
             @Override public void onConfirm() {
                 dialog.dismiss();
                 //确定下载新版本
-                NotifyManager.getManager().registerEventbus();
-                BackThreadManager.getJobManager().addJob(new DownloadAppJob());
+                mNotifyManager.registerEventbus();
+                mJobManager.addJob(new DownloadAppJob());
             }
 
             @Override public void onCancel() {
@@ -58,11 +67,11 @@ public class UpdateManager {
         dialog.show(ft, "update");
     }
 
-    public static void setUpdateUrl(String url) {
+    public void setUpdateUrl(String url) {
         app_url = url;
     }
 
-    public static String getUpdateUrl() {
+    public String getUpdateUrl() {
         return app_url;
     }
 }

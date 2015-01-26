@@ -4,21 +4,27 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
+import javax.inject.Inject;
 import kanzhihu.android.App;
 import kanzhihu.android.database.ZhihuDatabase;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.IOUtils;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 
 /**
  * Created by Jiahui.wen on 2014/11/17.
  */
 public class DeleteOldArticlesJob extends Job {
 
+    @Inject Preferences mPreference;
+
     public DeleteOldArticlesJob() {
-        super(new Params(Priority.LOW).persist().delayInMs(5000));
+        super(new Params(Priority.LOW).delayInMs(5000));
+
+        Injector.inject(this);
     }
 
     @Override public void onAdded() {
@@ -32,10 +38,10 @@ public class DeleteOldArticlesJob extends Job {
                 CategoryTable.PUBLISH_DATE + " ASC");
         database.beginTransaction();
         try {
-            if (cursor != null && cursor.getCount() > PreferenceUtils.getSaveDays()) {
+            if (cursor != null && cursor.getCount() > mPreference.getSaveDays()) {
                 cursor.moveToFirst();
                 //乘以3是因为每天有3个category
-                int days = cursor.getCount() - PreferenceUtils.getSaveDays() * 3;
+                int days = cursor.getCount() - mPreference.getSaveDays() * 3;
                 boolean avaliable = true;
                 while (--days > 0 && avaliable) {
                     int index = cursor.getColumnIndex(CategoryTable._ID);
