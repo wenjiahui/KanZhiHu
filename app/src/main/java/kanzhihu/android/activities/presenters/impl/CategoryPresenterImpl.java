@@ -10,7 +10,7 @@ import kanzhihu.android.activities.presenters.CategoryPresenter;
 import kanzhihu.android.activities.views.CategoryView;
 import kanzhihu.android.events.FetchedRssEvent;
 import kanzhihu.android.events.ImageModeChangeEvent;
-import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.ListItemClickEvent;
 import kanzhihu.android.jobs.FetchRssJob;
 import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.AssertUtils;
@@ -48,7 +48,7 @@ public class CategoryPresenterImpl implements CategoryPresenter {
         mView.hideFetchRssUI();
     }
 
-    @Override public void onEventMainThread(ListitemClickEvent event) {
+    @Override public void onEventMainThread(ListItemClickEvent event) {
         if (mView.getVisiable()) {
             mView.showArticles(event.position);
         }

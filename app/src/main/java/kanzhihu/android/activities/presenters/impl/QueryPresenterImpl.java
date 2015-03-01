@@ -26,7 +26,7 @@ import kanzhihu.android.activities.views.QueryView;
 import kanzhihu.android.database.ZhihuProvider;
 import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.events.ImageModeChangeEvent;
-import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.ListItemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
@@ -78,7 +78,7 @@ public class QueryPresenterImpl implements QueryPresenter {
         mView.switchImageMode(event.imageVisiable);
     }
 
-    @Override public void onEventMainThread(ListitemClickEvent event) {
+    @Override public void onEventMainThread(ListItemClickEvent event) {
         if (mView.getVisiable()) {
             Article article = mView.getArticle(event.position);
             if (article == null) {

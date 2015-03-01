@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.ParallaxRecyclerAdapter;
-import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.ListItemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ViewAuthorEvent;
@@ -132,7 +132,7 @@ public class ArticlesAdapter extends ParallaxRecyclerAdapter<Article>
                     EventBus.getDefault().post(new ViewAuthorEvent(getPosition()));
                     break;
                 default:
-                    EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
+                    EventBus.getDefault().post(new ListItemClickEvent(getPosition()));
             }
         }
 

@@ -12,7 +12,7 @@ import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 import kanzhihu.android.R;
 import kanzhihu.android.activities.adapter.base.CursorRecyclerViewAdapter;
-import kanzhihu.android.events.ListitemClickEvent;
+import kanzhihu.android.events.ListItemClickEvent;
 import kanzhihu.android.models.Category;
 
 /**
@@ -51,7 +51,7 @@ public class CategoryAdapter extends CursorRecyclerViewAdapter {
         }
 
         @Override public void onClick(View v) {
-            EventBus.getDefault().post(new ListitemClickEvent(getPosition()));
+            EventBus.getDefault().post(new ListItemClickEvent(getPosition()));
         }
     }
 }
