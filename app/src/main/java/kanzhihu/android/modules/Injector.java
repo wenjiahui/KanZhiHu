@@ -13,6 +13,10 @@ public class Injector {
         graph.inject(target);
     }
 
+    public static ObjectGraph plus(IInject injector) {
+        return graph.plus(injector.listModules().toArray());
+    }
+
     public static void setGraph(ObjectGraph objectGraph) {
         graph = objectGraph;
     }

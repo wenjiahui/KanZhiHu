@@ -10,10 +10,10 @@ import android.support.v4.content.LocalBroadcastManager;
 import com.path.android.jobqueue.JobManager;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
-import kanzhihu.android.activities.fragments.UpdateDialogFragment;
 import kanzhihu.android.jobs.CheckVersionJob;
 import kanzhihu.android.jobs.DownloadAppJob;
 import kanzhihu.android.listeners.DialogSelectListener;
+import kanzhihu.android.ui.fragments.UpdateDialogFragment;
 
 /**
  * Created by Jiahui.wen on 2014/11/11.

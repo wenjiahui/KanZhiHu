@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kanzhihu.android.activities.BrowseActivity"
+    tools:context="kanzhihu.android.ui.BrowseActivity"
     tools:ignore="MergeRootFrame"/>
