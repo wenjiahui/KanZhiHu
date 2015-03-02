@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/listitem_padding_vertical"
     style="@style/listitem_cardview_style"
     app:cardBackgroundColor="@color/cardview_background"
     app:cardCornerRadius="5dp">
