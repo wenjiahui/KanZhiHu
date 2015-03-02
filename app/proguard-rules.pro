@@ -46,6 +46,6 @@ public void onEvent*(**); }
 # Dagger
 -keep class * extends dagger.internal.Binding
 -keep class * extends dagger.internal.ModuleAdapter
--keep class * extends dagger.internal.StaticInjection﻿
+-keep class * extends dagger.internal.StaticInjection
 -keep class * extends dagger.internal.BindingsGroup
 -dontwarn dagger.internal.**

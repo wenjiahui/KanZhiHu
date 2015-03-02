@@ -1,7 +1,6 @@
 package kanzhihu.android.ui;
 
 import android.os.Bundle;
-import butterknife.ButterKnife;
 import dagger.ObjectGraph;
 import kanzhihu.android.modules.IInject;
 import kanzhihu.android.modules.Injector;
@@ -15,8 +14,6 @@ public abstract class InjectableActivity extends BaseActivity implements IInject
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutRes());
-        ButterKnife.inject(this);
 
         mGraph = Injector.plus(this);
         inject(this);
