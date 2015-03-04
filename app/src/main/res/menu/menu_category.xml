@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="kanzhihu.android.activities.fragments.CategoryFragment">
+    tools:context="kanzhihu.android.ui.fragments.CategoryFragment">
 
     <item android:id="@+id/action_refresh"
         android:title="@string/action_refresh"

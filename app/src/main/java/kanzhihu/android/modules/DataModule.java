@@ -18,21 +18,13 @@ import javax.inject.Singleton;
 import kanzhihu.android.App;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.BuildConfig;
-import kanzhihu.android.activities.adapter.ArticlesAdapter;
-import kanzhihu.android.activities.adapter.SearchAdapter;
-import kanzhihu.android.activities.fragments.ArticlesFragment;
-import kanzhihu.android.activities.fragments.SearchFragment;
-import kanzhihu.android.activities.fragments.SettingFragment;
-import kanzhihu.android.activities.fragments.UpdateDialogFragment;
-import kanzhihu.android.activities.presenters.impl.ArticlesPresenterImpl;
-import kanzhihu.android.activities.presenters.impl.CategoryPresenterImpl;
-import kanzhihu.android.activities.presenters.impl.QueryPresenterImpl;
 import kanzhihu.android.jobs.CheckVersionJob;
 import kanzhihu.android.jobs.DeleteOldArticlesJob;
 import kanzhihu.android.jobs.DownloadAppJob;
 import kanzhihu.android.jobs.FetchRssJob;
 import kanzhihu.android.managers.NotifyManager;
 import kanzhihu.android.managers.UpdateManager;
+import kanzhihu.android.ui.fragments.UpdateDialogFragment;
 import timber.log.Timber;
 
 /**
@@ -40,13 +32,12 @@ import timber.log.Timber;
  */
 @Module(
     injects = {
-        App.class, CategoryPresenterImpl.class, CheckVersionJob.class, DownloadAppJob.class, FetchRssJob.class,
-        ArticlesFragment.class, ArticlesAdapter.class, SearchAdapter.class, QueryPresenterImpl.class,
-        ArticlesPresenterImpl.class, SettingFragment.class, UpdateDialogFragment.class, SearchFragment.class,
+        App.class, CheckVersionJob.class, DownloadAppJob.class, FetchRssJob.class, UpdateDialogFragment.class,
         DeleteOldArticlesJob.class
     },
     includes = { AppModule.class },
-    library = true)
+    library = true,
+    complete = false)
 public class DataModule {
 
     @Provides @Singleton

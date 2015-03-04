@@ -30,7 +30,7 @@
     <string name="delete_article" formatted="false">成功删除《%s》</string>
     <string name="mark_revert_fail">撤销失败</string>
     <string name="share">分享</string>
-    <string name="share_title" formatted="false">我在看知乎网站上发现了一篇好文章《%s》，概况内容是%s。在知乎上的网址是%s，大家都看看吧。</string>
+    <string name="share_title">我在看知乎网站上发现了一篇好文章《%1$s》，概况内容是%1$s。在知乎上的网址是%1$s，大家都看看吧。</string>
     <string name="click_link_browse">点击查看</string>
     <string name="thanks">鸣谢</string>
     <string name="kanzhihu">看知乎</string>

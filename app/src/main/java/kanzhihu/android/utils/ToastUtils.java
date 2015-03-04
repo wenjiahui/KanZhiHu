@@ -13,7 +13,8 @@ public class ToastUtils {
     private static Style Crouton_Alert_Style;
 
     static {
-        Crouton_Alert_Style = new Style.Builder().setBackgroundColor(R.color.toast_background)
+        Crouton_Alert_Style = new Style.Builder().setBackgroundColor(
+            App.getAppContext().getResources().getColor(R.color.toast_background))
             .setHeightDimensionResId(R.dimen.toast_height)
             .setTextSize(13)
             .setPaddingInPixels(0)

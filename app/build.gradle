@@ -3,8 +3,6 @@ buildscript {
         jcenter()
     }
     dependencies {
-        //unit test
-        classpath 'org.robolectric:robolectric-gradle-plugin:0.13.2'
         //rename apk
         classpath 'com.github.hamsterksu:android-appversion-gradle-plugin:1.1.0'
     }
@@ -12,7 +10,6 @@ buildscript {
 
 
 apply plugin: 'com.android.application'
-apply plugin: 'robolectric'
 apply plugin: 'versionPlugin'
 
 
@@ -96,10 +93,10 @@ dependencies {
     //event handler
     compile 'de.greenrobot:eventbus:2.4.0'
     //network request
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
     //load image
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.0'
     //html parse
     compile 'org.jsoup:jsoup:1.8.1'
     //toolbar
@@ -113,44 +110,7 @@ dependencies {
     }
     //dialog
     compile 'com.afollestad:material-dialogs:0.3.0'
-    androidTestCompile 'junit:junit:4.11'
-    androidTestCompile('org.robolectric:robolectric:2.3') {
-        exclude module: 'classworlds'
-        exclude module: 'commons-logging'
-        exclude module: 'httpclient'
-        exclude module: 'maven-artifact'
-        exclude module: 'maven-artifact-manager'
-        exclude module: 'maven-error-diagnostics'
-        exclude module: 'maven-model'
-        exclude module: 'maven-project'
-        exclude module: 'maven-settings'
-        exclude module: 'plexus-container-default'
-        exclude module: 'plexus-interpolation'
-        exclude module: 'plexus-utils'
-        exclude module: 'wagon-file'
-        exclude module: 'wagon-http-lightweight'
-        exclude module: 'wagon-provider-api'
-    }
-}
-
-robolectric {
-    // configure the set of classes for JUnit tests
-    include '**/*Test.class'
-    exclude '**/espresso/**/*.class'
-
-    // configure max heap size of the test JVM
-    maxHeapSize = '2048m'
-
-    // configure the test JVM arguments
-    jvmArgs '-XX:MaxPermSize=512m', '-XX:-UseSplitVerifier'
-
-
-    // configure whether failing tests should fail the build
-    ignoreFailures true
-
-    // use afterTest to listen to the test execution results
-    afterTest { descriptor, result -> println "Executing test for ${descriptor.name} with result: ${result.resultType}"
-    }
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
 
 
