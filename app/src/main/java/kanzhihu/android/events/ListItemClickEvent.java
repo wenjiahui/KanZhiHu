@@ -5,14 +5,14 @@ package kanzhihu.android.events;
  *
  * 点击RecyclerView的item触发的事件
  */
-public class ListitemClickEvent {
+public class ListItemClickEvent {
 
     public int position = -1;
 
-    public ListitemClickEvent() {
+    public ListItemClickEvent() {
     }
 
-    public ListitemClickEvent(int position) {
+    public ListItemClickEvent(int position) {
         this.position = position;
     }
 }

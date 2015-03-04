@@ -1,4 +1,7 @@
 .gradle
+gradle/
+gradlew
+gradlew.bat
 
 /.idea/libraries
 .DS_Store
