@@ -3,7 +3,7 @@ package kanzhihu.android.ui.presenters;
 import android.app.LoaderManager;
 import android.database.Cursor;
 import kanzhihu.android.events.FetchedRssEvent;
-import kanzhihu.android.events.ListItemClickEvent;
+import kanzhihu.android.events.ListitemClickEvent;
 
 /**
  * Created by Jiahui.wen on 2014/11/13.
@@ -12,7 +12,7 @@ public interface CategoryPresenter extends BasePresenter {
 
     void onEventMainThread(FetchedRssEvent event);
 
-    void onEventMainThread(ListItemClickEvent event);
+    void onEventMainThread(ListitemClickEvent event);
 
     void fetchRss();
 

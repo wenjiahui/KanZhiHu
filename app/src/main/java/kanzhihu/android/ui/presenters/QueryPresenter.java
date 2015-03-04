@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import com.cocosw.undobar.UndoBarController;
-import kanzhihu.android.events.ListItemClickEvent;
+import kanzhihu.android.events.ListitemClickEvent;
 import kanzhihu.android.events.MarkChangeEvent;
 import kanzhihu.android.events.ShareArticleEvent;
 import kanzhihu.android.events.ShareMenuDismissEvent;
@@ -20,7 +20,7 @@ public interface QueryPresenter
 
     void loadInitData();
 
-    void onEventMainThread(ListItemClickEvent event);
+    void onEventMainThread(ListitemClickEvent event);
 
     void onEventMainThread(MarkChangeEvent event);
 
