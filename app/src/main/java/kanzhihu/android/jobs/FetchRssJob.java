@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Xml;
 import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import de.greenrobot.event.EventBus;
@@ -13,14 +14,14 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.R;
 import kanzhihu.android.events.FetchedRssEvent;
 import kanzhihu.android.events.NetworkErrorEvent;
-import kanzhihu.android.managers.HttpClientManager;
 import kanzhihu.android.managers.NetworkManager;
 import kanzhihu.android.models.Category;
-import kanzhihu.android.utils.AppLogger;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.HtmlUtils;
 import kanzhihu.android.utils.PersistUtils;
 import kanzhihu.android.utils.TimeUtils;
@@ -35,9 +36,13 @@ public class FetchRssJob extends Job {
     private static final AtomicInteger jobCounter = new AtomicInteger(0);
     private final int id;
 
+    @Inject OkHttpClient mHttpClient;
+
     public FetchRssJob() {
         super(new Params(Priority.HIGH).groupBy("fetch_rss"));
         id = jobCounter.incrementAndGet();
+
+        Injector.inject(this);
     }
 
     @Override public void onAdded() {
@@ -56,7 +61,7 @@ public class FetchRssJob extends Job {
 
         Request request = new Request.Builder().url(AppConstant.RSS_URL).build();
 
-        Response response = HttpClientManager.request(request);
+        Response response = mHttpClient.newCall(request).execute();
         InputStream rssStream;
         try {
             rssStream = response.body().byteStream();
@@ -100,7 +105,6 @@ public class FetchRssJob extends Job {
             }
             eventType = parser.next();
         }
-        AppLogger.d("parse items size: >>>> " + categories.size());
         PersistUtils.store(categories);
     }
 

@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="kanzhihu.android.activities.MainActivity">
+    tools:context="kanzhihu.android.ui.MainActivity">
 
     <item android:id="@+id/action_search"
         android:title="@string/search"

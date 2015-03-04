@@ -21,9 +21,6 @@
 ![screenshot_07](screenshot/screenshot_07.png "浏览文章内容")
 ![screenshot_08](screenshot/screenshot_08.png "设置界面")
 
-###Run Unit Test
-`gradle clean test`
-
 
 ###Open source library used
 - [Butterknife][2]
@@ -36,8 +33,8 @@
 - [material-dialogs](10)
 - [Undo Bar](14)
 - [Crouton](15)
-- [robolectric][6](Unit Test)
 - [android-appversion-gradle-plugin][13](apk rename)
+- [SystemBarTint](6)
 
 
 ###鸣谢
@@ -69,7 +66,7 @@
 [3]:https://github.com/JakeWharton/butterknife
 [4]:https://github.com/greenrobot/EventBus
 [5]:http://jsoup.org/
-[6]:http://robolectric.org/
+[6]:https://github.com/jgilfelt/SystemBarTint
 [7]:https://gist.github.com/skyfishjy/443b7448f59be978bc59
 [8]:https://github.com/kanytu/android-parallax-recyclerview
 [9]:https://github.com/ksoichiro/Android-ObservableScrollView

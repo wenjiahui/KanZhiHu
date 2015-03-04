@@ -11,6 +11,7 @@ import kanzhihu.android.database.table.ArticleTable;
 import kanzhihu.android.database.table.CategoryTable;
 import kanzhihu.android.models.Article;
 import kanzhihu.android.models.Category;
+import timber.log.Timber;
 
 /**
  * Created by Jiahui.wen on 2014/11/11.
@@ -24,19 +25,23 @@ public class PersistUtils {
 
         SQLiteDatabase database = new ZhihuDatabase(App.getAppContext()).getWritableDatabase();
         database.beginTransaction();
+        boolean newInsert = false;
         try {
             for (Category category : categories) {
                 Cursor cursor =
                     database.rawQuery(buildCategoryQueryUri(AppConstant.CATEGORY_EXIST_SQL, category), null);
                 if (cursor == null || cursor.getCount() == 0) {
                     save(category, database);
+                    newInsert = true;
                 }
                 IOUtils.close(cursor);
             }
             database.setTransactionSuccessful();
-            App.getAppContext().getContentResolver().notifyChange(ZhihuProvider.CATEGORY_CONTENT_URI, null);
+            if (newInsert) {
+                App.getAppContext().getContentResolver().notifyChange(ZhihuProvider.CATEGORY_CONTENT_URI, null);
+            }
         } catch (Exception e) {
-            AppLogger.e(PersistUtils.class.getSimpleName(), e);
+            Timber.e(e, PersistUtils.class.getSimpleName());
         } finally {
             database.endTransaction();
         }

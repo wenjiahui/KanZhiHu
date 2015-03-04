@@ -1,14 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- customize the color palette -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:textColorPrimary">@color/toolbar_textColor</item>
+        <item name="android:textColorPrimary">@color/text_black</item>
         <item name="android:windowBackground">@color/window_background</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <style name="AppTheme" parent="BaseTheme">
+    </style>
+
+    <style name="Widget.ToolBar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/toolbar_textColor</item>
+    </style>
+
 
     <style name="base_textfield_style">
         <item name="android:layout_width">wrap_content</item>

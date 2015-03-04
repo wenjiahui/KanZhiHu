@@ -1,10 +1,10 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_horizontal_margin">5dp</dimen>
     <dimen name="activity_vertical_margin">10dp</dimen>
 
     <dimen name="listitem_padding_horizontal">8dp</dimen>
-    <dimen name="listitem_padding_vertical">3dp</dimen>
+    <dimen name="listitem_padding_vertical">4dp</dimen>
 
     <dimen name="font_large">18sp</dimen>
     <dimen name="font_normal">15sp</dimen>

@@ -6,20 +6,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import com.crashlytics.android.Crashlytics;
+import com.path.android.jobqueue.JobManager;
+import com.tencent.bugly.crashreport.CrashReport;
+import dagger.ObjectGraph;
 import de.greenrobot.event.EventBus;
 import java.io.File;
+import javax.inject.Inject;
 import kanzhihu.android.events.DownloadedApkEvent;
 import kanzhihu.android.events.NetworkErrorEvent;
 import kanzhihu.android.jobs.DeleteOldArticlesJob;
 import kanzhihu.android.managers.ActivityManager;
-import kanzhihu.android.managers.BackThreadManager;
 import kanzhihu.android.managers.NotifyManager;
 import kanzhihu.android.managers.UpdateManager;
+import kanzhihu.android.modules.AppModule;
+import kanzhihu.android.modules.DataModule;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.Cache;
 import kanzhihu.android.utils.FileUtils;
-import kanzhihu.android.utils.PreferenceUtils;
+import kanzhihu.android.utils.Preferences;
 import kanzhihu.android.utils.ToastUtils;
+import timber.log.Timber;
 
 /**
  * Created by Jiahui.wen on 2014/11/6.
@@ -36,25 +42,46 @@ public class App extends Application {
         return (App) mApplicationContext;
     }
 
-    private ActivityManager mCallBack;
+    @Inject ActivityManager mCallBack;
+
+    @Inject JobManager mJobManager;
+
+    @Inject UpdateManager mUpdateManager;
+
+    @Inject NotifyManager mNotifyManager;
+
+    @Inject Preferences mPreference;
 
     @Override public void onCreate() {
         super.onCreate();
-        if (!BuildConfig.DEBUG) Crashlytics.start(this);
-
-        mCallBack = new ActivityManager();
-        registerActivityLifecycleCallbacks(mCallBack);
 
         mApplicationContext = this.getApplicationContext();
 
-        if (PreferenceUtils.isAutoUpdate()) {
-            //检查服务器app的版本号
-            UpdateManager.CheckVersion();
+        Injector.setGraph(ObjectGraph.create(new AppModule(this), new DataModule()));
+        Injector.inject(this);
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
         }
 
-        BackThreadManager.getJobManager().addJobInBackground(new DeleteOldArticlesJob());
+        initCrashAnalysic();
+
+        registerActivityLifecycleCallbacks(mCallBack);
+
+        if (mPreference.isAutoUpdate()) {
+            //检查服务器app的版本号
+            mUpdateManager.CheckVersion();
+        }
+
+        mJobManager.addJobInBackground(new DeleteOldArticlesJob());
 
         EventBus.getDefault().register(this);
+    }
+
+    private void initCrashAnalysic() {
+        String appId = "900001876";   //上Bugly(bugly.qq.com)注册产品获取的AppId
+
+        CrashReport.initCrashReport(this, appId, BuildConfig.DEBUG);  //初始化SDK
     }
 
     public Activity topActivity() {
@@ -87,7 +114,7 @@ public class App extends Application {
         }
         //最新版的apk已经下载完毕，目前不需要继续监听事件。
         EventBus.getDefault().unregister(this);
-        NotifyManager.getManager().unregisterEventbus();
+        mNotifyManager.unregisterEventbus();
     }
 
     /**

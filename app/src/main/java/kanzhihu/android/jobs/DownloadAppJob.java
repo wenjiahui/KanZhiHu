@@ -2,19 +2,21 @@ package kanzhihu.android.jobs;
 
 import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import de.greenrobot.event.EventBus;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import javax.inject.Inject;
 import kanzhihu.android.AppConstant;
 import kanzhihu.android.events.DownloadProgressEvent;
 import kanzhihu.android.events.DownloadedApkEvent;
 import kanzhihu.android.events.DownloadingApkEvent;
-import kanzhihu.android.managers.HttpClientManager;
 import kanzhihu.android.managers.NetworkManager;
 import kanzhihu.android.managers.UpdateManager;
+import kanzhihu.android.modules.Injector;
 import kanzhihu.android.utils.FileUtils;
 import kanzhihu.android.utils.IOUtils;
 
@@ -25,8 +27,13 @@ import kanzhihu.android.utils.IOUtils;
  */
 public class DownloadAppJob extends Job {
 
+    @Inject UpdateManager mUpdateManager;
+    @Inject OkHttpClient mHttpClient;
+
     public DownloadAppJob() {
         super(new Params(Priority.LOW).persist());
+
+        Injector.inject(this);
     }
 
     @Override public void onAdded() {
@@ -38,8 +45,8 @@ public class DownloadAppJob extends Job {
             return;
         }
 
-        Request request = new Request.Builder().url(UpdateManager.getUpdateUrl()).build();
-        Response response = HttpClientManager.request(request);
+        Request request = new Request.Builder().url(mUpdateManager.getUpdateUrl()).build();
+        Response response = mHttpClient.newCall(request).execute();
 
         String path = FileUtils.getCachePath();
         File apk = new File(path, AppConstant.APK_NAME);

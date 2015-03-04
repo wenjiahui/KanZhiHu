@@ -21,19 +21,10 @@ import kanzhihu.android.utils.FileUtils;
  */
 public class NotifyManager {
 
-    public static NotifyManager manager;
-
     private NotificationManager mNotificationManager;
     private int mDownloadNotifyID = 1;
     private Notification mDownloadNotification;
     private NotificationCompat.Builder mNotifyBuilder;
-
-    public static NotifyManager getManager() {
-        if (manager == null) {
-            manager = new NotifyManager();
-        }
-        return manager;
-    }
 
     public void registerEventbus() {
         EventBus.getDefault().register(this);

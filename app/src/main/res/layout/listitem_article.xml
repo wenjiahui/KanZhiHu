@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/listitem_padding_vertical"
     style="@style/listitem_cardview_style"
     app:cardBackgroundColor="@color/cardview_background"
     app:cardCornerRadius="5dp">
@@ -27,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="10dp">
+                tools:layout_marginLeft="10dp">
 
 
                 <LinearLayout
@@ -38,7 +40,7 @@
 
                     <TextView
                         android:id="@+id/tv_title"
-                        android:text="title"
+                        tools:text="title"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
@@ -62,12 +64,12 @@
 
                     <TextView
                         android:id="@+id/tv_author"
-                        android:text="writer"
+                        tools:text="writer"
                         style="@style/base_textfield_style"/>
 
                     <TextView
                         android:id="@+id/tv_agree"
-                        android:text="1000"
+                        tools:text="1000"
                         android:drawableLeft="@drawable/ic_agree"
                         android:layout_marginLeft="20dp"
                         android:drawablePadding="5dp"

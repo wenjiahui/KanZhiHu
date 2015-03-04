@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="base_color_light">#5ccccc</color>
-    <color name="base_color">#009688</color>
+    <color name="base_color_light">#009688</color>
+    <color name="base_color">#009698</color>
     <color name="base_color_dark">#00796b</color>
 
     <color name="white">#e3e3e3</color>
@@ -19,7 +19,7 @@
 
     <color name="window_background">@color/white</color>
 
-    <color name="toolbar_textColor">#e3e3e3</color>
+    <color name="toolbar_textColor">#ffffff</color>
 
     <color name="cardview_background">#fefefe</color>
 

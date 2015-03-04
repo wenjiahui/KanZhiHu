@@ -42,5 +42,10 @@
 -keepclassmembers class ** {
 public void onEvent*(**); }
 
--dontwarn com.crashlytics.android.**
--dontwarn com.crashlytics.android.internal.**
+
+# Dagger
+-keep class * extends dagger.internal.Binding
+-keep class * extends dagger.internal.ModuleAdapter
+-keep class * extends dagger.internal.StaticInjection
+-keep class * extends dagger.internal.BindingsGroup
+-dontwarn dagger.internal.**
