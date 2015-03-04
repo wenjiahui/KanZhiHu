@@ -110,7 +110,9 @@ public class ArticlesFragment extends BaseFragment implements ArticlesView, Para
         Point point = HardwareUtils.getScrenSize(getActivity());
         int width = point.x;
         int height = width * 245 / 520;
-        mHeadView.setLayoutParams(new LinearLayout.LayoutParams(width, height));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, height);
+        layoutParams.topMargin = getResources().getDimensionPixelSize(R.dimen.activity_vertical_margin);
+        mHeadView.setLayoutParams(layoutParams);
 
         mPresenter = new ArticlesPresenterImpl(this, mCategory, mPreference);
         mPresenter.loadArticles();
