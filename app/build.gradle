@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
     }
     dependencies {
         //rename apk
@@ -8,14 +9,17 @@ buildscript {
     }
 }
 
+repositories {
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
+}
 
 apply plugin: 'com.android.application'
 apply plugin: 'versionPlugin'
 
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     lintOptions {
         abortOnError false
@@ -24,7 +28,7 @@ android {
     defaultConfig {
         applicationId "kanzhihu.android"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 2
         versionName "1.10"
     }
@@ -77,10 +81,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3@aar'
-    compile 'com.android.support:cardview-v7:21.0.0'
-    compile 'com.android.support:recyclerview-v7:21.0.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:cardview-v7:22.1.1'
+    compile 'com.android.support:recyclerview-v7:22.1.1'
     //logger
     compile 'com.jakewharton.timber:timber:2.5.1'
     //dependency injector
@@ -102,15 +106,16 @@ dependencies {
     //toolbar
     compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
     //undo bar
-    compile 'com.cocosw:undobar:1.6@aar'
     //toast
     compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
         // exclusion is not neccessary, but generally a good idea.
         exclude group: 'com.google.android', module: 'support-v4'
     }
     //dialog
-    compile 'com.afollestad:material-dialogs:0.3.0'
+    //compile 'com.afollestad:material-dialogs:0.3.0'
+    compile 'com.afollestad:material-dialogs:0.7.3.1'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.cocosw:undobar:1.8.1'
 }
 
 

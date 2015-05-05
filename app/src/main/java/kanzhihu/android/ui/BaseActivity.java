@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewConfiguration;
 import android.view.Window;
@@ -18,7 +18,7 @@ import kanzhihu.android.R;
 /**
  * Created by Jiahui.wen on 2014/11/28.
  */
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @InjectView(R.id.toolbar)
     protected Toolbar toolbar;
@@ -38,9 +38,9 @@ public abstract class BaseActivity extends ActionBarActivity {
 
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setNavigationBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.primary);
-        tintManager.setNavigationBarTintResource(R.color.primary);
+        //tintManager.setNavigationBarTintEnabled(true);
+        tintManager.setStatusBarTintResource(R.color.primary_dark);
+        //tintManager.setNavigationBarTintResource(R.color.primary);
 
         forceShowActionBarOverflowMenu();
     }

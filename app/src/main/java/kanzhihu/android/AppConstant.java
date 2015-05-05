@@ -108,10 +108,10 @@ public class AppConstant {
     //============= text color =================
     static {
         Resources resources = App.getAppContext().getResources();
-        TITLE_UNREAD_COLOR = resources.getColor(R.color.text_black);
-        CONTENT_UNREAD_COLOR = resources.getColor(R.color.text_gray);
-        TITLE_READ_COLOR = resources.getColor(R.color.text_black_read);
-        CONTENT_READ_COLOR = resources.getColor(R.color.text_gray_read);
+        TITLE_UNREAD_COLOR = resources.getColor(R.color.primary_text);
+        CONTENT_UNREAD_COLOR = resources.getColor(R.color.secondary_text);
+        TITLE_READ_COLOR = resources.getColor(R.color.secondary_text);
+        CONTENT_READ_COLOR = resources.getColor(R.color.divider);
     }
 
     public static int TITLE_UNREAD_COLOR;

@@ -21,13 +21,13 @@ public class UpdateDialogFragment extends DialogFragment {
     }
 
     @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity()).icon(R.drawable.ic_launcher)
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity()).iconRes(R.drawable.ic_launcher)
             .title(R.string.app_name)
             .content(R.string.find_new_app_version)
             .positiveText(R.string.confirm)
             .negativeText(R.string.cancel)
             .neutralText(R.string.ignore)
-            .callback(new MaterialDialog.FullCallback() {
+            .callback(new MaterialDialog.ButtonCallback() {
                 @Override
                 public void onPositive(MaterialDialog dialog) {
                     if (mListener != null) {

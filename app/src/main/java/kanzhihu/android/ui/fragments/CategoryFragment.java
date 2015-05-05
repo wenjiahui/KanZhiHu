@@ -70,8 +70,7 @@ public class CategoryFragment extends BaseFragment implements CategoryView, Load
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter = new CategoryPresenterImpl(this, mJobManager, mPreference);
-
-        mSwipelayout.setProgressBackgroundColor(R.color.window_background);
+        
         mSwipelayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
             android.R.color.holo_orange_light, android.R.color.holo_red_light);
 
