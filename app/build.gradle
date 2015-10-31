@@ -1,36 +1,15 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
-    }
-    dependencies {
-        //rename apk
-        classpath 'com.github.hamsterksu:android-appversion-gradle-plugin:1.1.0'
-    }
-}
-
-repositories {
-    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
-}
-
 apply plugin: 'com.android.application'
-apply plugin: 'versionPlugin'
-
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
-
-    lintOptions {
-        abortOnError false
-    }
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "kanzhihu.android"
+        applicationId "org.wen.kanzhihu"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 2
-        versionName "1.10"
+        versionName "2.0"
     }
 
     signingConfigs {
@@ -52,25 +31,11 @@ android {
             applicationIdSuffix ".debug"
             minifyEnabled false
         }
-        release {
-            File file = new File("app" + File.separator, "kanzhihu.keystore")
-            if (file.exists()) {
-                //如果有keystore存在，则进行执行的签名打包
-                signingConfig signingConfigs.release
-                System.out.println("\n************************************************")
-                System.out.println("              use kanzhihu.keystore            ")
-                System.out.println("************************************************\n")
-            } else {
-                System.out.println("\n************************************************")
-                System.out.println("              package release error             ")
-                System.out.println(file.getAbsolutePath())
-                System.out.println("************************************************\n")
-            }
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    }
+
+
+    lintOptions {
+        abortOnError false
     }
 
     packagingOptions {
@@ -82,44 +47,5 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:cardview-v7:22.1.1'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
-    //logger
-    compile 'com.jakewharton.timber:timber:2.5.1'
-    //dependency injector
-    compile 'com.squareup.dagger:dagger:1.2.2'
-    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
-    //view Initialize
-    compile 'com.jakewharton:butterknife:6.0.0'
-    //background thread
-    compile 'com.path:android-priority-jobqueue:1.1.2'
-    //event handler
-    compile 'de.greenrobot:eventbus:2.4.0'
-    //network request
-    compile 'com.squareup.okhttp:okhttp:2.2.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
-    //load image
-    compile 'com.squareup.picasso:picasso:2.5.0'
-    //html parse
-    compile 'org.jsoup:jsoup:1.8.1'
-    //toolbar
-    compile 'com.github.ksoichiro:android-observablescrollview:1.2.0'
-    //undo bar
-    //toast
-    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-        // exclusion is not neccessary, but generally a good idea.
-        exclude group: 'com.google.android', module: 'support-v4'
-    }
-    //dialog
-    //compile 'com.afollestad:material-dialogs:0.3.0'
-    compile 'com.afollestad:material-dialogs:0.7.3.1'
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.cocosw:undobar:1.8.1'
-}
-
-
-versionPlugin {
-    buildTypesMatcher = 'release'
-    fileNameFormat = '$appPkg-$versionName'
+    compile 'im.fir:sdk:latest.integration'
 }

@@ -3,43 +3,21 @@
 
 [![Build Status](https://travis-ci.org/wenjiahui/KanZhiHu.svg?branch=master)](https://travis-ci.org/wenjiahui/KanZhiHu)
 
-从[看知乎][1]这个网站读取RSS，在Android设备上阅读。
+从[看知乎][1]这个网站读取文章，在Android设备上阅读。
 
-###下载 [点击下载](http://github.com/wenjiahui/KanZhiHu/raw/master/apks/kanzhihu.android-lastest.apk)
+###下载1.x版本 [点击下载](http://github.com/wenjiahui/KanZhiHu/raw/master/apks/kanzhihu.android-lastest.apk)
 ![dowload](screenshot/qrcode.png "下载")
 
-###Screenshots
-![screenshot_01](screenshot/screenshot_01.png "提示更新")
-![screenshot_02](screenshot/screenshot_02.png "每日分类")
-
-![screenshot_03](screenshot/screenshot_03.png "类别文章")
-![screenshot_04](screenshot/screenshot_04.png "点击收藏")
-
-![screenshot_05](screenshot/screenshot_05.png "长按分享")
-![screenshot_06](screenshot/screenshot_06.png "搜索关键字")
-
-![screenshot_07](screenshot/screenshot_07.png "浏览文章内容")
-![screenshot_08](screenshot/screenshot_08.png "设置界面")
+###[Source Code For 1.x](https://github.com/wenjiahui/KanZhiHu/tree/1.x)
 
 
 ###Open source library used
-- [Butterknife][2]
-- [Android Priority Job Queue][3]
-- [EventBus][4]
-- [Jsoup][5]
-- [CursorRecyclerViewAdapter.java](7)
-- [ParallaxRecyclerAdapter.java](8)
-- [Android-ObservableScrollView](9)
-- [material-dialogs](10)
-- [Undo Bar](14)
-- [Crouton](15)
-- [android-appversion-gradle-plugin][13](apk rename)
-- [SystemBarTint](6)
+
 
 
 ###鸣谢
-- [知乎网](11)
-- [看知乎](12)
+- [知乎网](2)
+- [看知乎](3)
 - 其他开源库的大牛们
 
 ###[CHANGELOG](changelog.md)
@@ -62,18 +40,7 @@
 
 
 [1]:http://www.kanzhihu.com/
-[2]:https://github.com/path/android-priority-jobqueue
-[3]:https://github.com/JakeWharton/butterknife
-[4]:https://github.com/greenrobot/EventBus
-[5]:http://jsoup.org/
-[6]:https://github.com/jgilfelt/SystemBarTint
-[7]:https://gist.github.com/skyfishjy/443b7448f59be978bc59
-[8]:https://github.com/kanytu/android-parallax-recyclerview
-[9]:https://github.com/ksoichiro/Android-ObservableScrollView
-[10]:https://github.com/afollestad/material-dialogs
-[11]:http://www.zhihu.com/
-[12]:http://www.kanzhihu.com/
-[13]:https://github.com/hamsterksu/android-appversion-gradle-plugin
-[14]:https://github.com/soarcn/UndoBar
-[15]:https://github.com/keyboardsurfer/Crouton
+[2]:http://www.zhihu.com/
+[3]:http://www.kanzhihu.com/
+
 

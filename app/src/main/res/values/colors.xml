@@ -10,15 +10,4 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
 
-
-
-    <color name="window_background">#e3e3e3</color>
-
-    <color name="toolbar_textColor">@color/icons</color>
-
-    <color name="cardview_background">#fefefe</color>
-
-    <color name="listitem_normal_color">@android:color/darker_gray</color>
-    <color name="listitem_pressed_color">@color/window_background</color>
-    <color name="toast_background">#99FF3030</color>
 </resources>

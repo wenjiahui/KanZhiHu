@@ -1,62 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kanzhihu.android">
+    package="org.wen.kanzhihu"
+    >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 必选 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <!-- 下载新版apk -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!-- 获取设备信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <!-- 获取MAC地址-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <!-- 可选的权限： -->
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <!-- 获取logcat日志 -->
+    <!-- 可选 -->
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <application
-        android:name="kanzhihu.android.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.crashlytics.ApiKey"
-            android:value="3a890bbe7348f76b28275815a69d0a47fd50f09f"/>
+        android:theme="@style/AppTheme"
+        >
+
+        <meta-data android:value="fde33205862010cf2cad4992c8f2375a" android:name="BUG_HD_SDK_GENERAL_KEY" />
 
         <activity
-            android:name="kanzhihu.android.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:uiOptions="splitActionBarWhenNarrow">
+            android:uiOptions="splitActionBarWhenNarrow"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name="kanzhihu.android.ui.SettingActivity"
-            android:label="@string/title_activity_setting">
-        </activity>
-        <activity
-            android:name="kanzhihu.android.ui.BrowseActivity"
-            android:label="@string/title_activity_browse"
-            android:uiOptions="splitActionBarWhenNarrow"/>
-        <activity
-            android:name="kanzhihu.android.ui.SearchActivity"
-            android:theme="@style/SearchActivity_MaterialTheme"
-            android:label="@string/title_activity_search">
-        </activity>
 
-        <provider
-            android:name="kanzhihu.android.database.ZhihuProvider"
-            android:authorities="${applicationId}.provider"
-            android:enabled="true"
-            android:exported="false">
-        </provider>
     </application>
 
 </manifest>
