@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.wen.kanzhihu"
-    >
+    package="org.wen.kanzhihu2">
 
     <!-- 必选 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -17,16 +16,16 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
 
-        <meta-data android:value="fde33205862010cf2cad4992c8f2375a" android:name="BUG_HD_SDK_GENERAL_KEY" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7217f5d49ff20d0183710c4cd6e65bd9bc635a59"/>
 
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:uiOptions="splitActionBarWhenNarrow"
-            >
+            android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

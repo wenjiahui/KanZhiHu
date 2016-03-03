@@ -16,10 +16,17 @@
 #   public *;
 #}
 
+-dontwarn java.lang.invoke.*
+
 -keep class android.support.v4.internal.** { *; }
 -keep interface android.support.v4.internal.** { *; }
 -keep class android.support.v4.** { *; }
 -keep interface android.support.v4.** { *; }
+
+#For fir.im sdk
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *;}
+-dontwarn okio.**
 
 
 -keep class android.support.v7.internal.** { *; }

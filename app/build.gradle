@@ -1,15 +1,36 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+apply from: '../dependency.gradle'
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.getkeepsafe.dexcount'
+
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "org.wen.kanzhihu"
-        minSdkVersion 14
-        targetSdkVersion 23
+        applicationId project.ext.applicationId
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
         versionCode 2
-        versionName "2.0"
+        versionName project.ext.versionName
     }
 
     signingConfigs {
@@ -33,6 +54,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
 
     lintOptions {
         abortOnError false
@@ -47,5 +72,42 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'im.fir:sdk:latest.integration'
+
+    compile project.ext.libSupportAppcompat
+
+    compile project.ext.libSmartAdapter
+
+    compile project.ext.libPageStateLayout
+
+    compile project.ext.libDagger
+    apt project.ext.libDaggerCompiler
+    provided project.ext.libJavaxAnnotation
+
+    compile project.ext.libNucleus
+    compile project.ext.libNucleus_v4
+    compile project.ext.libNucleus_v7
+
+    compile project.ext.libRxAndroid
+    compile project.ext.libRxJava
+    compile project.ext.libRxBinding
+
+    compile project.ext.libTimber
+    compile project.ext.libButterknife
+
+    compile project.ext.libSqlbrite
+
+    compile project.ext.libRetrofit
+    compile project.ext.libRetrofitConverterMoshi
+    compile project.ext.libRetrofitAdapterRxJava
+    compile project.ext.libOkHttpLoggingInterceptor
+
+    apt project.ext.libdbflow_processor
+    compile project.ext.libdbflow_core
+    compile project.ext.libdbflow
+
+    compile project.ext.libFresco
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
 }

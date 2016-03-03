@@ -1,8 +1,8 @@
-package org.wen.kanzhihu.ui;
+package org.wen.kanzhihu2.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import org.wen.kanzhihu.R;
+import org.wen.kanzhihu2.R;
 
 /**
  * Created by Jiahui.wen on 15-10-31.
